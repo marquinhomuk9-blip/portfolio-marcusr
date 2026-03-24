@@ -11,10 +11,8 @@ import {
   Brain,
   CheckCircle2,
   AlertTriangle,
-  ArrowRight,
   BarChart3,
   Shield,
-  FileText,
   Layers,
   Clock,
   Sparkles,
@@ -27,11 +25,14 @@ const fade = {
   transition: { duration: 0.45 },
 };
 
+/* Largura de leitura para texto corrido */
+const prose = "max-w-[680px]";
+
 const t = {
   label: "text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/45 mb-4",
-  h2: "font-heading text-[28px] md:text-[36px] font-bold text-foreground leading-[1.2] mb-5",
-  h3: "font-heading text-[22px] md:text-[26px] font-semibold text-foreground leading-[1.3] mb-4 mt-14",
-  body: "font-sans text-[18px] md:text-[20px] leading-[1.72] text-foreground/75 mb-8",
+  h2: `font-heading text-[28px] md:text-[36px] font-bold text-foreground leading-[1.2] mb-5 ${prose}`,
+  h3: `font-heading text-[22px] md:text-[26px] font-semibold text-foreground leading-[1.3] mb-4 mt-14 ${prose}`,
+  body: `font-sans text-[18px] md:text-[20px] leading-[1.72] text-foreground/75 mb-8 ${prose}`,
   divider: "w-full h-px bg-foreground/[0.06] my-16 md:my-20",
 };
 
@@ -62,9 +63,9 @@ function ProcessStep({ number, title, desc }: { number: string; title: string; d
 export function PortfolioArticle() {
   return (
     <article className="w-full bg-background">
-      <div className="mx-auto max-w-[680px] px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[800px] px-6 py-20 md:py-28">
 
-        {/* ═══════════════ SOBRE MIM — RECRUITER HOOK ═══════════════ */}
+        {/* ═══════════════ SOBRE MIM ═══════════════ */}
         <motion.div {...fade}>
           <p className={t.label}>Quem sou</p>
           <h2 className={t.h2}>
@@ -91,14 +92,16 @@ export function PortfolioArticle() {
           <h3 className={t.h3}>Por que me contratar</h3>
           <div className="grid gap-4 mb-8">
             {[
-              { icon: Layers, text: "Construo jornadas complexas do zero — nao herdei, eu criei" },
-              { icon: Users, text: "Colaboro de verdade com engenharia — entendo limitacoes de API e proponho alternativas viaveis" },
-              { icon: Brain, text: "IA integrada ao meu processo: research, validacao e prototipagem 10x mais rapida" },
-              { icon: Target, text: "Decisoes baseadas em dados + contexto real: negocio + tecnologia + usuario" },
-              { icon: TrendingUp, text: "Historico de resultados mensuraveis: conversao, adocao, reducao de fricao" },
+              { icon: Layers, text: "Construo jornadas complexas do zero — nao herdei, eu criei", color: "text-emerald-500 bg-emerald-500/10" },
+              { icon: Users, text: "Colaboro de verdade com engenharia — entendo limitacoes de API e proponho alternativas viaveis", color: "text-blue-500 bg-blue-500/10" },
+              { icon: Brain, text: "IA integrada ao meu processo: research, validacao e prototipagem 10x mais rapida", color: "text-violet-500 bg-violet-500/10" },
+              { icon: Target, text: "Decisoes baseadas em dados + contexto real: negocio + tecnologia + usuario", color: "text-amber-500 bg-amber-500/10" },
+              { icon: TrendingUp, text: "Historico de resultados mensuraveis: conversao, adocao, reducao de fricao", color: "text-rose-500 bg-rose-500/10" },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 py-3 px-4 rounded-xl hover:bg-foreground/[0.02] transition-colors">
-                <item.icon className="h-[22px] w-[22px] text-foreground/25 mt-[3px] shrink-0" />
+                <div className={`flex items-center justify-center h-9 w-9 rounded-xl ${item.color.split(' ')[1]} shrink-0 mt-[2px]`}>
+                  <item.icon className={`h-[18px] w-[18px] ${item.color.split(' ')[0]}`} />
+                </div>
                 <span className="font-sans text-[17px] md:text-[18px] leading-[1.65] text-foreground/70">{item.text}</span>
               </div>
             ))}
@@ -111,7 +114,7 @@ export function PortfolioArticle() {
         <motion.div {...fade}>
           <p className={t.label}>Case Principal</p>
           <h2 className={t.h2}>
-            Agrow.pay: conta digital do zero ao<br />produto em producao
+            Agrow.pay: conta digital do zero ao produto em producao
           </h2>
           <p className={t.body}>
             Entrei como consultor externo. Tres meses depois, fui contratado direto pela empresa.
@@ -120,9 +123,9 @@ export function PortfolioArticle() {
           </p>
         </motion.div>
 
-        {/* Metricas de impacto — primeiro, para prender o recrutador */}
+        {/* Metricas */}
         <motion.div {...fade} className="my-12">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <MetricCard value="+10k" label="Usuarios impactados" sub="em producao" />
             <MetricCard value="50%" label="Taxa de conversao" sub="cadastros / acessos" />
             <MetricCard value="100%" label="Processos digitalizados" sub="antes era tudo manual" />
@@ -168,7 +171,7 @@ export function PortfolioArticle() {
 
         <motion.div {...fade}>
           <h3 className={t.h3}>Meu papel e processo</h3>
-          <p className="font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8">
+          <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
             Product Designer end-to-end. Nao herdei o produto — criei tudo do zero:
           </p>
           <div className="space-y-6 mb-8">
@@ -184,12 +187,14 @@ export function PortfolioArticle() {
           <h3 className={t.h3}>Ecossistema que estruturei</h3>
           <div className="grid gap-3 mb-8">
             {[
-              { icon: BarChart3, title: "Gestao Financeira", desc: "PIX, TED, boletos — tudo centralizado em um unico app" },
-              { icon: Zap, title: "Gestao de Graos", desc: "Cotacao, saldo e operacoes agricolas integradas ao financeiro" },
-              { icon: Users, title: "Portal do Parceiro", desc: "Gestao de relacionamento B2B com visao unificada" },
+              { icon: BarChart3, title: "Gestao Financeira", desc: "PIX, TED, boletos — tudo centralizado em um unico app", color: "text-emerald-500 bg-emerald-500/10" },
+              { icon: Zap, title: "Gestao de Graos", desc: "Cotacao, saldo e operacoes agricolas integradas ao financeiro", color: "text-amber-500 bg-amber-500/10" },
+              { icon: Users, title: "Portal do Parceiro", desc: "Gestao de relacionamento B2B com visao unificada", color: "text-blue-500 bg-blue-500/10" },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
-                <item.icon className="h-5 w-5 text-foreground/25 mt-0.5 shrink-0" />
+                <div className={`flex items-center justify-center h-9 w-9 rounded-xl ${item.color.split(' ')[1]} shrink-0`}>
+                  <item.icon className={`h-[18px] w-[18px] ${item.color.split(' ')[0]}`} />
+                </div>
                 <div>
                   <p className="font-sans text-[16px] font-semibold text-foreground">{item.title}</p>
                   <p className="font-sans text-[14px] text-foreground/50 mt-0.5">{item.desc}</p>
@@ -212,7 +217,7 @@ export function PortfolioArticle() {
 
         <div className={t.divider} />
 
-        {/* ═══════════════ DEEP DIVE: CERT DIGITAL ═══════════════ */}
+        {/* ═══════════════ DEEP DIVE ═══════════════ */}
         <motion.div {...fade}>
           <p className={t.label}>Deep Dive</p>
           <h2 className={t.h2}>
@@ -226,11 +231,11 @@ export function PortfolioArticle() {
 
         <motion.div {...fade}>
           <h3 className={t.h3}>O problema</h3>
-          <div className="space-y-4 mb-8">
+          <div className="grid md:grid-cols-3 gap-3 mb-8">
             {[
               { problem: "Alto risco de erro", impact: "Impacto financeiro e legal direto em caso de falha na emissao" },
               { problem: "Processos burocraticos", impact: "Regulamentacao complexa que muda frequentemente entre estados" },
-              { problem: "Usuarios com baixa familiaridade digital", impact: "Produtores rurais que nunca usaram app financeiro antes" },
+              { problem: "Baixa familiaridade digital", impact: "Produtores rurais que nunca usaram app financeiro antes" },
             ].map((item, i) => (
               <div key={i} className="p-5 rounded-xl bg-foreground/[0.02] border border-foreground/[0.05]">
                 <p className="font-sans text-[15px] font-semibold text-foreground/80 mb-1">{item.problem}</p>
@@ -242,27 +247,27 @@ export function PortfolioArticle() {
 
         <motion.div {...fade}>
           <h3 className={t.h3}>Como resolvi</h3>
-          <div className="space-y-4 mb-8">
+          <div className="grid md:grid-cols-2 gap-3 mb-8">
             {[
               {
                 icon: Shield,
                 title: "Fluxo progressivo e guiado",
-                desc: "Dividi processos complexos em steps claros — o usuario nunca se perde e sempre sabe o que vem depois",
+                desc: "Dividi processos complexos em steps claros — o usuario nunca se perde",
               },
               {
                 icon: CheckCircle2,
                 title: "Validacoes em tempo real",
-                desc: "Feedback imediato a cada etapa, prevenindo erros antes que acontecam — menos retrabalho, menos suporte",
+                desc: "Feedback imediato a cada etapa, prevenindo erros antes que acontecam",
               },
               {
                 icon: Layers,
                 title: "Abstracao da complexidade",
-                desc: "Toda a regulamentacao tecnica fica invisivel para o usuario. Ele ve linguagem simples, a API cuida do resto",
+                desc: "Regulamentacao invisivel para o usuario — linguagem simples, a API cuida do resto",
               },
               {
                 icon: Smartphone,
-                title: "Tudo no app, zero ferramentas externas",
-                desc: "Certificado, NF-e e CPR emitidos pelo celular — o produtor nao precisa de computador nem de contador",
+                title: "Zero ferramentas externas",
+                desc: "Certificado, NF-e e CPR emitidos pelo celular — sem computador, sem contador",
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
@@ -282,7 +287,7 @@ export function PortfolioArticle() {
         <motion.div {...fade}>
           <p className={t.label}>Case</p>
           <h2 className={t.h2}>
-            Riocard Mais: redesign de um app<br />com milhoes de usuarios
+            Riocard Mais: redesign de um app com milhoes de usuarios
           </h2>
           <p className={t.body}>
             Um dos maiores sistemas de bilhetagem do Rio de Janeiro. Interface defasada,
@@ -329,11 +334,11 @@ export function PortfolioArticle() {
 
         <motion.div {...fade}>
           <h3 className={t.h3}>Processo</h3>
-          <div className="space-y-6 mb-8">
-            <ProcessStep number="01" title="Research presencial" desc="Entrevistei usuarios reais em pontos de recarga. Observei comportamentos, frustraccoes e necessidades que nao aparecem em analytics." />
-            <ProcessStep number="02" title="Benchmarking e analise" desc="Mapeei concorrentes e apps de referencia. Identifiquei padroes que funcionam e oportunidades que o Riocard nao explorava." />
-            <ProcessStep number="03" title="Reestruturacao da IA" desc="Reorganizei toda a arquitetura de informacao. Saldo virou o 1o elemento, navegacao foi simplificada, ruido visual foi removido." />
-            <ProcessStep number="04" title="Redesign e entrega" desc="Redesenhei home, navegacao e fluxos criticos no Figma. Entreguei com especificacoes detalhadas para engenharia." />
+          <div className="grid md:grid-cols-2 gap-x-6 gap-y-6 mb-8">
+            <ProcessStep number="01" title="Research presencial" desc="Entrevistei usuarios reais em pontos de recarga. Observei comportamentos e frustraccoes que nao aparecem em analytics." />
+            <ProcessStep number="02" title="Benchmarking e analise" desc="Mapeei concorrentes e apps de referencia. Identifiquei padroes que funcionam e oportunidades inexploradas." />
+            <ProcessStep number="03" title="Reestruturacao da IA" desc="Reorganizei a arquitetura de informacao. Saldo virou o 1o elemento, navegacao simplificada, ruido removido." />
+            <ProcessStep number="04" title="Redesign e entrega" desc="Redesenhei home, navegacao e fluxos criticos no Figma. Especificacoes detalhadas para engenharia." />
           </div>
         </motion.div>
 
@@ -392,16 +397,16 @@ export function PortfolioArticle() {
           </div>
         </motion.div>
 
-        <motion.div {...fade} className="my-12 rounded-2xl overflow-hidden bg-gradient-to-br from-violet-50/60 to-purple-100/50 dark:from-violet-950/15 dark:to-purple-900/10 border border-foreground/[0.06] p-8">
-          <div className="grid gap-3">
+        <motion.div {...fade} className="my-12 rounded-2xl overflow-hidden bg-gradient-to-br from-violet-50/40 to-purple-100/30 dark:from-violet-950/10 dark:to-purple-900/5 border border-violet-200/30 dark:border-violet-900/15 p-8">
+          <div className="grid md:grid-cols-2 gap-3">
             {[
-              { icon: Zap, title: "Automacao de processos de design", desc: "Tarefas operacionais eliminadas. Mais tempo para decisoes estrategicas que movem metricas." },
-              { icon: Brain, title: "IA em discovery e research", desc: "Analise de dados qualitativos e quantitativos com velocidade 10x. Insights mais rapido, decisoes melhores." },
-              { icon: Layers, title: "Geracao e validacao de interfaces", desc: "Prototipagem rapida com variacoes testaveis em minutos. O ciclo de feedback que levava semanas agora leva horas." },
-              { icon: TrendingUp, title: "Design Engineering", desc: "Integracao entre design e engenharia — do Figma ao codigo com menos friccao, menos handoff, mais velocidade." },
+              { icon: Zap, title: "Automacao de processos", desc: "Tarefas operacionais eliminadas. Mais tempo para decisoes estrategicas." },
+              { icon: Brain, title: "IA em discovery e research", desc: "Analise qualitativa e quantitativa com velocidade 10x." },
+              { icon: Layers, title: "Geracao de interfaces", desc: "Variacoes testaveis em minutos. Feedback em horas, nao semanas." },
+              { icon: TrendingUp, title: "Design Engineering", desc: "Do Figma ao codigo com menos friccao e menos handoff." },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-4 p-5 rounded-xl bg-background/60 border border-foreground/[0.05]">
-                <item.icon className="h-5 w-5 text-violet-500/40 mt-0.5 shrink-0" />
+              <div key={i} className="flex items-start gap-4 p-5 rounded-xl bg-background/60 border border-violet-200/20 dark:border-violet-900/10">
+                <item.icon className="h-5 w-5 text-violet-500/30 mt-0.5 shrink-0" />
                 <div>
                   <p className="font-sans text-[16px] font-semibold text-foreground">{item.title}</p>
                   <p className="font-sans text-[14px] text-foreground/50 mt-1 leading-[1.6]">{item.desc}</p>
@@ -411,7 +416,7 @@ export function PortfolioArticle() {
           </div>
         </motion.div>
 
-        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-violet-400/30">
+        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-violet-400/25">
           <p className="font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65">
             <strong className="text-foreground font-semibold">Minha visao:</strong> IA nao substitui o designer — ela multiplica quem sabe
             usa-la. O mercado vai se dividir entre designers que usam IA como ferramenta real

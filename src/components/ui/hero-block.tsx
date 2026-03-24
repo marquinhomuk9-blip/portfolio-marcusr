@@ -45,7 +45,7 @@ export function HeroBlock() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="mb-4 text-[13px] font-medium uppercase tracking-[0.15em] text-foreground/40"
             >
-              Product Designer &middot; AI-Driven Design
+              Disponivel para novos projetos
             </motion.p>
 
             <motion.h1
@@ -75,11 +75,11 @@ export function HeroBlock() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="mb-8 flex flex-wrap gap-3"
             >
-              <Button size="lg" className="gap-2" onClick={() => handleScroll('#contato')}>
+              <Button size="lg" className="gap-2 h-12 px-6 text-[15px] font-semibold rounded-xl shadow-md hover:shadow-lg transition-shadow" onClick={() => handleScroll('#contato')}>
                 <Mail className="h-4 w-4" />
                 Vamos tomar um café
               </Button>
-              <Button size="lg" variant="outline" className="gap-2" onClick={() => handleScroll('#projetos')}>
+              <Button size="lg" variant="outline" className="gap-2 h-12 px-6 text-[15px] font-semibold rounded-xl border-foreground/20 hover:bg-foreground hover:text-background transition-all" onClick={() => handleScroll('#projetos')}>
                 Ver Projetos
                 <ArrowDown className="h-4 w-4" />
               </Button>

@@ -129,9 +129,9 @@ export function Header() {
             </a>
           ))}
         </div>
-        <Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="md:hidden border-background/30 text-background hover:bg-background/10 hover:text-background">
+        <button onClick={() => setOpen(!open)} className="md:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-background/25 text-background hover:bg-background/10 transition-colors">
           <MenuToggleIcon open={open} className="size-5" duration={300} />
-        </Button>
+        </button>
       </nav>
       <div
         className={cn(

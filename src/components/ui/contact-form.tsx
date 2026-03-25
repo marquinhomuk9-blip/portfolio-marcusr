@@ -41,10 +41,10 @@ export function ContactForm() {
                   className="h-full w-full object-cover object-top"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-primary border-[3px] border-foreground" />
+              <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-emerald-400 border-[3px] border-foreground" />
             </div>
 
-            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-primary/70 mb-4">
+            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-emerald-400/80 mb-4">
               Disponivel para novos projetos
             </p>
 

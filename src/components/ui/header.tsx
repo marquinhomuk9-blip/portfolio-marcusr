@@ -4,6 +4,8 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
 import { useScroll } from '@/components/ui/use-scroll';
+import { LanguageToggle } from '@/components/ui/language-toggle';
+import { useLanguage } from '@/components/ui/language-context';
 
 function MRLogo({ className }: { className?: string }) {
   return (
@@ -64,14 +66,15 @@ function MRLogo({ className }: { className?: string }) {
 export function Header() {
   const [open, setOpen] = React.useState(false);
   const scrolled = useScroll(10);
+  const { locale, setLocale, t } = useLanguage();
 
   const links = [
     {
-      label: 'Meus Projetos',
+      label: t('Meus Projetos', 'My Projects'),
       href: '#projetos',
     },
     {
-      label: 'Vamos tomar um café',
+      label: t('Vamos tomar um café', "Let's have a coffee"),
       href: '#contato',
     },
   ];
@@ -117,7 +120,7 @@ export function Header() {
         <a href="#" className="flex items-center">
           <MRLogo className="h-10 w-auto" />
         </a>
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
           {links.map((link, i) => (
             <a
               key={i}
@@ -128,10 +131,15 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          <div className="w-px h-5 bg-background/10 mx-1" />
+          <LanguageToggle locale={locale} onChange={setLocale} />
         </div>
-        <button onClick={() => setOpen(!open)} className="md:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-background/25 text-background hover:bg-background/10 transition-colors">
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageToggle locale={locale} onChange={setLocale} />
+          <button onClick={() => setOpen(!open)} className="flex items-center justify-center h-9 w-9 rounded-lg border border-background/25 text-background hover:bg-background/10 transition-colors">
           <MenuToggleIcon open={open} className="size-5" duration={300} />
         </button>
+        </div>
       </nav>
       <div
         className={cn(

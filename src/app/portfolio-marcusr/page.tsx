@@ -6,6 +6,7 @@ import { Timeline } from '@/components/ui/timeline';
 import { PortfolioArticle } from '@/components/portfolio-article';
 import { ContactForm } from '@/components/ui/contact-form';
 import { FloatingChat } from '@/components/ui/floating-chat';
+import { LanguageProvider } from '@/components/ui/language-context';
 import { Brain } from 'lucide-react';
 
 /* ── Logo SVG da Agrow.pay ── */
@@ -179,6 +180,7 @@ const timelineData = [
 
 export default function PortfolioPage() {
   return (
+    <LanguageProvider>
     <div className="relative">
       <Header />
 
@@ -198,5 +200,6 @@ export default function PortfolioPage() {
       {/* Chat flutuante — aparece quando o card do hero some */}
       <FloatingChat />
     </div>
+    </LanguageProvider>
   );
 }

@@ -50,11 +50,10 @@ export function LanguageToggle({ locale, onChange, className }: LanguageTogglePr
       <motion.div
         className="absolute h-[26px] rounded-full bg-background/[0.15]"
         animate={{
-          x: locale === 'pt' ? 3 : '50%',
+          left: locale === 'pt' ? '3px' : 'calc(50%)',
           width: 'calc(50% - 3px)',
         }}
         transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-        style={{ left: 0 }}
       />
 
       {options.map((opt) => {

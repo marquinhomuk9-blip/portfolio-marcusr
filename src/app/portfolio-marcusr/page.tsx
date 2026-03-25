@@ -7,7 +7,7 @@ import { PortfolioArticle } from '@/components/portfolio-article';
 import { ContactForm } from '@/components/ui/contact-form';
 import { FloatingChat } from '@/components/ui/floating-chat';
 import { LanguageProvider, useLanguage } from '@/components/ui/language-context';
-import { Brain } from 'lucide-react';
+import { Brain, ArrowRight } from 'lucide-react';
 
 /* ── Logo SVG da Agrow.pay ── */
 function AgrowLogo() {
@@ -85,11 +85,15 @@ function TimelineContent({
   highlights,
   accentColor,
   logo,
+  href,
+  ctaLabel,
 }: {
   description: string;
   highlights: string[];
   accentColor: string;
   logo?: React.ReactNode;
+  href: string;
+  ctaLabel: string;
 }) {
   return (
     <div className="rounded-2xl bg-foreground/[0.02] border border-foreground/[0.06] p-6 md:p-8">
@@ -97,7 +101,7 @@ function TimelineContent({
       <p className="font-sans text-[16px] md:text-[18px] leading-[1.72] text-foreground/65 mb-6">
         {description}
       </p>
-      <div className="space-y-2.5">
+      <div className="space-y-2.5 mb-6">
         {highlights.map((item, i) => (
           <div
             key={i}
@@ -108,6 +112,13 @@ function TimelineContent({
           </div>
         ))}
       </div>
+      <a
+        href={href}
+        className="inline-flex items-center gap-2 h-10 px-5 rounded-xl border border-primary/25 bg-primary/[0.06] text-[14px] font-semibold text-primary hover:bg-primary/[0.12] hover:border-primary/35 transition-all group"
+      >
+        {ctaLabel}
+        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+      </a>
     </div>
   );
 }
@@ -141,6 +152,8 @@ function useTimelineData() {
             ]
           )}
           accentColor="text-emerald-500"
+          href="/portfolio-marcusr/agrow"
+          ctaLabel={t('Ver experiência completa', 'View full experience')}
         />
       ),
     },
@@ -170,6 +183,8 @@ function useTimelineData() {
             ]
           )}
           accentColor="text-orange-500"
+          href="/portfolio-marcusr/riocard"
+          ctaLabel={t('Ver experiência completa', 'View full experience')}
         />
       ),
     },
@@ -199,6 +214,8 @@ function useTimelineData() {
             ]
           )}
           accentColor="text-violet-500"
+          href="/portfolio-marcusr/ia-design"
+          ctaLabel={t('Ver experiência completa', 'View full experience')}
         />
       ),
     },

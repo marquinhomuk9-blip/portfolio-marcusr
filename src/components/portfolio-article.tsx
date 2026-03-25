@@ -29,7 +29,7 @@ const fade = {
 const prose = "max-w-[680px]";
 
 const t = {
-  label: "text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/45 mb-4",
+  label: "text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4",
   h2: `font-heading text-[28px] md:text-[36px] font-bold text-foreground leading-[1.2] mb-5 ${prose}`,
   h3: `font-heading text-[22px] md:text-[26px] font-semibold text-foreground leading-[1.3] mb-4 mt-14 ${prose}`,
   body: `font-sans text-[18px] md:text-[20px] leading-[1.72] text-foreground/75 mb-8 ${prose}`,
@@ -39,7 +39,7 @@ const t = {
 function MetricCard({ value, label, sub }: { value: string; label: string; sub?: string }) {
   return (
     <motion.div {...fade} className="text-center py-8 px-4 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
-      <div className="font-heading text-[36px] md:text-[44px] font-bold text-foreground leading-none mb-2">{value}</div>
+      <div className="font-heading text-[36px] md:text-[44px] font-bold text-primary leading-none mb-2">{value}</div>
       <div className="font-sans text-[14px] leading-[1.5] text-foreground/55">{label}</div>
       {sub && <div className="font-sans text-[12px] text-foreground/35 mt-1">{sub}</div>}
     </motion.div>
@@ -49,7 +49,7 @@ function MetricCard({ value, label, sub }: { value: string; label: string; sub?:
 function ProcessStep({ number, title, desc }: { number: string; title: string; desc: string }) {
   return (
     <div className="flex gap-5 items-start">
-      <div className="flex items-center justify-center h-9 w-9 rounded-full bg-foreground/[0.05] border border-foreground/[0.08] text-[13px] font-semibold text-foreground/50 shrink-0">
+      <div className="flex items-center justify-center h-9 w-9 rounded-full bg-primary/[0.08] border border-primary/15 text-[13px] font-semibold text-primary shrink-0">
         {number}
       </div>
       <div className="pt-0.5">
@@ -81,7 +81,7 @@ export function PortfolioArticle() {
           </p>
         </motion.div>
 
-        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-foreground/15">
+        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
           <p className="font-serif text-[19px] md:text-[21px] leading-[1.72] text-foreground/65 italic">
             &ldquo;Design bom nao e o que parece bonito. E o que resolve — para o usuario,
             para o negocio e para a engenharia. Se nao gerou resultado, nao funcionou.&rdquo;
@@ -204,9 +204,9 @@ export function PortfolioArticle() {
           </div>
         </motion.div>
 
-        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-foreground/15">
+        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
           <div className="flex items-start gap-4">
-            <Lightbulb className="h-5 w-5 text-foreground/20 mt-[2px] shrink-0" />
+            <Lightbulb className="h-5 w-5 text-primary/40 mt-[2px] shrink-0" />
             <p className="font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65">
               <strong className="text-foreground font-semibold">Decisao-chave:</strong> Grande parte dos fluxos foram moldados
               por restricoes de API e regras regulatorias. O equilibrio entre UX ideal e viabilidade tecnica

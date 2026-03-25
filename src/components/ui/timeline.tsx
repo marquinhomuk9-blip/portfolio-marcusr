@@ -67,7 +67,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-6 md:px-8 lg:px-10">
-        <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/40 mb-4">Experiencia</p>
+        <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4">Experiencia</p>
         <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-foreground max-w-4xl leading-[1.2] mb-5">
           Produtos reais, resultados mensuraveis
         </h2>
@@ -88,7 +88,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 <div
                   className={`rounded-full transition-all duration-500 ${
                     activeIndex === index
-                      ? 'h-3 w-3 bg-foreground/60 border-2 border-foreground/30 shadow-[0_0_8px_rgba(0,0,0,0.15)]'
+                      ? 'h-3 w-3 bg-primary border-2 border-primary/30 shadow-[0_0_8px_rgba(180,130,50,0.25)]'
                       : 'h-4 w-4 bg-foreground/[0.04] border border-foreground/[0.1]'
                   }`}
                 />
@@ -129,7 +129,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-primary via-primary/60 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>

@@ -41,10 +41,10 @@ export function ContactForm() {
                   className="h-full w-full object-cover object-top"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-emerald-400 border-[3px] border-foreground" />
+              <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-primary border-[3px] border-foreground" />
             </div>
 
-            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-background/35 mb-4">
+            <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-primary/70 mb-4">
               Disponivel para novos projetos
             </p>
 
@@ -113,7 +113,7 @@ export function ContactForm() {
             <Button
               type="submit"
               size="lg"
-              className="w-full gap-2 bg-background text-foreground hover:bg-background/90 rounded-xl h-12 text-[15px] font-semibold"
+              className="w-full gap-2 bg-primary text-primary-foreground hover:opacity-90 rounded-xl h-12 text-[15px] font-semibold"
             >
               Enviar mensagem
               <ArrowRight className="h-4 w-4" />

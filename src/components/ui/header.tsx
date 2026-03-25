@@ -111,16 +111,24 @@ export function Header() {
     >
       <nav
         className={cn(
-          'flex h-14 w-full items-center justify-between px-4 md:h-12 md:transition-all md:ease-out',
+          'relative flex h-14 w-full items-center justify-between px-4 md:h-12 md:transition-all md:ease-out',
           {
             'md:px-2': scrolled,
           },
         )}
       >
-        <a href="#" className="flex items-center">
+        {/* Left — Logo */}
+        <a href="#" className="flex items-center shrink-0">
           <MRLogo className="h-10 w-auto" />
         </a>
-        <div className="hidden items-center gap-3 md:flex">
+
+        {/* Center — Language Toggle */}
+        <div className="absolute left-1/2 -translate-x-1/2">
+          <LanguageToggle locale={locale} onChange={setLocale} />
+        </div>
+
+        {/* Right — Nav links (desktop) */}
+        <div className="hidden items-center gap-2 md:flex">
           {links.map((link, i) => (
             <a
               key={i}
@@ -131,15 +139,12 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <div className="w-px h-5 bg-background/10 mx-1" />
-          <LanguageToggle locale={locale} onChange={setLocale} />
         </div>
-        <div className="flex items-center gap-2 md:hidden">
-          <LanguageToggle locale={locale} onChange={setLocale} />
-          <button onClick={() => setOpen(!open)} className="flex items-center justify-center h-9 w-9 rounded-lg border border-background/25 text-background hover:bg-background/10 transition-colors">
+
+        {/* Right — Hamburger (mobile) */}
+        <button onClick={() => setOpen(!open)} className="md:hidden flex items-center justify-center h-9 w-9 rounded-lg border border-background/25 text-background hover:bg-background/10 transition-colors">
           <MenuToggleIcon open={open} className="size-5" duration={300} />
         </button>
-        </div>
       </nav>
       <div
         className={cn(

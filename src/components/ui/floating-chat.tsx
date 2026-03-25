@@ -2,10 +2,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X } from 'lucide-react';
+import { useLanguage } from '@/components/ui/language-context';
 
 export function FloatingChat() {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   const onScroll = useCallback(() => {
     const scrollY = window.scrollY;
@@ -31,7 +33,7 @@ export function FloatingChat() {
   }, [visible]);
 
   const whatsappNumber = '5511996807009';
-  const whatsappMessage = encodeURIComponent('Oi Marcus! Vi seu portfólio e gostaria de conversar.');
+  const whatsappMessage = encodeURIComponent(t('Oi Marcus! Vi seu portfólio e gostaria de conversar.', 'Hi Marcus! I saw your portfolio and would like to chat.'));
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
@@ -73,7 +75,7 @@ export function FloatingChat() {
                 <div className="p-4">
                   <div className="bg-background/10 rounded-2xl rounded-tl-sm p-3 mb-4">
                     <p className="text-[14px] leading-[1.5] text-background/80">
-                      Oi! Quer conversar sobre um projeto ou oportunidade? Me chama no WhatsApp 👋
+                      {t('Oi! Quer conversar sobre um projeto ou oportunidade? Me chama no WhatsApp 👋', 'Hi! Want to chat about a project or opportunity? Reach me on WhatsApp 👋')}
                     </p>
                   </div>
 
@@ -84,7 +86,7 @@ export function FloatingChat() {
                     className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#25D366] text-white text-[14px] font-semibold hover:bg-[#20BD5A] transition-colors"
                   >
                     <WhatsAppIcon className="h-4 w-4" />
-                    Abrir WhatsApp
+                    {t('Abrir WhatsApp', 'Open WhatsApp')}
                   </a>
                 </div>
               </motion.div>

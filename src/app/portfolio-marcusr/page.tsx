@@ -6,7 +6,7 @@ import { Timeline } from '@/components/ui/timeline';
 import { PortfolioArticle } from '@/components/portfolio-article';
 import { ContactForm } from '@/components/ui/contact-form';
 import { FloatingChat } from '@/components/ui/floating-chat';
-import { LanguageProvider } from '@/components/ui/language-context';
+import { LanguageProvider, useLanguage } from '@/components/ui/language-context';
 import { Brain } from 'lucide-react';
 
 /* ── Logo SVG da Agrow.pay ── */
@@ -112,75 +112,102 @@ function TimelineContent({
   );
 }
 
-const timelineData = [
-  {
-    title: 'Agrow.pay',
-    content: (
-      <TimelineContent
-        logo={
-          <LogoBadge bgClass="bg-[#5B5891]/10">
-            <AgrowLogo />
-          </LogoBadge>
-        }
-        description="Entrei como consultor. Saí contratado. Desenhei do zero uma conta digital completa para o agronegócio — app, landing page e portal do parceiro. O produto não existia: conduzi discovery, estruturei jornadas, alinhei stakeholders e entreguei um ecossistema financeiro em produção."
-        highlights={[
-          '+10.000 usuários impactados — ~5.000 cadastros (50% de conversão)',
-          'PIX, TED, boletos e gestão de grãos em uma única plataforma',
-          'Certificado Digital + NF-e + CPR Digital no mobile',
-          'De consultoria → contratação direta (prova de valor real)',
-          'Produto inteiro do zero: discovery → design → produção',
-        ]}
-        accentColor="text-emerald-500"
-      />
-    ),
-  },
-  {
-    title: 'Riocard',
-    content: (
-      <TimelineContent
-        logo={
-          <LogoBadge bgClass="bg-[#0088CC]/10">
-            <RiocardLogo />
-          </LogoBadge>
-        }
-        description="Redesign de um dos maiores apps de bilhetagem do Rio de Janeiro — milhões de usuários, interface defasada, navegação confusa. Conduzi entrevistas presenciais com usuários reais, reorganizei a arquitetura de informação e redesenhei a experiência completa."
-        highlights={[
-          'Saldo do cartão como 1º elemento da home (antes estava escondido)',
-          'Redução significativa da fricção na navegação principal',
-          'Hierarquia de informação reestruturada e escaneável',
-          'Research presencial com usuários reais no campo',
-          'Modernização visual sem perder familiaridade',
-        ]}
-        accentColor="text-orange-500"
-      />
-    ),
-  },
-  {
-    title: 'IA + Design',
-    content: (
-      <TimelineContent
-        logo={
-          <LogoBadge bgClass="bg-violet-500/10">
-            <Brain className="h-full w-full text-violet-600" strokeWidth={1.5} />
-          </LogoBadge>
-        }
-        description="Minha especialização atual: usar IA como ferramenta real de produção, não como buzzword. Reduzo o ciclo discovery → implementação de meses para dias, automatizo tarefas repetitivas e integro design com engenharia de forma nativa."
-        highlights={[
-          'Research e análise qualitativa 10x mais rápido com IA',
-          'Geração e validação de interfaces em minutos, não semanas',
-          'Automação de tarefas operacionais de design',
-          'Design Engineering: do Figma ao código com menos handoff',
-          'Ciclos de entrega comprimidos de meses → dias',
-        ]}
-        accentColor="text-violet-500"
-      />
-    ),
-  },
-];
+function useTimelineData() {
+  const { t } = useLanguage();
+  return [
+    {
+      title: 'Agrow.pay',
+      content: (
+        <TimelineContent
+          logo={<LogoBadge bgClass="bg-[#5B5891]/10"><AgrowLogo /></LogoBadge>}
+          description={t(
+            "Entrei como consultor. Saí contratado. Desenhei do zero uma conta digital completa para o agronegócio — app, landing page e portal do parceiro. O produto não existia: conduzi discovery, estruturei jornadas, alinhei stakeholders e entreguei um ecossistema financeiro em produção.",
+            "Joined as a consultant. Got hired full-time. Designed from scratch a complete digital banking platform for agribusiness — app, landing page, and partner portal. The product didn't exist: I led discovery, structured journeys, aligned stakeholders, and delivered a financial ecosystem in production."
+          )}
+          highlights={t(
+            [
+              '+10.000 usuários impactados — ~5.000 cadastros (50% de conversão)',
+              'PIX, TED, boletos e gestão de grãos em uma única plataforma',
+              'Certificado Digital + NF-e + CPR Digital no mobile',
+              'De consultoria → contratação direta (prova de valor real)',
+              'Produto inteiro do zero: discovery → design → produção',
+            ],
+            [
+              '+10,000 users impacted — ~5,000 sign-ups (50% conversion rate)',
+              'PIX, wire transfers, invoices and grain management in a single platform',
+              'Digital Certificate + e-Invoice + Digital CPR on mobile',
+              'From consulting → direct hire (real proof of value)',
+              'Entire product from scratch: discovery → design → production',
+            ]
+          )}
+          accentColor="text-emerald-500"
+        />
+      ),
+    },
+    {
+      title: 'Riocard',
+      content: (
+        <TimelineContent
+          logo={<LogoBadge bgClass="bg-[#0088CC]/10"><RiocardLogo /></LogoBadge>}
+          description={t(
+            "Redesign de um dos maiores apps de bilhetagem do Rio de Janeiro — milhões de usuários, interface defasada, navegação confusa. Conduzi entrevistas presenciais com usuários reais, reorganizei a arquitetura de informação e redesenhei a experiência completa.",
+            "Redesign of one of Rio de Janeiro's largest transit card apps — millions of users, outdated interface, confusing navigation. I conducted in-person interviews with real users, restructured the information architecture, and redesigned the entire experience."
+          )}
+          highlights={t(
+            [
+              'Saldo do cartão como 1º elemento da home (antes estava escondido)',
+              'Redução significativa da fricção na navegação principal',
+              'Hierarquia de informação reestruturada e escaneável',
+              'Research presencial com usuários reais no campo',
+              'Modernização visual sem perder familiaridade',
+            ],
+            [
+              'Card balance as the 1st element on home (previously hidden)',
+              'Significant reduction of friction in main navigation',
+              'Restructured and scannable information hierarchy',
+              'In-person research with real users in the field',
+              'Visual modernisation without losing familiarity',
+            ]
+          )}
+          accentColor="text-orange-500"
+        />
+      ),
+    },
+    {
+      title: t('IA + Design', 'AI + Design'),
+      content: (
+        <TimelineContent
+          logo={<LogoBadge bgClass="bg-violet-500/10"><Brain className="h-full w-full text-violet-600" strokeWidth={1.5} /></LogoBadge>}
+          description={t(
+            "Minha especialização atual: usar IA como ferramenta real de produção, não como buzzword. Reduzo o ciclo discovery → implementação de meses para dias, automatizo tarefas repetitivas e integro design com engenharia de forma nativa.",
+            "My current specialisation: using AI as a real production tool, not a buzzword. I compress the discovery → implementation cycle from months to days, automate repetitive tasks, and natively integrate design with engineering."
+          )}
+          highlights={t(
+            [
+              'Research e análise qualitativa 10x mais rápido com IA',
+              'Geração e validação de interfaces em minutos, não semanas',
+              'Automação de tarefas operacionais de design',
+              'Design Engineering: do Figma ao código com menos handoff',
+              'Ciclos de entrega comprimidos de meses → dias',
+            ],
+            [
+              'Research and qualitative analysis 10x faster with AI',
+              'Interface generation and validation in minutes, not weeks',
+              'Automation of operational design tasks',
+              'Design Engineering: from Figma to code with less handoff',
+              'Delivery cycles compressed from months → days',
+            ]
+          )}
+          accentColor="text-violet-500"
+        />
+      ),
+    },
+  ];
+}
 
-export default function PortfolioPage() {
+function PageContent() {
+  const timelineData = useTimelineData();
   return (
-    <LanguageProvider>
     <div className="relative">
       <Header />
 
@@ -200,6 +227,13 @@ export default function PortfolioPage() {
       {/* Chat flutuante — aparece quando o card do hero some */}
       <FloatingChat />
     </div>
+  );
+}
+
+export default function PortfolioPage() {
+  return (
+    <LanguageProvider>
+      <PageContent />
     </LanguageProvider>
   );
 }

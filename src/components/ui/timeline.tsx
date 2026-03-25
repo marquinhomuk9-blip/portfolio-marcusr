@@ -5,6 +5,7 @@ import {
   motion,
 } from "framer-motion";
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useLanguage } from '@/components/ui/language-context';
 
 interface TimelineEntry {
   title: string;
@@ -17,6 +18,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [height, setHeight] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (ref.current) {
@@ -67,12 +69,12 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-6 md:px-8 lg:px-10">
-        <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4">Experiencia</p>
+        <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4">{t('Experiencia', 'Experience')}</p>
         <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-foreground max-w-4xl leading-[1.2] mb-5">
-          Produtos reais, resultados mensuraveis
+          {t('Produtos reais, resultados mensuraveis', 'Real products, measurable results')}
         </h2>
         <p className="font-sans text-[17px] md:text-[19px] leading-[1.72] text-foreground/55 max-w-lg">
-          Cada case abaixo e um problema de negocio real que resolvi com design estrategico — do discovery a producao, com metricas de impacto.
+          {t('Cada case abaixo e um problema de negocio real que resolvi com design estrategico — do discovery a producao, com metricas de impacto.', 'Each case below is a real business problem I solved with strategic design — from discovery to production, with impact metrics.')}
         </p>
       </div>
 

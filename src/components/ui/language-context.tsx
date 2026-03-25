@@ -5,7 +5,7 @@ import type { Locale } from './language-toggle';
 interface LanguageContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (pt: string, en: string) => string;
+  t: <T>(pt: T, en: T) => T;
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
@@ -18,7 +18,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocale] = useState<Locale>('pt');
 
   const t = useCallback(
-    (pt: string, en: string) => (locale === 'pt' ? pt : en),
+    <T,>(pt: T, en: T): T => (locale === 'pt' ? pt : en),
     [locale]
   );
 

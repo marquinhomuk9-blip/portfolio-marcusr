@@ -147,9 +147,9 @@ export function HeroBlock() {
           {/* Social links */}
           <motion.div variants={fadeUp} className="flex items-center gap-2">
             {[
-              { icon: LinkedInIcon, href: 'https://www.linkedin.com/in/marcus-rolim/', label: 'LinkedIn' },
+              { icon: LinkedInIcon, href: 'https://www.linkedin.com/in/marcusvrfh/', label: 'LinkedIn' },
               { icon: WhatsAppIcon, href: 'https://wa.me/5511996807009', label: 'WhatsApp' },
-              { icon: Mail, href: 'mailto:contato@marcusrolim.com', label: 'Email' },
+              { icon: Mail, href: 'mailto:marcusuixdesigner@gmail.com', label: 'Email' },
             ].map((social, i) => (
               <motion.a
                 key={i}

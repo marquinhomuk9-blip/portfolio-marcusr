@@ -125,7 +125,7 @@ export function FloatingChat() {
                   </a>
 
                   <a
-                    href="mailto:contato@marcusrolim.com"
+                    href="mailto:marcusuixdesigner@gmail.com"
                     className="flex items-center justify-center gap-2.5 w-full py-3 rounded-xl bg-background/[0.06] text-background/60 text-[13px] font-medium hover:bg-background/[0.1] hover:text-background/80 transition-colors"
                   >
                     <Mail className="h-3.5 w-3.5" />

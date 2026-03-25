@@ -19,7 +19,7 @@ export function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:contato@marcusrolim.com?subject=Contato via Portfólio - ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Nome: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    const mailtoLink = `mailto:marcusuixdesigner@gmail.com?subject=Contato via Portfólio - ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(`Nome: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
     window.open(mailtoLink);
   };
 

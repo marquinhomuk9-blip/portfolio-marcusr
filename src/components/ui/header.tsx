@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { ChevronRight } from 'lucide-react';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
 import { useScroll } from '@/components/ui/use-scroll';
 import { LanguageToggle } from '@/components/ui/language-toggle';
@@ -67,6 +68,12 @@ export function Header() {
   const [open, setOpen] = React.useState(false);
   const scrolled = useScroll(10);
   const { locale, setLocale, t } = useLanguage();
+
+  const projects = [
+    { label: 'Agrow.pay', href: '/portfolio-marcusr/agrow', accent: 'bg-emerald-500' },
+    { label: 'Riocard Mais', href: '/portfolio-marcusr/riocard', accent: 'bg-orange-500' },
+    { label: t('IA + Design', 'AI + Design'), href: '/portfolio-marcusr/ia-design', accent: 'bg-violet-500' },
+  ];
 
   const links = [
     {
@@ -159,17 +166,38 @@ export function Header() {
             'flex h-full w-full flex-col justify-between gap-y-2 p-4',
           )}
         >
-          <div className="grid gap-y-2">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                className="inline-flex items-center justify-start rounded-lg px-4 py-2.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"
-                href={link.href}
-                onClick={(e) => handleClick(e, link.href)}
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="grid gap-y-1">
+            {/* Meus Projetos + subcategorias */}
+            <a
+              className="inline-flex items-center justify-start rounded-lg px-4 py-2.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"
+              href="#projetos"
+              onClick={(e) => handleClick(e, '#projetos')}
+            >
+              {t('Meus Projetos', 'My Projects')}
+            </a>
+            <div className="ml-4 grid gap-y-0.5 mb-2">
+              {projects.map((project) => (
+                <a
+                  key={project.href}
+                  href={project.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-[14px] text-background/50 font-medium transition-colors hover:bg-background/10 hover:text-background/80 group"
+                >
+                  <span className={`h-2 w-2 rounded-full ${project.accent} shrink-0 opacity-60 group-hover:opacity-100 transition-opacity`} />
+                  {project.label}
+                  <ChevronRight className="h-3.5 w-3.5 ml-auto opacity-0 -translate-x-1 group-hover:opacity-50 group-hover:translate-x-0 transition-all" />
+                </a>
+              ))}
+            </div>
+
+            {/* Contato */}
+            <a
+              className="inline-flex items-center justify-start rounded-lg px-4 py-2.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"
+              href="#contato"
+              onClick={(e) => handleClick(e, '#contato')}
+            >
+              {t('Vamos tomar um café', "Let's have a coffee")}
+            </a>
           </div>
         </div>
       </div>

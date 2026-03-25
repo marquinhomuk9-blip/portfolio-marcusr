@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export type Locale = 'pt' | 'en';
@@ -33,42 +33,52 @@ function UKFlag({ className }: { className?: string }) {
   );
 }
 
-const localeConfig = {
-  pt: { flag: BrazilFlag, label: 'PT-BR' },
-  en: { flag: UKFlag, label: 'EN-UK' },
-};
+const options: { value: Locale; flag: React.FC<{ className?: string }>; label: string }[] = [
+  { value: 'pt', flag: BrazilFlag, label: 'PT' },
+  { value: 'en', flag: UKFlag, label: 'EN' },
+];
 
 export function LanguageToggle({ locale, onChange, className }: LanguageToggleProps) {
-  const next: Locale = locale === 'pt' ? 'en' : 'pt';
-  const current = localeConfig[locale];
-  const Flag = current.flag;
-
   return (
-    <button
-      onClick={() => onChange(next)}
+    <div
       className={cn(
-        'relative flex items-center gap-2 h-8 rounded-full bg-background/[0.08] border border-background/[0.12] px-3 cursor-pointer transition-colors hover:bg-background/[0.15]',
+        'relative flex items-center h-8 rounded-full bg-background/[0.08] border border-background/[0.10] p-[3px]',
         className
       )}
-      aria-label={`Switch to ${next === 'pt' ? 'Portuguese' : 'English'}`}
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={locale}
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 8 }}
-          transition={{ duration: 0.2 }}
-          className="flex items-center gap-2"
-        >
-          <div className="h-[18px] w-[18px] rounded-full overflow-hidden border border-background/20 shrink-0">
-            <Flag className="h-full w-full" />
-          </div>
-          <span className="text-[12px] font-semibold text-background/80 tracking-wide">
-            {current.label}
-          </span>
-        </motion.div>
-      </AnimatePresence>
-    </button>
+      {/* Sliding pill indicator */}
+      <motion.div
+        className="absolute h-[26px] rounded-full bg-background/[0.15]"
+        animate={{
+          x: locale === 'pt' ? 3 : '50%',
+          width: 'calc(50% - 3px)',
+        }}
+        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+        style={{ left: 0 }}
+      />
+
+      {options.map((opt) => {
+        const Flag = opt.flag;
+        const isActive = locale === opt.value;
+        return (
+          <button
+            key={opt.value}
+            onClick={() => onChange(opt.value)}
+            className={cn(
+              'relative z-10 flex items-center gap-1.5 h-[26px] px-3 rounded-full transition-opacity duration-200 cursor-pointer',
+              isActive ? 'opacity-100' : 'opacity-45 hover:opacity-70'
+            )}
+            aria-label={`Switch to ${opt.label}`}
+          >
+            <div className="h-[14px] w-[14px] rounded-full overflow-hidden border border-background/20 shrink-0">
+              <Flag className="h-full w-full" />
+            </div>
+            <span className="text-[11px] font-semibold text-background tracking-wide leading-none">
+              {opt.label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
   );
 }

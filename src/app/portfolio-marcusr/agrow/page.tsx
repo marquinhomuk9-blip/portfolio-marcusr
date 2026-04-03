@@ -2,15 +2,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  BarChart3, Zap, Users, Lightbulb, Shield,
-  CheckCircle2, Layers, Smartphone,
+  BarChart3, Zap, Users, Lightbulb,
+  ArrowRight, CheckCircle2,
 } from 'lucide-react';
 import { CaseLayout } from '@/components/case-layout';
 import { useLanguage } from '@/components/ui/language-context';
 import {
-  fade, t_styles, prose, MetricCard, ProcessStep, BeforeAfterGrid,
+  fade, t_styles, prose, MetricCard,
 } from '@/components/case-shared';
 
+/* ── Logo ────────────────────────────────────────────── */
 function AgrowLogo() {
   return (
     <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
@@ -21,173 +22,474 @@ function AgrowLogo() {
   );
 }
 
+/* ── Tags ────────────────────────────────────────────── */
+function Tag({ label }: { label: string }) {
+  return (
+    <span className="inline-block font-sans text-[12px] font-medium text-foreground/45 bg-foreground/[0.04] border border-foreground/[0.06] rounded-full px-3 py-1">
+      {label}
+    </span>
+  );
+}
+
+/* ── Domain card for "Estrutura do produto" ─────────── */
+function DomainCard({ icon: Icon, title, items, color }: {
+  icon: React.ElementType;
+  title: string;
+  items: string[];
+  color: string;
+}) {
+  return (
+    <div className="p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
+      <div className="flex items-center gap-3 mb-3">
+        <div className={`flex items-center justify-center h-9 w-9 rounded-xl ${color.split(' ')[1]} shrink-0`}>
+          <Icon className={`h-[18px] w-[18px] ${color.split(' ')[0]}`} />
+        </div>
+        <p className="font-sans text-[16px] font-semibold text-foreground">{title}</p>
+      </div>
+      <ul className="space-y-1.5 ml-12">
+        {items.map((item, i) => (
+          <li key={i} className="font-sans text-[14px] text-foreground/50 leading-[1.5]">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/* ── Flowchart node ──────────────────────────────────── */
+function FlowNode({ label, variant = 'default', highlight }: {
+  label: string;
+  variant?: 'product' | 'primitive' | 'service' | 'flow' | 'default';
+  highlight?: boolean;
+}) {
+  const variants: Record<string, string> = {
+    product: 'bg-[#5B5891]/10 border-[#5B5891]/25 text-[#5B5891]',
+    primitive: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-600',
+    service: 'bg-amber-500/10 border-amber-500/25 text-amber-600',
+    flow: 'bg-blue-500/10 border-blue-500/25 text-blue-600',
+    default: 'bg-foreground/[0.03] border-foreground/[0.08] text-foreground/70',
+  };
+  return (
+    <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-[13px] font-medium font-sans ${variants[variant]} ${highlight ? 'ring-2 ring-primary/30 ring-offset-2 ring-offset-background' : ''}`}>
+      {label}
+      {highlight && <span className="text-[10px] font-normal text-primary/60 whitespace-nowrap">emissão dentro do app</span>}
+    </div>
+  );
+}
+
+/* ── Main content ────────────────────────────────────── */
 function AgrowContent() {
   const { t } = useLanguage();
 
   return (
     <>
-      {/* Hero do case */}
+      {/* ═══════════════════════════════════════════════ */}
+      {/* ─── PARTE 1 ─────────────────────────────────── */}
+      {/* ═══════════════════════════════════════════════ */}
+
+      {/* ─── Hero ─────────────────────────────────────── */}
       <motion.div {...fade} className="mb-6">
         <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-[#5B5891]/10 p-3 mb-6">
           <AgrowLogo />
         </div>
-        <p className={t_styles.label}>{t('Case Principal', 'Main Case')}</p>
         <h2 className={t_styles.h2}>
-          {t('Agrow.pay: conta digital do zero ao produto em producao', 'Agrow.pay: digital banking from zero to production')}
+          {t(
+            'Agrow.pay — Construção do produto',
+            'Agrow.pay — Building the product'
+          )}
         </h2>
         <p className={t_styles.body}>
           {t(
-            'Entrei como consultor externo. Tres meses depois, fui contratado direto pela empresa. Esse e o tipo de resultado que acontece quando o design entrega valor de verdade desde o primeiro sprint.',
-            'I joined as an external consultant. Three months later, I was hired directly by the company. This is the kind of result that happens when design delivers real value from the first sprint.'
+            'Conta digital para o agronegócio, criada do zero — do primeiro fluxo à validação com produtores rurais.',
+            'Digital banking for agribusiness, built from scratch — from the first flow to validation with rural producers.'
           )}
         </p>
-      </motion.div>
-
-      {/* Metricas */}
-      <motion.div {...fade} className="my-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <MetricCard value="+10k" label={t('Usuarios impactados', 'Users impacted')} sub={t('em producao', 'in production')} />
-          <MetricCard value="50%" label={t('Taxa de conversao', 'Conversion rate')} sub={t('cadastros / acessos', 'sign-ups / visits')} />
-          <MetricCard value="100%" label={t('Processos digitalizados', 'Digitised processes')} sub={t('antes era tudo manual', 'previously all manual')} />
-          <MetricCard value="0→1" label={t('Produto do zero', 'Product from scratch')} sub="app + landing + portal" />
-        </div>
-      </motion.div>
-
-      {/* Antes / Depois */}
-      <BeforeAfterGrid
-        t={t}
-        beforeItems={t(
-          ['Sem produto digital — tudo operava no papel', 'Processos financeiros manuais e burocraticos', 'Zero integracao entre financeiro e campo', 'Dependencia total de ferramentas externas'],
-          ['No digital product — everything was on paper', 'Manual and bureaucratic financial processes', 'Zero integration between finance and field', 'Total dependency on external tools']
-        )}
-        afterItems={t(
-          ['Plataforma completa em producao com +10k usuarios', 'PIX, TED, boletos em um unico app', 'Gestao de graos integrada ao financeiro', 'Certificado Digital + NF-e + CPR no mobile'],
-          ['Complete platform in production with +10k users', 'PIX, wire transfers, invoices in a single app', 'Grain management integrated with finance', 'Digital Certificate + e-Invoice + CPR on mobile']
-        )}
-      />
-
-      {/* Papel e Processo */}
-      <motion.div {...fade}>
-        <h3 className={t_styles.h3}>{t('Meu papel e processo', 'My role and process')}</h3>
-        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
-          {t('Product Designer end-to-end. Nao herdei o produto — criei tudo do zero:', 'End-to-end Product Designer. I didn\'t inherit the product — I built everything from scratch:')}
-        </p>
-        <div className="space-y-6 mb-8">
-          <ProcessStep number="01" title={t('Discovery e estrategia', 'Discovery & strategy')} desc={t('Mapeei o mercado de agrofintechs, conduzi entrevistas com produtores rurais e alinhei com stakeholders as prioridades de negocio.', 'Mapped the agrofintech market, conducted interviews with rural producers, and aligned business priorities with stakeholders.')} />
-          <ProcessStep number="02" title={t('Arquitetura e jornadas', 'Architecture & journeys')} desc={t('Estruturei o ecossistema conectando financeiro, gestao de graos e portal do parceiro — tres dominios que operavam isolados.', 'Structured the ecosystem connecting finance, grain management, and partner portal — three domains that operated in isolation.')} />
-          <ProcessStep number="03" title={t('Design e validacao', 'Design & validation')} desc={t('Desenhei todos os fluxos no Figma, validei com usuarios reais e iterei com o time de engenharia sobre limitacoes de API.', 'Designed all flows in Figma, validated with real users, and iterated with the engineering team on API limitations.')} />
-          <ProcessStep number="04" title={t('Implementacao e acompanhamento', 'Implementation & monitoring')} desc={t('Acompanhei a entrega tecnica, ajustei fluxos em producao e monitorei metricas de conversao e adocao.', 'Followed technical delivery, adjusted flows in production, and monitored conversion and adoption metrics.')} />
-        </div>
-      </motion.div>
-
-      {/* Ecossistema */}
-      <motion.div {...fade}>
-        <h3 className={t_styles.h3}>{t('Ecossistema que estruturei', 'Ecosystem I structured')}</h3>
-        <div className="grid gap-3 mb-8">
-          {t(
-            [
-              { icon: BarChart3, title: "Gestao Financeira", desc: "PIX, TED, boletos — tudo centralizado em um unico app", color: "text-emerald-500 bg-emerald-500/10" },
-              { icon: Zap, title: "Gestao de Graos", desc: "Cotacao, saldo e operacoes agricolas integradas ao financeiro", color: "text-amber-500 bg-amber-500/10" },
-              { icon: Users, title: "Portal do Parceiro", desc: "Gestao de relacionamento B2B com visao unificada", color: "text-blue-500 bg-blue-500/10" },
-            ],
-            [
-              { icon: BarChart3, title: "Financial Management", desc: "PIX, wire transfers, invoices — all centralised in one app", color: "text-emerald-500 bg-emerald-500/10" },
-              { icon: Zap, title: "Grain Management", desc: "Quotes, balances, and agricultural operations integrated with finance", color: "text-amber-500 bg-amber-500/10" },
-              { icon: Users, title: "Partner Portal", desc: "B2B relationship management with unified view", color: "text-blue-500 bg-blue-500/10" },
-            ]
-          ).map((item, i) => (
-            <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
-              <div className={`flex items-center justify-center h-9 w-9 rounded-xl ${item.color.split(' ')[1]} shrink-0`}>
-                <item.icon className={`h-[18px] w-[18px] ${item.color.split(' ')[0]}`} />
-              </div>
-              <div>
-                <p className="font-sans text-[16px] font-semibold text-foreground">{item.title}</p>
-                <p className="font-sans text-[14px] text-foreground/50 mt-0.5">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Decisao-chave */}
-      <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
-        <div className="flex items-start gap-4">
-          <Lightbulb className="h-5 w-5 text-primary/40 mt-[2px] shrink-0" />
-          <p className="font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65">
-            <strong className="text-foreground font-semibold">{t('Decisao-chave:', 'Key decision:')}</strong>{' '}
-            {t(
-              'Grande parte dos fluxos foram moldados por restricoes de API e regras regulatorias. O equilibrio entre UX ideal e viabilidade tecnica foi o que garantiu um produto que realmente funcionou em producao — nao so no prototipo.',
-              'Most flows were shaped by API constraints and regulatory rules. The balance between ideal UX and technical feasibility is what ensured a product that actually worked in production — not just in the prototype.'
-            )}
-          </p>
+        <div className="flex flex-wrap gap-2 mt-2">
+          <Tag label="SaaS & Digital Products" />
+          <Tag label="Design Systems" />
+          <Tag label="B2B" />
+          <Tag label="B2C" />
+          <Tag label="BaaS" />
         </div>
       </motion.div>
 
       <div className={t_styles.divider} />
 
-      {/* Deep Dive */}
+      {/* ─── Contexto ─────────────────────────────────── */}
       <motion.div {...fade}>
-        <p className={t_styles.label}>Deep Dive</p>
-        <h2 className={t_styles.h2}>
-          {t('Certificado Digital + NF-e + CPR Digital', 'Digital Certificate + e-Invoice + Digital CPR')}
-        </h2>
-        <p className={t_styles.body}>
+        <h3 className={t_styles.h3} style={{ marginTop: 0 }}>
+          {t('Contexto', 'Context')}
+        </h3>
+        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-4 ${prose}`}>
           {t(
-            'A jornada mais complexa do produto. Processos burocraticos com impacto financeiro e legal direto — transformados em uma experiencia guiada dentro de um app mobile.',
-            'The most complex journey in the product. Bureaucratic processes with direct financial and legal impact — transformed into a guided experience within a mobile app.'
+            'A Agrow.pay nasceu com o objetivo de centralizar serviços financeiros e informações operacionais essenciais para produtores rurais em uma única plataforma. O desafio era criar um produto completo que integrasse serviços financeiros tradicionais com funcionalidades específicas do agronegócio.',
+            'Agrow.pay was born with the goal of centralizing financial services and essential operational information for rural producers in a single platform. The challenge was to create a complete product that integrated traditional financial services with agribusiness-specific features.'
+          )}
+        </p>
+        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
+          {t(
+            'Entrei no projeto para consolidar Product e, com a evolução do trabalho, fui contratado definitivamente pela Agrow.pay — prova concreta de confiança e relevância na construção do produto.',
+            'I joined the project to consolidate Product and, as the work evolved, I was permanently hired by Agrow.pay — concrete proof of trust and relevance in building the product.'
           )}
         </p>
       </motion.div>
 
+      {/* ─── Meu papel ────────────────────────────────── */}
       <motion.div {...fade}>
-        <h3 className={t_styles.h3}>{t('O problema', 'The problem')}</h3>
-        <div className="grid md:grid-cols-3 gap-3 mb-8">
+        <h3 className={t_styles.h3}>
+          {t('Meu papel', 'My role')}
+        </h3>
+        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-6 ${prose}`}>
+          {t(
+            'Atuei como Product Designer end-to-end, com forte participação em decisões estratégicas.',
+            'I worked as an end-to-end Product Designer, with strong participation in strategic decisions.'
+          )}
+        </p>
+        <ul className="space-y-3 mb-8">
           {t(
             [
-              { problem: "Alto risco de erro", impact: "Impacto financeiro e legal direto em caso de falha na emissao" },
-              { problem: "Processos burocraticos", impact: "Regulamentacao complexa que muda frequentemente entre estados" },
-              { problem: "Baixa familiaridade digital", impact: "Produtores rurais que nunca usaram app financeiro antes" },
+              'Criação de todos os fluxos do produto do zero',
+              'Participação ativa em reuniões de definição com stakeholders e donos de APIs',
+              'Tomada de decisão sobre prioridades e features junto ao time',
+              'Design do aplicativo e da landing page',
+              'Conduzi a participação em testes e entrevistas com usuários em diversas etapas',
+              'Aplicação de elementos WCAG na interface de contraste e paleta de cores ao nível, garantindo acessibilidade visual desde a concepção do produto — aplicando em estudo de caso detalhado',
             ],
             [
-              { problem: "High error risk", impact: "Direct financial and legal impact in case of issuance failure" },
-              { problem: "Bureaucratic processes", impact: "Complex regulation that changes frequently between states" },
-              { problem: "Low digital literacy", impact: "Rural producers who never used a financial app before" },
+              'Created all product flows from scratch',
+              'Active participation in definition meetings with stakeholders and API owners',
+              'Decision-making on priorities and features alongside the team',
+              'Design of the app and landing page',
+              'Led participation in user tests and interviews at various stages',
+              'Applied WCAG elements in contrast interface and color palette, ensuring visual accessibility from product conception — applied in detailed case study',
             ]
           ).map((item, i) => (
-            <div key={i} className="p-5 rounded-xl bg-foreground/[0.02] border border-foreground/[0.05]">
-              <p className="font-sans text-[15px] font-semibold text-foreground/80 mb-1">{item.problem}</p>
-              <p className="font-sans text-[14px] leading-[1.6] text-foreground/50">{item.impact}</p>
+            <li key={i} className="flex items-start gap-3 font-sans text-[15px] md:text-[16px] leading-[1.6] text-foreground/60">
+              <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-primary/40 shrink-0" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      {/* ─── Estrutura do produto ─────────────────────── */}
+      <motion.div {...fade}>
+        <h3 className={t_styles.h3}>
+          {t('Estrutura do produto', 'Product structure')}
+        </h3>
+        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-6 ${prose}`}>
+          {t(
+            'A estrutura é um ecossistema completo, conectado em três domínios principais:',
+            'The structure is a complete ecosystem, connected across three main domains:'
+          )}
+        </p>
+        <div className="grid gap-3 mb-8">
+          <DomainCard
+            icon={BarChart3}
+            title={t('Gestão Financeira', 'Financial Management')}
+            items={t(
+              ['PIX, TED, Saldos, Depósitos'],
+              ['PIX, Wire transfers, Balances, Deposits']
+            )}
+            color="text-emerald-500 bg-emerald-500/10"
+          />
+          <DomainCard
+            icon={Zap}
+            title={t('Gestão de Grãos', 'Grain Management')}
+            items={t(
+              ['Cotas, Contratos, NF-e'],
+              ['Quotas, Contracts, e-Invoice']
+            )}
+            color="text-amber-500 bg-amber-500/10"
+          />
+          <DomainCard
+            icon={Users}
+            title={t('Portal de Parceiros (Dashboard)', 'Partner Portal (Dashboard)')}
+            items={t(
+              ['Relatórios e alertas do sistema'],
+              ['Reports and system alerts']
+            )}
+            color="text-blue-500 bg-blue-500/10"
+          />
+        </div>
+      </motion.div>
+
+      {/* ─── Processo ─────────────────────────────────── */}
+      <motion.div {...fade}>
+        <h3 className={t_styles.h3}>
+          {t('Processo', 'Process')}
+        </h3>
+        <ul className="space-y-3 mb-8">
+          {t(
+            [
+              'Discovery contínua com entrevistas e testes ao longo de todo o projeto',
+              'Construção colaborativa: workshops, reuniões com stakeholders e donos de APIs',
+              'Definição, validação e iteração de fluxos baseada em feedback real',
+              'Decisões de design orientadas pelo contexto técnico de cada integração',
+            ],
+            [
+              'Continuous discovery with interviews and tests throughout the entire project',
+              'Collaborative building: workshops, meetings with stakeholders and API owners',
+              'Definition, validation and iteration of flows based on real feedback',
+              'Design decisions guided by the technical context of each integration',
+            ]
+          ).map((item, i) => (
+            <li key={i} className="flex items-start gap-3 font-sans text-[15px] md:text-[16px] leading-[1.6] text-foreground/60">
+              <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-primary/40 shrink-0" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+
+      <div className={t_styles.divider} />
+
+      {/* ─── Mapa de domínios ─────────────────────────── */}
+      <motion.div {...fade}>
+        <p className={t_styles.label}>
+          {t('Mapa de domínios do produto', 'Product domain map')}
+        </p>
+        <h2 className={t_styles.h2}>
+          {t('Primitivas e entrega', 'Primitives and delivery')}
+        </h2>
+      </motion.div>
+
+      {/* Gestão Financeira */}
+      <motion.div {...fade} className="mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-emerald-500/10 shrink-0">
+            <BarChart3 className="h-4 w-4 text-emerald-500" />
+          </div>
+          <p className="font-sans text-[15px] font-semibold text-foreground">
+            {t('Gestão Financeira', 'Financial Management')}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 ml-9">
+          <FlowNode label={t('Conta digital', 'Digital account')} variant="product" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label={t('Saldo', 'Balance')} variant="primitive" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label={t('Relatórios', 'Reports')} variant="primitive" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label="PIX" variant="service" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label="TED" variant="service" />
+        </div>
+      </motion.div>
+
+      {/* Gestão de grãos */}
+      <motion.div {...fade} className="mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-amber-500/10 shrink-0">
+            <Zap className="h-4 w-4 text-amber-500" />
+          </div>
+          <p className="font-sans text-[15px] font-semibold text-foreground">
+            {t('Gestão de Grãos', 'Grain Management')}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 ml-9">
+          <FlowNode label={t('Consulta de origem', 'Origin query')} variant="product" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label={t('Salas de negociação', 'Trading rooms')} variant="primitive" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label={t('Fixação de grãos', 'Grain pricing')} variant="primitive" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label={t('Emissão de CPR', 'CPR issuance')} variant="service" />
+        </div>
+        <div className="flex flex-wrap items-center gap-2 ml-9 mt-2">
+          <FlowNode label={t('Certificado digital', 'Digital certificate')} variant="flow" highlight />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label={t('CPR Digital', 'Digital CPR')} variant="flow" highlight />
+        </div>
+      </motion.div>
+
+      {/* Portal de Parceiros */}
+      <motion.div {...fade} className="mb-8">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-blue-500/10 shrink-0">
+            <Users className="h-4 w-4 text-blue-500" />
+          </div>
+          <p className="font-sans text-[15px] font-semibold text-foreground">
+            {t('Portal de Parceiros', 'Partner Portal')}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 ml-9">
+          <FlowNode label={t('Estação da safra (Dashboard)', 'Harvest station (Dashboard)')} variant="product" />
+          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
+          <FlowNode label="CPR App / Desktop" variant="flow" />
+        </div>
+      </motion.div>
+
+      {/* Legenda */}
+      <motion.div {...fade} className="mb-10">
+        <div className="flex flex-wrap gap-4 py-4 px-5 rounded-xl bg-foreground/[0.02] border border-foreground/[0.05]">
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-sm bg-[#5B5891]/30" />
+            <span className="font-sans text-[12px] text-foreground/45">{t('Produtos e módulos', 'Products & modules')}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-sm bg-emerald-500/30" />
+            <span className="font-sans text-[12px] text-foreground/45">{t('Primitivas financeiras', 'Financial primitives')}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-sm bg-amber-500/30" />
+            <span className="font-sans text-[12px] text-foreground/45">{t('Serviços e fundos', 'Services & funds')}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-sm bg-blue-500/30" />
+            <span className="font-sans text-[12px] text-foreground/45">{t('Fluxos dentro do app', 'In-app flows')}</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Nota sobre decisões de API */}
+      <motion.div {...fade} className="my-8 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
+        <div className="flex items-start gap-4">
+          <Lightbulb className="h-5 w-5 text-primary/40 mt-[2px] shrink-0" />
+          <p className="font-sans text-[15px] md:text-[16px] leading-[1.72] text-foreground/60">
+            {t(
+              'Em todos os domínios, as decisões de design foram orientadas pelas restrições e possibilidades de cada integração de API — em alguns fluxos fazia mais sentido desacoplar etapas, em outros, fazia mais sentido agrupar e propor melhorias na experiência.',
+              'Across all domains, design decisions were guided by the constraints and possibilities of each API integration — in some flows it made more sense to decouple stages, in others, it made more sense to group them and propose experience improvements.'
+            )}
+          </p>
+        </div>
+      </motion.div>
+
+      {/* ═══════════════════════════════════════════════ */}
+      {/* ─── PARTE 2 ─────────────────────────────────── */}
+      {/* ═══════════════════════════════════════════════ */}
+
+      {/* ─── Impacto ──────────────────────────────────── */}
+      <motion.div {...fade} className="mt-16">
+        <h3 className={t_styles.h3}>
+          {t('Impacto', 'Impact')}
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <MetricCard value="+10.000" label={t('usuários impactados', 'users impacted')} />
+          <MetricCard value="~5.000" label={t('cadastros realizados', 'sign-ups completed')} />
+          <MetricCard value="50%" label={t('taxa de conversão (LP)', 'conversion rate (LP)')} />
+          <MetricCard value="100%" label={t('fluxos criados do zero', 'flows created from scratch')} />
+        </div>
+      </motion.div>
+
+      <div className={t_styles.divider} />
+
+      {/* ─── Deep Dive ────────────────────────────────── */}
+      <motion.div {...fade}>
+        <p className={t_styles.label}>
+          {t('Deep Dive dentro do case Agrow.pay', 'Deep Dive into the Agrow.pay case')}
+        </p>
+        <h2 className={t_styles.h2}>
+          {t(
+            'Fluxo crítico: Certificado Digital + NF-e + CPR Digital',
+            'Critical flow: Digital Certificate + e-Invoice + Digital CPR'
+          )}
+        </h2>
+        <p className={t_styles.body}>
+          {t(
+            'Das jornadas que construí na Agrow, esse foi o fluxo de maior complexidade técnica e regulatória — e o que mais exigiu equilíbrio entre UX, conformidade legal e limitações de API.',
+            'Of all the journeys I built at Agrow, this was the flow with the highest technical and regulatory complexity — and the one that most required balancing UX, legal compliance, and API limitations.'
+          )}
+        </p>
+      </motion.div>
+
+      {/* ─── O desafio ────────────────────────────────── */}
+      <motion.div {...fade}>
+        <h3 className={t_styles.h3}>
+          {t('O desafio', 'The challenge')}
+        </h3>
+        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
+          {t(
+            'Transformar processos altamente burocráticos — emissão de Nota Fiscal, uso de Certificado Digital e criação de CPR (Cédula de Produto Rural) — em uma experiência clara, segura e executável dentro de um app mobile, para um usuário com baixa familiaridade digital.',
+            'Transform highly bureaucratic processes — issuing invoices, using Digital Certificates, and creating CPR (Rural Product Certificate) — into a clear, safe, and executable experience within a mobile app, for users with low digital literacy.'
+          )}
+        </p>
+      </motion.div>
+
+      {/* ─── Principais decisões de design ────────────── */}
+      <motion.div {...fade}>
+        <h3 className={t_styles.h3}>
+          {t('Principais decisões de design', 'Key design decisions')}
+        </h3>
+        <div className="rounded-2xl border border-foreground/[0.06] overflow-hidden mb-8">
+          {/* Header da tabela */}
+          <div className="grid grid-cols-2 bg-foreground/[0.04] border-b border-foreground/[0.06]">
+            <div className="px-5 py-3">
+              <p className="font-sans text-[13px] font-semibold text-foreground/60 uppercase tracking-wide">
+                {t('Desafio', 'Challenge')}
+              </p>
+            </div>
+            <div className="px-5 py-3">
+              <p className="font-sans text-[13px] font-semibold text-foreground/60 uppercase tracking-wide">
+                {t('Decisão tomada', 'Decision made')}
+              </p>
+            </div>
+          </div>
+          {/* Linhas */}
+          {t(
+            [
+              { challenge: 'Restrições das APIs governamentais', decision: 'Fluxos mais guiados e estruturados, reduzindo margem de erro mesmo com menos liberdade de design' },
+              { challenge: 'Alto risco de erro com impacto legal/financeiro', decision: 'Validações em tempo real, feedback claro de erros e estrutura passo a passo com progressão visível' },
+              { challenge: 'Baixa familiaridade digital do público', decision: 'Simplificação da linguagem, redução de carga cognitiva e uso de padrões previsíveis' },
+              { challenge: 'Integração complexa com sistemas externos', decision: 'Abstração da complexidade técnica — o usuário vê o resultado, não a integração' },
+            ],
+            [
+              { challenge: 'Government API restrictions', decision: 'More guided and structured flows, reducing error margin even with less design freedom' },
+              { challenge: 'High error risk with legal/financial impact', decision: 'Real-time validations, clear error feedback, and step-by-step structure with visible progression' },
+              { challenge: 'Low digital literacy of the audience', decision: 'Simplified language, reduced cognitive load, and use of predictable patterns' },
+              { challenge: 'Complex integration with external systems', decision: 'Abstraction of technical complexity — the user sees the result, not the integration' },
+            ]
+          ).map((row, i) => (
+            <div key={i} className={`grid grid-cols-2 ${i < 3 ? 'border-b border-foreground/[0.04]' : ''}`}>
+              <div className="px-5 py-4">
+                <p className="font-sans text-[14px] md:text-[15px] font-medium text-foreground/75 leading-[1.5]">{row.challenge}</p>
+              </div>
+              <div className="px-5 py-4">
+                <p className="font-sans text-[14px] md:text-[15px] text-foreground/55 leading-[1.6]">{row.decision}</p>
+              </div>
             </div>
           ))}
         </div>
       </motion.div>
 
+      {/* ─── Insight ──────────────────────────────────── */}
+      <motion.div {...fade} className="my-8 py-6 px-7 bg-emerald-50/60 dark:bg-emerald-950/10 rounded-2xl border-l-[3px] border-emerald-500/30">
+        <p className="font-sans text-[15px] md:text-[16px] leading-[1.72] text-foreground/65">
+          <strong className="text-emerald-600 dark:text-emerald-400 font-semibold">Insight: </strong>
+          {t(
+            'Projetar fluxos regulatórios exige equilibrar experiência, conformidade legal e limitações técnicas simultaneamente. Esse é o tipo de problema que define Product Designers.',
+            'Designing regulatory flows requires balancing experience, legal compliance, and technical limitations simultaneously. This is the kind of problem that defines Product Designers.'
+          )}
+        </p>
+      </motion.div>
+
+      {/* ─── Resultado ────────────────────────────────── */}
       <motion.div {...fade}>
-        <h3 className={t_styles.h3}>{t('Como resolvi', 'How I solved it')}</h3>
-        <div className="grid md:grid-cols-2 gap-3 mb-8">
+        <h3 className={t_styles.h3}>
+          {t('Resultado', 'Result')}
+        </h3>
+        <ul className="space-y-3 mb-8">
           {t(
             [
-              { icon: Shield, title: "Fluxo progressivo e guiado", desc: "Dividi processos complexos em steps claros — o usuario nunca se perde" },
-              { icon: CheckCircle2, title: "Validacoes em tempo real", desc: "Feedback imediato a cada etapa, prevenindo erros antes que acontecam" },
-              { icon: Layers, title: "Abstracao da complexidade", desc: "Regulamentacao invisivel para o usuario — linguagem simples, a API cuida do resto" },
-              { icon: Smartphone, title: "Zero ferramentas externas", desc: "Certificado, NF-e e CPR emitidos pelo celular — sem computador, sem contador" },
+              'Digitalização de processos antes totalmente burocráticos e dependentes de ferramentas externas',
+              'Maior autonomia: operações críticas realizadas diretamente no app',
+              'Redução de erros por meio de validações inteligentes e fluxo guiado',
+              'Integração de operações formais e obrigatórias dentro de uma experiência mobile fluida',
             ],
             [
-              { icon: Shield, title: "Progressive guided flow", desc: "Split complex processes into clear steps — the user never gets lost" },
-              { icon: CheckCircle2, title: "Real-time validations", desc: "Immediate feedback at each step, preventing errors before they happen" },
-              { icon: Layers, title: "Complexity abstraction", desc: "Regulation invisible to the user — simple language, the API handles the rest" },
-              { icon: Smartphone, title: "Zero external tools", desc: "Certificate, e-Invoice and CPR issued on mobile — no computer, no accountant" },
+              'Digitization of previously fully bureaucratic processes dependent on external tools',
+              'Greater autonomy: critical operations performed directly in the app',
+              'Error reduction through intelligent validations and guided flow',
+              'Integration of formal and mandatory operations within a fluid mobile experience',
             ]
           ).map((item, i) => (
-            <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
-              <item.icon className="h-5 w-5 text-foreground/25 mt-0.5 shrink-0" />
-              <div>
-                <p className="font-sans text-[16px] font-semibold text-foreground">{item.title}</p>
-                <p className="font-sans text-[14px] text-foreground/50 mt-1 leading-[1.6]">{item.desc}</p>
-              </div>
-            </div>
+            <li key={i} className="flex items-start gap-3 font-sans text-[15px] md:text-[16px] leading-[1.6] text-foreground/60">
+              <CheckCircle2 className="h-4 w-4 mt-[3px] text-emerald-500/50 shrink-0" />
+              {item}
+            </li>
           ))}
-        </div>
+        </ul>
       </motion.div>
     </>
   );

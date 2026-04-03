@@ -27,26 +27,9 @@ export function PortfolioArticle() {
 
   return (
     <article className="w-full bg-background">
-      <div className="mx-auto max-w-[800px] px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[800px] px-8 md:px-6 pt-14 md:pt-16 pb-20 md:pb-28">
 
-        {/* ═══════════════ SOBRE MIM ═══════════════ */}
-        <motion.div {...fade}>
-          <p className={t_styles.label}>{t('Quem sou', 'About me')}</p>
-          <h2 className={t_styles.h2}>
-            {t(
-              <>Product Designer que entrega<br />produto, não só tela</>,
-              <>Product Designer who delivers<br />products, not just screens</>
-            )}
-          </h2>
-          <p className={t_styles.body}>
-            {t(
-              <>Atuo end-to-end em produtos digitais complexos. Minha diferenca?{' '}<strong className="text-foreground font-semibold">Nao paro no Figma.</strong>{' '}Participo de decisoes tecnicas, negocio com APIs, alinho com stakeholders e entrego solucoes que funcionam em producao — nao so no prototipo. Minha atuacao recente combina design estrategico com IA aplicada para comprimir ciclos de entrega de meses para dias.</>,
-              <>I work end-to-end on complex digital products. My difference?{' '}<strong className="text-foreground font-semibold">I don't stop at Figma.</strong>{' '}I participate in technical decisions, negotiate with APIs, align with stakeholders, and deliver solutions that work in production — not just in prototypes. My recent work combines strategic design with applied AI to compress delivery cycles from months to days.</>
-            )}
-          </p>
-        </motion.div>
-
-        <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
+        <motion.div {...fade} className="mb-12 py-6 pl-6 pr-5 md:px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
           <p className="font-serif text-[19px] md:text-[21px] leading-[1.72] text-foreground/65 italic">
             {t(
               '"Design bom nao e o que parece bonito. E o que resolve — para o usuario, para o negocio e para a engenharia. Se nao gerou resultado, nao funcionou."',
@@ -56,7 +39,7 @@ export function PortfolioArticle() {
         </motion.div>
 
         <motion.div {...fade}>
-          <h3 className={t_styles.h3}>{t('Por que me contratar', 'Why hire me')}</h3>
+          <h3 className={`${t_styles.h3} mt-0`}>{t('Por que me contratar', 'Why hire me')}</h3>
           <div className="grid gap-4 mb-8">
             {t(
               [

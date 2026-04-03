@@ -4,6 +4,7 @@ import { Header } from '@/components/ui/header';
 import { HeroBlock } from '@/components/ui/hero-block';
 import { Timeline } from '@/components/ui/timeline';
 import { PortfolioArticle } from '@/components/portfolio-article';
+import { AboutSection } from '@/components/about-section';
 import { ContactForm } from '@/components/ui/contact-form';
 import { FloatingChat } from '@/components/ui/floating-chat';
 import { LanguageProvider, useLanguage } from '@/components/ui/language-context';
@@ -235,6 +236,8 @@ function PageContent() {
         <section id="projetos" className="bg-foreground/[0.015]">
           <Timeline data={timelineData} />
         </section>
+
+        <AboutSection />
 
         <PortfolioArticle />
       </main>

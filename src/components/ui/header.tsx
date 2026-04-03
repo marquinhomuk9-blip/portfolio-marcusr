@@ -77,6 +77,10 @@ export function Header() {
 
   const links = [
     {
+      label: t('Sobre mim', 'About me'),
+      href: '#sobre',
+    },
+    {
       label: t('Meus Projetos', 'My Projects'),
       href: '#projetos',
     },
@@ -100,6 +104,10 @@ export function Header() {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setOpen(false);
+    if (href === '#contato') {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      return;
+    }
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
@@ -129,13 +137,14 @@ export function Header() {
           <MRLogo className="h-10 w-auto" />
         </a>
 
-        {/* Center — Language Toggle */}
-        <div className="absolute left-1/2 -translate-x-1/2">
+        {/* Center — Language Toggle (mobile only centered, desktop flows with nav) */}
+        <div className="absolute left-1/2 -translate-x-1/2 md:hidden">
           <LanguageToggle locale={locale} onChange={setLocale} />
         </div>
 
         {/* Right — Nav links (desktop) */}
         <div className="hidden items-center gap-2 md:flex">
+          <LanguageToggle locale={locale} onChange={setLocale} />
           {links.map((link, i) => (
             <a
               key={i}
@@ -167,6 +176,15 @@ export function Header() {
           )}
         >
           <div className="grid gap-y-1">
+            {/* Sobre mim */}
+            <a
+              className="inline-flex items-center justify-start rounded-lg px-4 py-2.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"
+              href="#sobre"
+              onClick={(e) => handleClick(e, '#sobre')}
+            >
+              {t('Sobre mim', 'About me')}
+            </a>
+
             {/* Meus Projetos + subcategorias */}
             <a
               className="inline-flex items-center justify-start rounded-lg px-4 py-2.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"

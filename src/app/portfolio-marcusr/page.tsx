@@ -111,7 +111,7 @@ function TimelineContent({
             <img
               src={image}
               alt=""
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-contain rounded-xl mix-blend-multiply"
             />
           ) : (
             <div className="w-full h-[200px] md:h-full min-h-[180px] rounded-xl bg-foreground/[0.03] border border-dashed border-foreground/[0.08] flex items-center justify-center">

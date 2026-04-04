@@ -81,7 +81,7 @@ export function HeroBlock() {
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/[0.08] border border-emerald-500/[0.12]">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[12px] font-medium text-emerald-600 dark:text-emerald-400 tracking-wide">
-                {t('Disponivel para novos projetos', 'Available for new projects')}
+                {t('Disponível para novos projetos', 'Available for new projects')}
               </span>
             </span>
           </motion.div>

@@ -32,38 +32,50 @@ export function PortfolioArticle() {
         <motion.div {...fade} className="mb-12 py-6 pl-6 pr-5 md:px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-primary/30">
           <p className="font-serif text-[19px] md:text-[21px] leading-[1.72] text-foreground/65 italic">
             {t(
-              '"Design bom nao e o que parece bonito. E o que resolve — para o usuario, para o negocio e para a engenharia. Se nao gerou resultado, nao funcionou."',
-              '"Good design isn\'t what looks beautiful. It\'s what solves — for the user, for the business, and for engineering. If it didn\'t generate results, it didn\'t work."'
+              '"Como Product Designer, transformo complexidade em soluções claras, úteis e alinhadas com os objetivos do produto."',
+              '"As a Product Designer, I turn complexity into clear, useful solutions aligned with the product\'s goals."'
             )}
           </p>
         </motion.div>
 
         <motion.div {...fade}>
-          <h3 className={`${t_styles.h3} mt-0`}>{t('Por que me contratar', 'Why hire me')}</h3>
-          <div className="grid gap-4 mb-8">
+          <p className={t_styles.label}>{t('Por que me contratar', 'Why hire me')}</p>
+          <h3 className={`${t_styles.h2} mt-0`}>
+            {t(
+              'O que eu trago para o time',
+              'What I bring to the team'
+            )}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {t(
               [
-                { icon: Layers, text: "Construo jornadas complexas do zero — nao herdei, eu criei", color: "text-emerald-500 bg-emerald-500/10" },
-                { icon: Users, text: "Colaboro de verdade com engenharia — entendo limitacoes de API e proponho alternativas viaveis", color: "text-blue-500 bg-blue-500/10" },
-                { icon: Brain, text: "IA integrada ao meu processo: research, validacao e prototipagem 10x mais rapida", color: "text-violet-500 bg-violet-500/10" },
-                { icon: Target, text: "Decisoes baseadas em dados + contexto real: negocio + tecnologia + usuario", color: "text-amber-500 bg-amber-500/10" },
-                { icon: TrendingUp, text: "Historico de resultados mensuraveis: conversao, adocao, reducao de fricao", color: "text-rose-500 bg-rose-500/10" },
+                { icon: Layers, title: "Jornadas do zero", text: "Construo fluxos complexos desde o discovery até a produção", color: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20" },
+                { icon: Users, title: "Parceiro da engenharia", text: "Entendo limitações de API e proponho alternativas viáveis", color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
+                { icon: Brain, title: "IA no processo", text: "Research, validação e prototipagem 10x mais rápida", color: "text-violet-500 bg-violet-500/10 border-violet-500/20" },
+                { icon: Target, title: "Decisões com contexto", text: "Dados + negócio + tecnologia + usuário", color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
+                { icon: TrendingUp, title: "Resultados mensuráveis", text: "Conversão, adoção e redução de fricção comprovados", color: "text-rose-500 bg-rose-500/10 border-rose-500/20" },
               ],
               [
-                { icon: Layers, text: "I build complex journeys from scratch — I didn't inherit them, I created them", color: "text-emerald-500 bg-emerald-500/10" },
-                { icon: Users, text: "I truly collaborate with engineering — I understand API limitations and propose viable alternatives", color: "text-blue-500 bg-blue-500/10" },
-                { icon: Brain, text: "AI integrated into my process: research, validation, and prototyping 10x faster", color: "text-violet-500 bg-violet-500/10" },
-                { icon: Target, text: "Data-driven decisions + real context: business + technology + user", color: "text-amber-500 bg-amber-500/10" },
-                { icon: TrendingUp, text: "Track record of measurable results: conversion, adoption, friction reduction", color: "text-rose-500 bg-rose-500/10" },
+                { icon: Layers, title: "Journeys from scratch", text: "I build complex flows from discovery to production", color: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20" },
+                { icon: Users, title: "Engineering partner", text: "I understand API limitations and propose viable alternatives", color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
+                { icon: Brain, title: "AI in the process", text: "Research, validation, and prototyping 10x faster", color: "text-violet-500 bg-violet-500/10 border-violet-500/20" },
+                { icon: Target, title: "Contextual decisions", text: "Data + business + technology + user", color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
+                { icon: TrendingUp, title: "Measurable results", text: "Proven conversion, adoption, and friction reduction", color: "text-rose-500 bg-rose-500/10 border-rose-500/20" },
               ]
-            ).map((item, i) => (
-              <div key={i} className="flex items-start gap-4 py-3 px-4 rounded-xl hover:bg-foreground/[0.02] transition-colors">
-                <div className={`flex items-center justify-center h-9 w-9 rounded-xl ${item.color.split(' ')[1]} shrink-0 mt-[2px]`}>
-                  <item.icon className={`h-[18px] w-[18px] ${item.color.split(' ')[0]}`} />
+            ).map((item, i) => {
+              const [textColor, bgColor, borderColor] = item.color.split(' ');
+              return (
+                <div key={i} className={`flex items-start gap-4 p-5 rounded-2xl bg-foreground/[0.02] border ${borderColor} hover:bg-foreground/[0.04] transition-colors`}>
+                  <div className={`flex items-center justify-center h-10 w-10 rounded-xl ${bgColor} shrink-0`}>
+                    <item.icon className={`h-5 w-5 ${textColor}`} />
+                  </div>
+                  <div>
+                    <p className={`font-heading text-[16px] md:text-[17px] font-semibold leading-[1.3] ${textColor} mb-1`}>{item.title}</p>
+                    <p className="font-sans text-[14px] md:text-[15px] leading-[1.6] text-foreground/55">{item.text}</p>
+                  </div>
                 </div>
-                <span className="font-sans text-[17px] md:text-[18px] leading-[1.65] text-foreground/70">{item.text}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 

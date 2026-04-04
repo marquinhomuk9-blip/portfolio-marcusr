@@ -124,7 +124,7 @@ function AgrowContent() {
         <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-4 ${prose}`}>
           {t(
             'A Agrow.pay nasceu com o objetivo de centralizar serviços financeiros e informações operacionais essenciais para produtores rurais em uma única plataforma. O desafio era criar um produto completo que integrasse serviços financeiros tradicionais com funcionalidades específicas do agronegócio.',
-            'Agrow.pay was born with the goal of centralizing financial services and essential operational information for rural producers in a single platform. The challenge was to create a complete product that integrated traditional financial services with agribusiness-specific features.'
+            'Agrow.pay was born with the goal of centralising financial services and essential operational information for rural producers in a single platform. The challenge was to create a complete product that integrated traditional financial services with agribusiness-specific features.'
           )}
         </p>
         <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
@@ -162,7 +162,7 @@ function AgrowContent() {
               'Decision-making on priorities and features alongside the team',
               'Design of the app and landing page',
               'Led participation in user tests and interviews at various stages',
-              'Applied WCAG elements in contrast interface and color palette, ensuring visual accessibility from product conception — applied in detailed case study',
+              'Applied WCAG elements in contrast interface and colour palette, ensuring visual accessibility from product conception — applied in detailed case study',
             ]
           ).map((item, i) => (
             <li key={i} className="flex items-start gap-3 font-sans text-[15px] md:text-[16px] leading-[1.6] text-foreground/60">
@@ -478,7 +478,7 @@ function AgrowContent() {
               'Integração de operações formais e obrigatórias dentro de uma experiência mobile fluida',
             ],
             [
-              'Digitization of previously fully bureaucratic processes dependent on external tools',
+              'Digitisation of previously fully bureaucratic processes dependent on external tools',
               'Greater autonomy: critical operations performed directly in the app',
               'Error reduction through intelligent validations and guided flow',
               'Integration of formal and mandatory operations within a fluid mobile experience',

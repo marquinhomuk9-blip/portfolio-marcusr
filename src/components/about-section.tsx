@@ -19,10 +19,10 @@ export function AboutSection() {
       'Discovery & Research',
       'Fluxos end-to-end',
       'Testes de usabilidade',
-      'Colaboracao com times tecnicos',
-      'Design orientado a negocio',
+      'Colaboração com times técnicos',
+      'Design orientado a negócio',
       'Figma',
-      'Metodologias ageis',
+      'Metodologias ágeis',
     ],
     [
       'Product Thinking',
@@ -60,21 +60,21 @@ export function AboutSection() {
             <div className="border-l-[3px] border-foreground/10 pl-6 md:pl-8 space-y-6">
               <p className="font-sans text-[17px] md:text-[18px] leading-[1.75] text-foreground/70">
                 {t(
-                  'Sou Product Designer com experiencia na construcao de produtos digitais do zero e na evolucao de sistemas existentes.',
+                  'Sou Product Designer com experiência na construção de produtos digitais do zero e na evolução de sistemas existentes.',
                   'I am a Product Designer with experience building digital products from scratch and evolving existing systems.'
                 )}
               </p>
 
               <p className="font-sans text-[17px] md:text-[18px] leading-[1.75] text-foreground/70">
                 {t(
-                  'Minha abordagem vai alem da interface: busco entender o problema em profundidade para entregar solucoes que realmente geram impacto — equilibrando experiencia do usuario, regras de negocio e limitacoes tecnicas.',
+                  'Minha abordagem vai além da interface: busco entender o problema em profundidade para entregar soluções que realmente geram impacto — equilibrando experiência do usuário, regras de negócio e limitações técnicas.',
                   'My approach goes beyond the interface: I seek to deeply understand the problem to deliver solutions that truly generate impact — balancing user experience, business rules, and technical constraints.'
                 )}
               </p>
 
               <p className="font-sans text-[17px] md:text-[18px] leading-[1.75] text-foreground/70">
                 {t(
-                  'Atuei como ponte entre negocio, tecnologia e UX em projetos de escala real, com participacao ativa em todas as etapas — da concepcao a validacao com usuarios.',
+                  'Atuei como ponte entre negócio, tecnologia e UX em projetos de escala real, com participação ativa em todas as etapas — da concepção à validação com usuários.',
                   'I acted as a bridge between business, technology, and UX in real-scale projects, with active participation in every stage — from conception to user validation.'
                 )}
               </p>
@@ -82,7 +82,7 @@ export function AboutSection() {
               <p className="font-sans text-[17px] md:text-[18px] leading-[1.75] text-primary font-semibold">
                 {t(
                   'Atualmente me especializando em IA aplicada ao design de produtos e Design Engineering.',
-                  'Currently specializing in AI applied to product design and Design Engineering.'
+                  'Currently specialising in AI applied to product design and Design Engineering.'
                 )}
               </p>
             </div>
@@ -93,7 +93,7 @@ export function AboutSection() {
               {/* Competencias principais */}
               <div>
                 <p className="text-[14px] font-sans font-semibold text-foreground/85 tracking-wide mb-5 pb-3 border-b border-foreground/10">
-                  {t('Competencias principais', 'Core competencies')}
+                  {t('Competências principais', 'Core competencies')}
                 </p>
                 <ul className="space-y-3">
                   {competencias.map((item, i) => (
@@ -108,7 +108,7 @@ export function AboutSection() {
               {/* Em formacao */}
               <div>
                 <p className="text-[14px] font-sans font-semibold text-primary/80 tracking-wide mb-5 pb-3 border-b border-primary/15">
-                  {t('Em formacao', 'In progress')}
+                  {t('Em formação', 'In progress')}
                 </p>
                 <ul className="space-y-3">
                   {emFormacao.map((item, i) => (

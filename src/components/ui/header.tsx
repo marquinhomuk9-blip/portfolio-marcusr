@@ -145,7 +145,7 @@ export function Header() {
         {/* Right — Nav links (desktop) */}
         <div className="hidden items-center gap-2 md:flex">
           <LanguageToggle locale={locale} onChange={setLocale} />
-          {links.map((link, i) => (
+          {links.slice(0, -1).map((link, i) => (
             <a
               key={i}
               className="inline-flex items-center justify-center rounded-lg px-4 py-1.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"
@@ -155,6 +155,13 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          <a
+            className="inline-flex items-center justify-center rounded-lg px-4 py-1.5 text-[15px] font-semibold bg-primary text-foreground transition-colors hover:bg-primary/85"
+            href={links[links.length - 1].href}
+            onClick={(e) => handleClick(e, links[links.length - 1].href)}
+          >
+            {links[links.length - 1].label}
+          </a>
         </div>
 
         {/* Right — Hamburger (mobile) */}
@@ -210,7 +217,7 @@ export function Header() {
 
             {/* Contato */}
             <a
-              className="inline-flex items-center justify-start rounded-lg px-4 py-2.5 text-[15px] font-semibold text-background/85 transition-colors hover:bg-background/10 hover:text-background"
+              className="inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-[15px] font-semibold bg-primary text-foreground transition-colors hover:bg-primary/85 mx-4 mt-2"
               href="#contato"
               onClick={(e) => handleClick(e, '#contato')}
             >

@@ -50,7 +50,7 @@ export function FloatingChat() {
 
   const whatsappNumber = '5511996807009';
   const whatsappMessage = encodeURIComponent(
-    t('Oi Marcus! Vi seu portfolio e gostaria de conversar.', 'Hi Marcus! I saw your portfolio and would like to chat.')
+    t('Oi Marcus! Vi seu portfólio e gostaria de conversar.', 'Hi Marcus! I saw your portfolio and would like to chat.')
   );
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -98,7 +98,7 @@ export function FloatingChat() {
                   <div className="bg-background/[0.08] rounded-2xl rounded-tl-md p-3.5">
                     <p className="text-[14px] leading-[1.55] text-background/75">
                       {t(
-                        'Oi! Gostou do que viu? Me conta o que voce precisa — respondo rapido.',
+                        'Oi! Gostou do que viu? Me conta o que você precisa — respondo rápido.',
                         "Hey! Liked what you saw? Tell me what you need — I reply fast."
                       )}
                     </p>

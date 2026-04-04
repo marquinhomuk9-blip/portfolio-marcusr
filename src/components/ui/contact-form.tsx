@@ -43,7 +43,7 @@ export function ContactForm() {
 
             {/* Disponibilidade */}
             <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-emerald-400/80 mb-4">
-              {t('Disponivel para novos projetos', 'Available for new projects')}
+              {t('Disponível para novos projetos', 'Available for new projects')}
             </p>
 
             {/* Headline */}
@@ -57,7 +57,7 @@ export function ContactForm() {
             {/* Subtexto */}
             <p className="text-[16px] md:text-[17px] leading-[1.65] text-background/50 text-center max-w-sm mb-10">
               {t(
-                'Me chama no WhatsApp. Respondo rapido e a gente resolve direto.',
+                'Me chama no WhatsApp. Respondo rápido e a gente resolve direto.',
                 'Message me on WhatsApp. I reply fast and we get things done.'
               )}
             </p>

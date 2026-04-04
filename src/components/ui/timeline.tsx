@@ -9,6 +9,8 @@ import { useLanguage } from '@/components/ui/language-context';
 
 interface TimelineEntry {
   title: string;
+  titleColor?: string;
+  logo?: React.ReactNode;
   content: React.ReactNode;
 }
 
@@ -68,22 +70,22 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-20 px-6 md:px-8 lg:px-10">
-        <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4">{t('Experiencia', 'Experience')}</p>
+      <div className="max-w-7xl mx-auto py-14 px-6 md:px-8 lg:px-10">
+        <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4">{t('Experiência', 'Experience')}</p>
         <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-foreground max-w-4xl leading-[1.2] mb-5">
-          {t('Produtos reais, resultados mensuraveis', 'Real products, measurable results')}
+          {t('Produtos reais, resultados mensuráveis', 'Real products, measurable results')}
         </h2>
         <p className="font-sans text-[17px] md:text-[19px] leading-[1.72] text-foreground/55 max-w-lg">
-          {t('Cada case abaixo e um problema de negocio real que resolvi com design estrategico — do discovery a producao, com metricas de impacto.', 'Each case below is a real business problem I solved with strategic design — from discovery to production, with impact metrics.')}
+          {t('Cada case abaixo é um problema de negócio real que resolvi com design estratégico — do discovery à produção, com métricas de impacto.', 'Each case below is a real business problem I solved with strategic design — from discovery to production, with impact metrics.')}
         </p>
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
+      <div ref={ref} className="relative max-w-7xl mx-auto pb-14">
         {data.map((item, index) => (
           <div
             key={index}
             ref={(el) => { itemRefs.current[index] = el; }}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            className="flex justify-start pt-8 md:pt-20 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
               <div className="h-10 absolute left-[18px] md:left-3 w-10 rounded-full flex items-center justify-center">
@@ -95,27 +97,39 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   }`}
                 />
               </div>
-              <h3
-                className={`hidden md:block text-xl md:pl-20 md:text-5xl font-bold transition-all duration-500 ${
-                  activeIndex === index
-                    ? 'text-foreground'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {item.title}
-              </h3>
+              <div className="hidden md:flex items-center gap-4 md:pl-20">
+                {item.logo && (
+                  <div className="shrink-0">{item.logo}</div>
+                )}
+                <h3
+                  className={`text-xl md:text-5xl font-bold transition-all duration-500 ${
+                    activeIndex === index
+                      ? (item.titleColor ? '' : 'text-foreground')
+                      : 'text-muted-foreground'
+                  }`}
+                  style={activeIndex === index && item.titleColor ? { color: item.titleColor } : undefined}
+                >
+                  {item.title}
+                </h3>
+              </div>
             </div>
 
             <div className="relative pl-16 pr-6 md:pl-4 w-full">
-              <h3
-                className={`md:hidden block text-2xl mb-4 text-left font-bold transition-all duration-500 ${
-                  activeIndex === index
-                    ? 'text-foreground'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {item.title}
-              </h3>
+              <div className="md:hidden flex items-center gap-3 mb-4">
+                {item.logo && (
+                  <div className="shrink-0">{item.logo}</div>
+                )}
+                <h3
+                  className={`text-2xl text-left font-bold transition-all duration-500 ${
+                    activeIndex === index
+                      ? (item.titleColor ? '' : 'text-foreground')
+                      : 'text-muted-foreground'
+                  }`}
+                  style={activeIndex === index && item.titleColor ? { color: item.titleColor } : undefined}
+                >
+                  {item.title}
+                </h3>
+              </div>
               {item.content}
             </div>
           </div>

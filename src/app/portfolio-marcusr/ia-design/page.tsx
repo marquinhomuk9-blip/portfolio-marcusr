@@ -17,13 +17,13 @@ function IADesignContent() {
         <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-violet-500/10 p-3 mb-6">
           <Brain className="h-full w-full text-violet-600" strokeWidth={1.5} />
         </div>
-        <p className={t_styles.label}>{t('Especializacao', 'Specialisation')}</p>
+        <p className={t_styles.label}>{t('Especialização', 'Specialisation')}</p>
         <h2 className={t_styles.h2}>
           {t('IA aplicada ao Design de Produtos', 'AI Applied to Product Design')}
         </h2>
         <p className={t_styles.body}>
           {t(
-            'Nao uso IA como buzzword de LinkedIn. Uso como ferramenta real de producao que muda fundamentalmente o que um designer consegue entregar — e em quanto tempo. Essa e a habilidade que separa o designer de hoje do designer de amanha.',
+            'Não uso IA como buzzword de LinkedIn. Uso como ferramenta real de produção que muda fundamentalmente o que um designer consegue entregar — e em quanto tempo. Essa é a habilidade que separa o designer de hoje do designer de amanhã.',
             'I don\'t use AI as a LinkedIn buzzword. I use it as a real production tool that fundamentally changes what a designer can deliver — and how fast. This is the skill that separates today\'s designer from tomorrow\'s.'
           )}
         </p>
@@ -38,7 +38,7 @@ function IADesignContent() {
           </div>
           <ul className="space-y-3">
             {t(
-              ['Discovery: 2-4 semanas de research manual', 'Ideacao: dias para explorar alternativas', 'Prototipagem: semanas de iteracao', 'Handoff: documentacao extensa e reunioes'],
+              ['Discovery: 2-4 semanas de research manual', 'Ideação: dias para explorar alternativas', 'Prototipagem: semanas de iteração', 'Handoff: documentação extensa e reuniões'],
               ['Discovery: 2-4 weeks of manual research', 'Ideation: days to explore alternatives', 'Prototyping: weeks of iteration', 'Handoff: extensive documentation and meetings']
             ).map((item, i) => (
               <li key={i} className="font-sans text-[14px] leading-[1.6] text-foreground/50">{item}</li>
@@ -52,7 +52,7 @@ function IADesignContent() {
           </div>
           <ul className="space-y-3">
             {t(
-              ['Discovery: analise qualitativa em horas', 'Ideacao: dezenas de variacoes em minutos', 'Prototipagem: validacao rapida com variantes', 'Handoff: codigo gerado direto do design'],
+              ['Discovery: análise qualitativa em horas', 'Ideação: dezenas de variações em minutos', 'Prototipagem: validação rápida com variantes', 'Handoff: código gerado direto do design'],
               ['Discovery: qualitative analysis in hours', 'Ideation: dozens of variations in minutes', 'Prototyping: rapid validation with variants', 'Handoff: code generated directly from design']
             ).map((item, i) => (
               <li key={i} className="font-sans text-[14px] leading-[1.6] text-violet-600/70 dark:text-violet-300/70">{item}</li>
@@ -66,10 +66,10 @@ function IADesignContent() {
         <div className="grid md:grid-cols-2 gap-3">
           {t(
             [
-              { icon: Zap, title: "Automacao de processos", desc: "Tarefas operacionais eliminadas. Mais tempo para decisoes estrategicas." },
-              { icon: Brain, title: "IA em discovery e research", desc: "Analise qualitativa e quantitativa com velocidade 10x." },
-              { icon: Layers, title: "Geracao de interfaces", desc: "Variacoes testaveis em minutos. Feedback em horas, nao semanas." },
-              { icon: TrendingUp, title: "Design Engineering", desc: "Do Figma ao codigo com menos friccao e menos handoff." },
+              { icon: Zap, title: "Automação de processos", desc: "Tarefas operacionais eliminadas. Mais tempo para decisões estratégicas." },
+              { icon: Brain, title: "IA em discovery e research", desc: "Análise qualitativa e quantitativa com velocidade 10x." },
+              { icon: Layers, title: "Geração de interfaces", desc: "Variações testáveis em minutos. Feedback em horas, não semanas." },
+              { icon: TrendingUp, title: "Design Engineering", desc: "Do Figma ao código com menos fricção e menos handoff." },
             ],
             [
               { icon: Zap, title: "Process automation", desc: "Operational tasks eliminated. More time for strategic decisions." },
@@ -92,9 +92,9 @@ function IADesignContent() {
       {/* Visao */}
       <motion.div {...fade} className="my-12 py-6 px-7 bg-foreground/[0.025] rounded-2xl border-l-[3px] border-violet-400/25">
         <p className="font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65">
-          <strong className="text-foreground font-semibold">{t('Minha visao:', 'My vision:')}</strong>{' '}
+          <strong className="text-foreground font-semibold">{t('Minha visão:', 'My vision:')}</strong>{' '}
           {t(
-            'IA nao substitui o designer — ela multiplica quem sabe usa-la. O mercado vai se dividir entre designers que usam IA como ferramenta real e designers que ficaram para tras. Eu escolhi o primeiro caminho, e os resultados falam por si: entregas que antes levavam meses agora acontecem em dias.',
+            'IA não substitui o designer — ela multiplica quem sabe usá-la. O mercado vai se dividir entre designers que usam IA como ferramenta real e designers que ficaram para trás. Eu escolhi o primeiro caminho, e os resultados falam por si: entregas que antes levavam meses agora acontecem em dias.',
             'AI doesn\'t replace the designer — it multiplies those who know how to use it. The market will split between designers who use AI as a real tool and those who fall behind. I chose the first path, and the results speak for themselves: deliveries that used to take months now happen in days.'
           )}
         </p>

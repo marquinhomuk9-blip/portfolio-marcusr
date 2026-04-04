@@ -24,7 +24,7 @@ function BackButton() {
         className="inline-flex items-center gap-2 text-[14px] font-medium text-foreground/45 hover:text-foreground/70 transition-colors group cursor-pointer"
       >
         <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
-        {t('Voltar ao portfolio', 'Back to portfolio')}
+        {t('Voltar ao portfólio', 'Back to portfolio')}
       </button>
     </motion.div>
   );

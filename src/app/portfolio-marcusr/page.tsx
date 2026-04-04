@@ -8,6 +8,7 @@ import { AboutSection } from '@/components/about-section';
 import { ContactForm } from '@/components/ui/contact-form';
 import { FloatingChat } from '@/components/ui/floating-chat';
 import { LanguageProvider, useLanguage } from '@/components/ui/language-context';
+import Link from 'next/link';
 import { Brain, ArrowRight } from 'lucide-react';
 
 /* ── Logo SVG da Agrow.pay ── */
@@ -31,43 +32,10 @@ function AgrowLogo() {
   );
 }
 
-/* ── Logo SVG do Riocard Mais (fundo azul, texto branco) ── */
-function RiocardLogo() {
+/* ── Logo Pixter ── */
+function PixterLogo() {
   return (
-    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="120" height="120" rx="24" fill="#0088CC" />
-      <text
-        x="12"
-        y="68"
-        fill="white"
-        fontSize="30"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fontWeight="700"
-        letterSpacing="-0.5"
-      >
-        riocard
-      </text>
-      {/* + symbols */}
-      <g fill="white">
-        <rect x="96" y="18" width="5" height="16" rx="1.5" />
-        <rect x="90" y="23" width="16" height="5" rx="1.5" />
-        <rect x="108" y="12" width="4" height="12" rx="1.5" />
-        <rect x="104" y="16" width="12" height="4" rx="1.5" />
-      </g>
-      {/* "mais" box */}
-      <rect x="30" y="78" width="52" height="22" rx="3" fill="white" />
-      <text
-        x="35"
-        y="95"
-        fill="#0088CC"
-        fontSize="18"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fontWeight="800"
-        letterSpacing="1"
-      >
-        mais
-      </text>
-    </svg>
+    <img src="/pixter-logo.jpg" alt="Pixter" className="h-full w-full rounded-xl object-cover" />
   );
 }
 
@@ -88,6 +56,8 @@ function TimelineContent({
   logo,
   href,
   ctaLabel,
+  period,
+  duration,
 }: {
   description: string;
   highlights: string[];
@@ -95,10 +65,18 @@ function TimelineContent({
   logo?: React.ReactNode;
   href: string;
   ctaLabel: string;
+  period: string;
+  duration: string;
 }) {
   return (
     <div className="rounded-2xl bg-foreground/[0.02] border border-foreground/[0.06] p-6 md:p-8">
-      {logo}
+      <div className="flex items-start justify-between gap-4 mb-1">
+        {logo}
+        <div className="flex flex-col items-end gap-1 shrink-0 pt-1">
+          <span className="text-[13px] font-medium text-foreground/40">{period}</span>
+          <span className="text-[12px] font-medium text-foreground/25 bg-foreground/[0.04] rounded-full px-2.5 py-0.5">{duration}</span>
+        </div>
+      </div>
       <p className="font-sans text-[16px] md:text-[18px] leading-[1.72] text-foreground/65 mb-6">
         {description}
       </p>
@@ -113,13 +91,13 @@ function TimelineContent({
           </div>
         ))}
       </div>
-      <a
+      <Link
         href={href}
         className="inline-flex items-center gap-2 h-10 px-5 rounded-xl border border-primary/25 bg-primary/[0.06] text-[14px] font-semibold text-primary hover:bg-primary/[0.12] hover:border-primary/35 transition-all group"
       >
         {ctaLabel}
         <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-      </a>
+      </Link>
     </div>
   );
 }
@@ -155,14 +133,16 @@ function useTimelineData() {
           accentColor="text-emerald-500"
           href="/portfolio-marcusr/agrow"
           ctaLabel={t('Ver experiência completa', 'View full experience')}
+          period={t('Mai 2023 → Jan 2026', 'May 2023 → Jan 2026')}
+          duration={t('2 anos e 8 meses', '2 years 8 months')}
         />
       ),
     },
     {
-      title: 'Riocard',
+      title: 'Pixter',
       content: (
         <TimelineContent
-          logo={<LogoBadge bgClass="bg-[#0088CC]/10"><RiocardLogo /></LogoBadge>}
+          logo={<LogoBadge bgClass="bg-[#0088CC]/10"><PixterLogo /></LogoBadge>}
           description={t(
             "Redesign de um dos maiores apps de bilhetagem do Rio de Janeiro — milhões de usuários, interface defasada, navegação confusa. Conduzi entrevistas presenciais com usuários reais, reorganizei a arquitetura de informação e redesenhei a experiência completa.",
             "Redesign of one of Rio de Janeiro's largest transit card apps — millions of users, outdated interface, confusing navigation. I conducted in-person interviews with real users, restructured the information architecture, and redesigned the entire experience."
@@ -184,8 +164,10 @@ function useTimelineData() {
             ]
           )}
           accentColor="text-orange-500"
-          href="/portfolio-marcusr/riocard"
+          href="/portfolio-marcusr/pixter"
           ctaLabel={t('Ver experiência completa', 'View full experience')}
+          period={t('Mar 2022 → Abr 2023', 'Mar 2022 → Apr 2023')}
+          duration={t('1 ano e 1 mês', '1 year 1 month')}
         />
       ),
     },
@@ -217,6 +199,8 @@ function useTimelineData() {
           accentColor="text-violet-500"
           href="/portfolio-marcusr/ia-design"
           ctaLabel={t('Ver experiência completa', 'View full experience')}
+          period={t('Jan 2026 → Presente', 'Jan 2026 → Present')}
+          duration={t('3 meses', '3 months')}
         />
       ),
     },
@@ -226,10 +210,10 @@ function useTimelineData() {
 function PageContent() {
   const timelineData = useTimelineData();
   return (
-    <div className="relative">
+    <div className="relative bg-foreground">
       <Header />
 
-      <main className="relative z-10 bg-background rounded-b-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] pb-1">
+      <main className="relative z-10 bg-background rounded-b-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden">
         <HeroBlock />
 
         {/* Timeline — fundo sutil para quebrar o branco puro */}

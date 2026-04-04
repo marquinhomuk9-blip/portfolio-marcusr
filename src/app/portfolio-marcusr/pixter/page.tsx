@@ -7,35 +7,24 @@ import {
   fade, t_styles, BeforeAfterGrid, ProcessStep,
 } from '@/components/case-shared';
 
-function RiocardLogo() {
+function PixterLogo() {
   return (
-    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-      <rect width="120" height="120" rx="24" fill="#0088CC" />
-      <text x="12" y="68" fill="white" fontSize="30" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700" letterSpacing="-0.5">riocard</text>
-      <g fill="white">
-        <rect x="96" y="18" width="5" height="16" rx="1.5" />
-        <rect x="90" y="23" width="16" height="5" rx="1.5" />
-        <rect x="108" y="12" width="4" height="12" rx="1.5" />
-        <rect x="104" y="16" width="12" height="4" rx="1.5" />
-      </g>
-      <rect x="30" y="78" width="52" height="22" rx="3" fill="white" />
-      <text x="35" y="95" fill="#0088CC" fontSize="18" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" letterSpacing="1">mais</text>
-    </svg>
+    <img src="/pixter-logo.jpg" alt="Pixter" className="h-full w-full rounded-xl object-cover" />
   );
 }
 
-function RiocardContent() {
+function PixterContent() {
   const { t } = useLanguage();
 
   return (
     <>
       <motion.div {...fade} className="mb-6">
         <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-[#0088CC]/10 p-3 mb-6">
-          <RiocardLogo />
+          <PixterLogo />
         </div>
         <p className={t_styles.label}>Case</p>
         <h2 className={t_styles.h2}>
-          {t('Riocard Mais: redesign de um app com milhoes de usuarios', 'Riocard Mais: redesign of an app with millions of users')}
+          {t('Pixter Mais: redesign de um app com milhoes de usuarios', 'Pixter Mais: redesign of an app with millions of users')}
         </h2>
         <p className={t_styles.body}>
           {t(
@@ -72,10 +61,10 @@ function RiocardContent() {
   );
 }
 
-export default function RiocardPage() {
+export default function PixterPage() {
   return (
     <CaseLayout>
-      <RiocardContent />
+      <PixterContent />
     </CaseLayout>
   );
 }

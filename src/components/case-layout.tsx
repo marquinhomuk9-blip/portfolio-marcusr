@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { Header } from '@/components/ui/header';
@@ -9,6 +10,8 @@ import { LanguageProvider, useLanguage } from '@/components/ui/language-context'
 
 function BackButton() {
   const { t } = useLanguage();
+  const router = useRouter();
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -12 }}
@@ -16,13 +19,13 @@ function BackButton() {
       transition={{ duration: 0.3, delay: 0.1 }}
       className="mb-10"
     >
-      <a
-        href="/portfolio-marcusr"
-        className="inline-flex items-center gap-2 text-[14px] font-medium text-foreground/45 hover:text-foreground/70 transition-colors group"
+      <button
+        onClick={() => router.back()}
+        className="inline-flex items-center gap-2 text-[14px] font-medium text-foreground/45 hover:text-foreground/70 transition-colors group cursor-pointer"
       >
         <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
         {t('Voltar ao portfolio', 'Back to portfolio')}
-      </a>
+      </button>
     </motion.div>
   );
 }

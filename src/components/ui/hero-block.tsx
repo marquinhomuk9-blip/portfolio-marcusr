@@ -74,7 +74,6 @@ export function HeroBlock() {
                 className="h-full w-full object-cover object-top"
               />
             </div>
-            <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-emerald-400 border-[3px] border-background" />
           </motion.div>
 
           {/* Availability tag */}
@@ -108,20 +107,6 @@ export function HeroBlock() {
               'I connect user experience, business strategy, and technology to build platforms that deliver results — from discovery to implementation.'
             )}
           </motion.p>
-
-          {/* Proof points */}
-          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10">
-            {[
-              { value: '+10k', label: t('usuarios impactados', 'users impacted') },
-              { value: '50%', label: t('taxa de conversao', 'conversion rate') },
-              { value: '0→1', label: t('produtos criados', 'products built') },
-            ].map((item, i) => (
-              <div key={i} className="flex items-baseline gap-1.5">
-                <span className="text-[15px] font-bold text-primary">{item.value}</span>
-                <span className="text-[13px] text-foreground/35">{item.label}</span>
-              </div>
-            ))}
-          </motion.div>
 
           {/* CTAs */}
           <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-3 mb-10">

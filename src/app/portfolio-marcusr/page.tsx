@@ -160,6 +160,7 @@ function useTimelineData() {
           ctaLabel={t('Ver experiência completa', 'View full experience')}
           period={t('Mai 2023 → Jan 2026', 'May 2023 → Jan 2026')}
           duration={t('2 anos e 8 meses', '2 years 8 months')}
+          image="/agrow-app.png"
         />
       ),
     },
@@ -196,6 +197,7 @@ function useTimelineData() {
           ctaLabel={t('Ver experiência completa', 'View full experience')}
           period={t('Mar 2022 → Abr 2023', 'Mar 2022 → Apr 2023')}
           duration={t('1 ano e 1 mês', '1 year 1 month')}
+          image="/riocard-mockup.jpg"
         />
       ),
     },

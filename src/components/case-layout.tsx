@@ -8,7 +8,7 @@ import { ContactForm } from '@/components/ui/contact-form';
 import { FloatingChat } from '@/components/ui/floating-chat';
 import { LanguageProvider, useLanguage } from '@/components/ui/language-context';
 
-function BackButton() {
+function BackButton({ light }: { light?: boolean }) {
   const { t } = useLanguage();
   const router = useRouter();
 
@@ -21,7 +21,11 @@ function BackButton() {
     >
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center gap-2 text-[14px] font-medium text-foreground/45 hover:text-foreground/70 transition-colors group cursor-pointer"
+        className={`inline-flex items-center gap-2 text-[14px] font-medium transition-colors group cursor-pointer ${
+          light
+            ? 'text-white/50 hover:text-white/80'
+            : 'text-foreground/45 hover:text-foreground/70'
+        }`}
       >
         <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
         {t('Voltar ao portfólio', 'Back to portfolio')}
@@ -30,14 +34,33 @@ function BackButton() {
   );
 }
 
-function CaseContent({ children }: { children: React.ReactNode }) {
+function CaseContent({ children, hero, brandColor }: { children: React.ReactNode; hero?: React.ReactNode; brandColor?: string }) {
   return (
     <div className="relative">
       <Header />
-      <main className="relative z-10 bg-background rounded-b-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] pb-1">
-        <article className="w-full bg-background">
-          <div className="mx-auto max-w-[800px] px-6 py-20 md:py-28">
+      <main className="relative z-10 bg-background rounded-b-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] pb-1 overflow-hidden">
+        {/* Hero com fundo colorido */}
+        {brandColor && hero ? (
+          <div
+            className="rounded-b-[3rem]"
+            style={{
+              background: `linear-gradient(180deg, ${brandColor} 0%, ${brandColor}e6 100%)`,
+            }}
+          >
+            <div className="mx-auto max-w-[800px] px-6 pt-20 md:pt-28 pb-14 md:pb-16">
+              <BackButton light />
+              {hero}
+            </div>
+          </div>
+        ) : (
+          <div className="mx-auto max-w-[800px] px-6 pt-20 md:pt-28">
             <BackButton />
+          </div>
+        )}
+
+        {/* Conteúdo principal */}
+        <article className="w-full">
+          <div className={`mx-auto max-w-[800px] px-6 ${brandColor && hero ? 'pt-12 md:pt-16' : ''} pb-20 md:pb-28`}>
             {children}
           </div>
         </article>
@@ -48,10 +71,10 @@ function CaseContent({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function CaseLayout({ children }: { children: React.ReactNode }) {
+export function CaseLayout({ children, hero, brandColor }: { children: React.ReactNode; hero?: React.ReactNode; brandColor?: string }) {
   return (
     <LanguageProvider>
-      <CaseContent>{children}</CaseContent>
+      <CaseContent hero={hero} brandColor={brandColor}>{children}</CaseContent>
     </LanguageProvider>
   );
 }

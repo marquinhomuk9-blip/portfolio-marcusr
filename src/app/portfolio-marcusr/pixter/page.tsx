@@ -28,31 +28,35 @@ function BulletList({ items, className }: { items: string[]; className?: string 
   );
 }
 
+function PixterHero() {
+  const { t } = useLanguage();
+  return (
+    <motion.div {...fade}>
+      <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm p-3 mb-6">
+        <PixterLogo />
+      </div>
+      <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-white/40 mb-4">Case</p>
+      <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-white leading-[1.2] mb-5 max-w-[680px]">
+        {t(
+          'Riocard — Redesign do aplicativo',
+          'Riocard — App redesign'
+        )}
+      </h2>
+      <p className="font-sans text-[16px] md:text-[18px] leading-[1.72] text-white/50 max-w-[680px]">
+        {t(
+          'Primeiro projeto como UX/UI Designer em um dos maiores sistemas de bilhetagem eletrônica do Estado do Rio de Janeiro.',
+          'First project as a UX/UI Designer on one of the largest electronic ticketing systems in the State of Rio de Janeiro.'
+        )}
+      </p>
+    </motion.div>
+  );
+}
+
 function PixterContent() {
   const { t } = useLanguage();
 
   return (
     <>
-      {/* Header */}
-      <motion.div {...fade} className="mb-6">
-        <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-[#0088CC]/10 p-3 mb-6">
-          <PixterLogo />
-        </div>
-        <p className={t_styles.label}>Case</p>
-        <h2 className={t_styles.h2}>
-          {t(
-            'Riocard — Redesign do aplicativo',
-            'Riocard — App redesign'
-          )}
-        </h2>
-        <p className="font-sans text-[16px] md:text-[18px] leading-[1.72] text-foreground/55 mb-8 max-w-[680px]">
-          {t(
-            'Primeiro projeto como UX/UI Designer em um dos maiores sistemas de bilhetagem eletronica do Estado do Rio de Janeiro.',
-            'First project as a UX/UI Designer on one of the largest electronic ticketing systems in the State of Rio de Janeiro.'
-          )}
-        </p>
-      </motion.div>
-
       {/* Contexto */}
       <motion.div {...fade}>
         <h3 className={t_styles.h3}>{t('Contexto', 'Context')}</h3>
@@ -270,7 +274,7 @@ function PixterContent() {
 
 export default function PixterPage() {
   return (
-    <CaseLayout>
+    <CaseLayout brandColor="#1a1a1a" hero={<PixterHero />}>
       <PixterContent />
     </CaseLayout>
   );

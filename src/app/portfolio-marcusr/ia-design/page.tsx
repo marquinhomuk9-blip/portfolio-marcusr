@@ -8,27 +8,32 @@ import { CaseLayout } from '@/components/case-layout';
 import { useLanguage } from '@/components/ui/language-context';
 import { fade, t_styles, prose } from '@/components/case-shared';
 
+function IADesignHero() {
+  const { t } = useLanguage();
+  return (
+    <motion.div {...fade}>
+      <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm p-3 mb-6">
+        <Brain className="h-full w-full text-white/80" strokeWidth={1.5} />
+      </div>
+      <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-white/40 mb-4">{t('Especialização', 'Specialisation')}</p>
+      <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-white leading-[1.2] mb-5 max-w-[680px]">
+        {t('IA aplicada ao Design de Produtos', 'AI Applied to Product Design')}
+      </h2>
+      <p className="font-sans text-[18px] md:text-[20px] leading-[1.72] text-white/60 max-w-[680px]">
+        {t(
+          'Não uso IA como buzzword de LinkedIn. Uso como ferramenta real de produção que muda fundamentalmente o que um designer consegue entregar — e em quanto tempo. Essa é a habilidade que separa o designer de hoje do designer de amanhã.',
+          'I don\'t use AI as a LinkedIn buzzword. I use it as a real production tool that fundamentally changes what a designer can deliver — and how fast. This is the skill that separates today\'s designer from tomorrow\'s.'
+        )}
+      </p>
+    </motion.div>
+  );
+}
+
 function IADesignContent() {
   const { t } = useLanguage();
 
   return (
     <>
-      <motion.div {...fade} className="mb-6">
-        <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-violet-500/10 p-3 mb-6">
-          <Brain className="h-full w-full text-violet-600" strokeWidth={1.5} />
-        </div>
-        <p className={t_styles.label}>{t('Especialização', 'Specialisation')}</p>
-        <h2 className={t_styles.h2}>
-          {t('IA aplicada ao Design de Produtos', 'AI Applied to Product Design')}
-        </h2>
-        <p className={t_styles.body}>
-          {t(
-            'Não uso IA como buzzword de LinkedIn. Uso como ferramenta real de produção que muda fundamentalmente o que um designer consegue entregar — e em quanto tempo. Essa é a habilidade que separa o designer de hoje do designer de amanhã.',
-            'I don\'t use AI as a LinkedIn buzzword. I use it as a real production tool that fundamentally changes what a designer can deliver — and how fast. This is the skill that separates today\'s designer from tomorrow\'s.'
-          )}
-        </p>
-      </motion.div>
-
       {/* Tradicional vs IA */}
       <motion.div {...fade} className="my-12 grid md:grid-cols-2 gap-4">
         <div className="p-6 rounded-2xl bg-foreground/[0.03] border border-foreground/[0.06]">
@@ -105,7 +110,7 @@ function IADesignContent() {
 
 export default function IADesignPage() {
   return (
-    <CaseLayout>
+    <CaseLayout brandColor="#7C3AED" hero={<IADesignHero />}>
       <IADesignContent />
     </CaseLayout>
   );

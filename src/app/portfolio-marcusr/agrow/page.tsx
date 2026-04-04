@@ -25,7 +25,7 @@ function AgrowLogo() {
 /* ── Tags ────────────────────────────────────────────── */
 function Tag({ label }: { label: string }) {
   return (
-    <span className="inline-block font-sans text-[12px] font-medium text-foreground/45 bg-foreground/[0.04] border border-foreground/[0.06] rounded-full px-3 py-1">
+    <span className="inline-block font-sans text-[12px] font-medium text-white/50 bg-white/[0.08] border border-white/[0.1] rounded-full px-3 py-1">
       {label}
     </span>
   );
@@ -78,43 +78,43 @@ function FlowNode({ label, variant = 'default', highlight }: {
   );
 }
 
+/* ── Hero ────────────────────────────────────────────── */
+function AgrowHero() {
+  const { t } = useLanguage();
+  return (
+    <motion.div {...fade}>
+      <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm p-3 mb-6">
+        <AgrowLogo />
+      </div>
+      <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-white leading-[1.2] mb-5 max-w-[680px]">
+        {t(
+          'Agrow.pay — Construção do produto',
+          'Agrow.pay — Building the product'
+        )}
+      </h2>
+      <p className="font-sans text-[18px] md:text-[20px] leading-[1.72] text-white/60 mb-6 max-w-[680px]">
+        {t(
+          'Conta digital para o agronegócio, criada do zero — do primeiro fluxo à validação com produtores rurais.',
+          'Digital banking for agribusiness, built from scratch — from the first flow to validation with rural producers.'
+        )}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        <Tag label="SaaS & Digital Products" />
+        <Tag label="Design Systems" />
+        <Tag label="B2B" />
+        <Tag label="B2C" />
+        <Tag label="BaaS" />
+      </div>
+    </motion.div>
+  );
+}
+
 /* ── Main content ────────────────────────────────────── */
 function AgrowContent() {
   const { t } = useLanguage();
 
   return (
     <>
-      {/* ═══════════════════════════════════════════════ */}
-      {/* ─── PARTE 1 ─────────────────────────────────── */}
-      {/* ═══════════════════════════════════════════════ */}
-
-      {/* ─── Hero ─────────────────────────────────────── */}
-      <motion.div {...fade} className="mb-6">
-        <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-[#5B5891]/10 p-3 mb-6">
-          <AgrowLogo />
-        </div>
-        <h2 className={t_styles.h2}>
-          {t(
-            'Agrow.pay — Construção do produto',
-            'Agrow.pay — Building the product'
-          )}
-        </h2>
-        <p className={t_styles.body}>
-          {t(
-            'Conta digital para o agronegócio, criada do zero — do primeiro fluxo à validação com produtores rurais.',
-            'Digital banking for agribusiness, built from scratch — from the first flow to validation with rural producers.'
-          )}
-        </p>
-        <div className="flex flex-wrap gap-2 mt-2">
-          <Tag label="SaaS & Digital Products" />
-          <Tag label="Design Systems" />
-          <Tag label="B2B" />
-          <Tag label="B2C" />
-          <Tag label="BaaS" />
-        </div>
-      </motion.div>
-
-      <div className={t_styles.divider} />
 
       {/* ─── Contexto ─────────────────────────────────── */}
       <motion.div {...fade}>
@@ -497,7 +497,7 @@ function AgrowContent() {
 
 export default function AgrowPage() {
   return (
-    <CaseLayout>
+    <CaseLayout brandColor="#5B5891" hero={<AgrowHero />}>
       <AgrowContent />
     </CaseLayout>
   );

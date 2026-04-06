@@ -48,6 +48,45 @@ function LogoBadge({ children, bgClass }: { children: React.ReactNode; bgClass: 
   );
 }
 
+/* ── Timeline card compacto (para itens secundários) ── */
+function TimelineContentCompact({
+  headline,
+  description,
+  href,
+  ctaLabel,
+  period,
+  duration,
+}: {
+  headline: string;
+  description: string;
+  href: string;
+  ctaLabel: string;
+  period: string;
+  duration: string;
+}) {
+  return (
+    <div className="rounded-2xl bg-violet-50/60 border border-violet-200/30 p-4 md:p-5">
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-[12px] font-medium text-violet-400/70">{period}</span>
+        <span className="text-[11px] font-medium text-violet-400/50 bg-violet-100/50 rounded-full px-2 py-0.5">{duration}</span>
+      </div>
+      <h4 className="font-heading text-[15px] md:text-[17px] font-semibold leading-[1.4] text-foreground/75 mb-2">
+        {headline}
+      </h4>
+      <p className="font-sans text-[13px] md:text-[14px] leading-[1.65] text-foreground/40 mb-3">
+        {description}
+      </p>
+      <Link
+        href={href}
+        className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-violet-500/70 hover:text-violet-600 transition-colors group"
+      >
+        {ctaLabel}
+        <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+      </Link>
+    </div>
+  );
+}
+
 /* ── Timeline card com conteúdo ── */
 function TimelineContent({
   headline,
@@ -73,8 +112,23 @@ function TimelineContent({
   return (
     <div className="rounded-2xl bg-foreground/[0.02] border border-foreground/[0.06] p-5 md:p-6">
       <div className="flex flex-col md:flex-row md:gap-6">
-        {/* Coluna esquerda — texto */}
-        <div className="md:w-1/2 md:shrink-0">
+        {/* Imagem — aparece primeiro no mobile, à direita no desktop */}
+        <div className="mb-4 md:mb-0 md:order-2 md:w-1/2 flex items-center justify-center overflow-hidden rounded-xl">
+          {image ? (
+            <img
+              src={image}
+              alt=""
+              className="w-full h-full object-contain rounded-xl mix-blend-multiply"
+            />
+          ) : (
+            <div className="w-full h-[200px] md:h-full min-h-[180px] rounded-xl bg-foreground/[0.03] border border-dashed border-foreground/[0.08] flex items-center justify-center">
+              <span className="text-[13px] text-foreground/20 font-medium">Imagem</span>
+            </div>
+          )}
+        </div>
+
+        {/* Texto — aparece depois no mobile, à esquerda no desktop */}
+        <div className="md:order-1 md:w-1/2 md:shrink-0">
           <div className="flex items-center gap-2 mb-4">
             <span className="text-[13px] font-medium text-foreground/40">{period}</span>
             <span className="text-[12px] font-medium text-foreground/25 bg-foreground/[0.04] rounded-full px-2.5 py-0.5">{duration}</span>
@@ -104,21 +158,6 @@ function TimelineContent({
             <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </div>
-
-        {/* Coluna direita — imagem */}
-        <div className="mt-5 md:mt-0 md:w-1/2 flex items-center justify-center overflow-hidden rounded-xl">
-          {image ? (
-            <img
-              src={image}
-              alt=""
-              className="w-full h-full object-contain rounded-xl mix-blend-multiply"
-            />
-          ) : (
-            <div className="w-full h-[200px] md:h-full min-h-[180px] rounded-xl bg-foreground/[0.03] border border-dashed border-foreground/[0.08] flex items-center justify-center">
-              <span className="text-[13px] text-foreground/20 font-medium">Imagem</span>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );
@@ -127,6 +166,27 @@ function TimelineContent({
 function useTimelineData() {
   const { t } = useLanguage();
   return [
+    {
+      title: t('IA + Design', 'AI + Design'),
+      titleColor: '#7C3AED',
+      logo: <LogoBadge bgClass="bg-violet-500/10"><Brain className="h-full w-full text-violet-600" strokeWidth={1.5} /></LogoBadge>,
+      content: (
+        <TimelineContentCompact
+          headline={t(
+            "Design potencializado por IA — discovery, interfaces e código em dias, não meses.",
+            "AI-powered design — discovery, interfaces and code in days, not months."
+          )}
+          description={t(
+            "Reduzo o ciclo discovery → implementação de meses para dias, automatizo tarefas operacionais e integro design com engenharia de forma nativa. Research qualitativa 10x mais rápido, geração de interfaces em minutos e Design Engineering do Figma ao código com menos handoff.",
+            "I compress the discovery → implementation cycle from months to days, automate operational tasks, and natively integrate design with engineering. Qualitative research 10x faster, interface generation in minutes, and Design Engineering from Figma to code with less handoff."
+          )}
+          href="/portfolio-marcusr/ia-design"
+          ctaLabel={t('Saiba mais', 'Learn more')}
+          period={t('Jan 2026 → Presente', 'Jan 2026 → Present')}
+          duration={t('3 meses', '3 months')}
+        />
+      ),
+    },
     {
       title: 'Agrow.pay',
       titleColor: '#5B5891',
@@ -198,45 +258,6 @@ function useTimelineData() {
           period={t('Mar 2022 → Abr 2023', 'Mar 2022 → Apr 2023')}
           duration={t('1 ano e 1 mês', '1 year 1 month')}
           image="/riocard-mockup.jpg"
-        />
-      ),
-    },
-    {
-      title: t('IA + Design', 'AI + Design'),
-      titleColor: '#7C3AED',
-      logo: <LogoBadge bgClass="bg-violet-500/10"><Brain className="h-full w-full text-violet-600" strokeWidth={1.5} /></LogoBadge>,
-      content: (
-        <TimelineContent
-          headline={t(
-            "IA como ferramenta real de produção, não buzzword.",
-            "AI as a real production tool, not a buzzword."
-          )}
-          description={t(
-            "Reduzo o ciclo discovery → implementação de meses para dias, automatizo tarefas repetitivas e integro design com engenharia de forma nativa.",
-            "I compress the discovery → implementation cycle from months to days, automate repetitive tasks, and natively integrate design with engineering."
-          )}
-          highlights={t(
-            [
-              'Research e análise qualitativa 10x mais rápido com IA',
-              'Geração e validação de interfaces em minutos, não semanas',
-              'Automação de tarefas operacionais de design',
-              'Design Engineering: do Figma ao código com menos handoff',
-              'Ciclos de entrega comprimidos de meses → dias',
-            ],
-            [
-              'Research and qualitative analysis 10x faster with AI',
-              'Interface generation and validation in minutes, not weeks',
-              'Automation of operational design tasks',
-              'Design Engineering: from Figma to code with less handoff',
-              'Delivery cycles compressed from months → days',
-            ]
-          )}
-          accentColor="text-violet-500"
-          href="/portfolio-marcusr/ia-design"
-          ctaLabel={t('Ver experiência completa', 'View full experience')}
-          period={t('Jan 2026 → Presente', 'Jan 2026 → Present')}
-          duration={t('3 meses', '3 months')}
-          image="/mockup-mimica.png"
         />
       ),
     },

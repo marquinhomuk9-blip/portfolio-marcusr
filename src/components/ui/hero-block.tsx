@@ -65,8 +65,8 @@ export function HeroBlock() {
           animate="show"
           className="flex flex-col items-center text-center"
         >
-          {/* Foto + badge de disponibilidade */}
-          <motion.div variants={fadeUp} className="relative mb-8">
+          {/* Foto */}
+          <motion.div variants={fadeUp} className="relative mb-5">
             <div className="h-24 w-24 md:h-28 md:w-28 rounded-full overflow-hidden border-2 border-foreground/[0.06] shadow-lg">
               <img
                 src="/marcus-photo.png"
@@ -77,7 +77,7 @@ export function HeroBlock() {
           </motion.div>
 
           {/* Availability tag */}
-          <motion.div variants={fadeUp} className="mb-8">
+          <motion.div variants={fadeUp} className="mb-6">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/[0.08] border border-emerald-500/[0.12]">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[12px] font-medium text-emerald-600 dark:text-emerald-400 tracking-wide">
@@ -86,25 +86,30 @@ export function HeroBlock() {
             </span>
           </motion.div>
 
-          {/* Headline principal */}
-          <motion.h1
-            variants={fadeUp}
-            className="mb-6 font-heading text-[34px] md:text-[52px] lg:text-[60px] font-bold text-foreground leading-[1.08] max-w-3xl tracking-tight"
-          >
-            {t(
-              <>De meses para dias:<span className="text-foreground/30"> produtos digitais reais</span> com IA aplicada ao design.</>,
-              <>From months to days:<span className="text-foreground/30"> real digital products</span> with AI-driven design.</>
-            )}
-          </motion.h1>
-
-          {/* Sub-headline */}
+          {/* Role label */}
           <motion.p
             variants={fadeUp}
-            className="mb-5 max-w-xl text-[17px] md:text-[19px] leading-[1.72] text-foreground/50"
+            className="mb-3 text-[12px] md:text-[13px] font-semibold tracking-[0.18em] text-foreground/50 uppercase"
+          >
+            {t('UX/UI Designer — Product Designer', 'UX/UI Designer — Product Designer')}
+          </motion.p>
+
+          {/* Nome */}
+          <motion.h1
+            variants={fadeUp}
+            className="mb-6 font-heading text-[44px] md:text-[64px] lg:text-[72px] font-bold text-foreground leading-[1.02] tracking-tight"
+          >
+            Marcus Rolim
+          </motion.h1>
+
+          {/* Descrição */}
+          <motion.p
+            variants={fadeUp}
+            className="mb-7 max-w-2xl text-[17px] md:text-[19px] leading-[1.6] text-foreground/65"
           >
             {t(
-              'Conecto experiência do usuário, estratégia de negócio e tecnologia para construir plataformas que geram resultado — do discovery à implementação.',
-              'I connect user experience, business strategy, and technology to build platforms that deliver results — from discovery to implementation.'
+              'Construo produtos digitais do zero e evoluo sistemas existentes — do discovery à produção, equilibrando UX, regras de negócio e limitações técnicas.',
+              'I build digital products from scratch and evolve existing systems — from discovery to production, balancing UX, business rules and technical constraints.'
             )}
           </motion.p>
 
@@ -113,19 +118,18 @@ export function HeroBlock() {
             <Button
               size="lg"
               className="gap-2 h-12 px-7 text-[15px] font-semibold rounded-xl bg-primary text-primary-foreground shadow-md hover:shadow-lg hover:opacity-90 transition-all"
-              onClick={() => handleScroll('#contato')}
+              onClick={() => handleScroll('#projetos')}
             >
-              <Mail className="h-4 w-4" />
-              {t('Falar comigo', 'Get in touch')}
+              {t('Ver cases', 'View cases')}
+              <ArrowDown className="h-4 w-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="gap-2 h-12 px-7 text-[15px] font-semibold rounded-xl border-foreground/15 hover:bg-foreground hover:text-background transition-all"
-              onClick={() => handleScroll('#projetos')}
+              onClick={() => handleScroll('#sobre')}
             >
-              {t('Ver cases', 'View cases')}
-              <ArrowDown className="h-4 w-4" />
+              {t('Sobre mim', 'About me')}
             </Button>
           </motion.div>
 

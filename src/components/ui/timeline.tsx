@@ -72,11 +72,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     >
       <div className="max-w-7xl mx-auto py-14 px-6 md:px-8 lg:px-10">
         <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-primary/60 mb-4">{t('Experiência', 'Experience')}</p>
-        <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-foreground max-w-4xl leading-[1.2] mb-5">
-          {t('Produtos reais, resultados mensuráveis', 'Real products, measurable results')}
-        </h2>
-        <p className="font-sans text-[17px] md:text-[19px] leading-[1.72] text-foreground/55 max-w-lg">
-          {t('Cada case abaixo é um problema de negócio real que resolvi com design estratégico — do discovery à produção, com métricas de impacto.', 'Each case below is a real business problem I solved with strategic design — from discovery to production, with impact metrics.')}
+        <p className="font-sans text-[17px] md:text-[19px] leading-[1.72] text-foreground/55 max-w-xl">
+          {t('Cada projeto abaixo detalha meu papel, o processo e os resultados.', 'Each project below details my role, the process and the results.')}
         </p>
       </div>
 

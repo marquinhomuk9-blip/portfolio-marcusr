@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   BarChart3, Zap, Users, Lightbulb,
-  ArrowRight, CheckCircle2,
+  CheckCircle2,
 } from 'lucide-react';
 import { CaseLayout } from '@/components/case-layout';
 import { useLanguage } from '@/components/ui/language-context';
@@ -53,27 +53,6 @@ function DomainCard({ icon: Icon, title, items, color }: {
           </li>
         ))}
       </ul>
-    </div>
-  );
-}
-
-/* ── Flowchart node ──────────────────────────────────── */
-function FlowNode({ label, variant = 'default', highlight }: {
-  label: string;
-  variant?: 'product' | 'primitive' | 'service' | 'flow' | 'default';
-  highlight?: boolean;
-}) {
-  const variants: Record<string, string> = {
-    product: 'bg-[#5B5891]/10 border-[#5B5891]/25 text-[#5B5891]',
-    primitive: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-600',
-    service: 'bg-amber-500/10 border-amber-500/25 text-amber-600',
-    flow: 'bg-blue-500/10 border-blue-500/25 text-blue-600',
-    default: 'bg-foreground/[0.03] border-foreground/[0.08] text-foreground/70',
-  };
-  return (
-    <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl border text-[13px] font-medium font-sans ${variants[variant]} ${highlight ? 'ring-2 ring-primary/30 ring-offset-2 ring-offset-background' : ''}`}>
-      {label}
-      {highlight && <span className="text-[10px] font-normal text-primary/60 whitespace-nowrap">emissão dentro do app</span>}
     </div>
   );
 }
@@ -245,101 +224,21 @@ function AgrowContent() {
 
       <div className={t_styles.divider} />
 
-      {/* ─── Mapa de domínios ─────────────────────────── */}
+      {/* ─── Visão geral do produto ─────────────────────────── */}
       <motion.div {...fade}>
         <p className={t_styles.label}>
-          {t('Mapa de domínios do produto', 'Product domain map')}
+          {t('Visão geral do produto Agrow.pay', 'Agrow.pay product overview')}
         </p>
-        <h2 className={t_styles.h2}>
-          {t('Primitivas e entrega', 'Primitives and delivery')}
-        </h2>
       </motion.div>
 
-      {/* Gestão Financeira */}
-      <motion.div {...fade} className="mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-emerald-500/10 shrink-0">
-            <BarChart3 className="h-4 w-4 text-emerald-500" />
-          </div>
-          <p className="font-sans text-[15px] font-semibold text-foreground">
-            {t('Gestão Financeira', 'Financial Management')}
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2 ml-9">
-          <FlowNode label={t('Conta digital', 'Digital account')} variant="product" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label={t('Saldo', 'Balance')} variant="primitive" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label={t('Relatórios', 'Reports')} variant="primitive" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label="PIX" variant="service" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label="TED" variant="service" />
-        </div>
-      </motion.div>
-
-      {/* Gestão de grãos */}
-      <motion.div {...fade} className="mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-amber-500/10 shrink-0">
-            <Zap className="h-4 w-4 text-amber-500" />
-          </div>
-          <p className="font-sans text-[15px] font-semibold text-foreground">
-            {t('Gestão de Grãos', 'Grain Management')}
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2 ml-9">
-          <FlowNode label={t('Consulta de origem', 'Origin query')} variant="product" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label={t('Salas de negociação', 'Trading rooms')} variant="primitive" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label={t('Fixação de grãos', 'Grain pricing')} variant="primitive" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label={t('Emissão de CPR', 'CPR issuance')} variant="service" />
-        </div>
-        <div className="flex flex-wrap items-center gap-2 ml-9 mt-2">
-          <FlowNode label={t('Certificado digital', 'Digital certificate')} variant="flow" highlight />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label={t('CPR Digital', 'Digital CPR')} variant="flow" highlight />
-        </div>
-      </motion.div>
-
-      {/* Portal de Parceiros */}
-      <motion.div {...fade} className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="flex items-center justify-center h-7 w-7 rounded-lg bg-blue-500/10 shrink-0">
-            <Users className="h-4 w-4 text-blue-500" />
-          </div>
-          <p className="font-sans text-[15px] font-semibold text-foreground">
-            {t('Portal de Parceiros', 'Partner Portal')}
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2 ml-9">
-          <FlowNode label={t('Estação da safra (Dashboard)', 'Harvest station (Dashboard)')} variant="product" />
-          <ArrowRight className="h-3.5 w-3.5 text-foreground/20 shrink-0 hidden md:block" />
-          <FlowNode label="CPR App / Desktop" variant="flow" />
-        </div>
-      </motion.div>
-
-      {/* Legenda */}
-      <motion.div {...fade} className="mb-10">
-        <div className="flex flex-wrap gap-4 py-4 px-5 rounded-xl bg-foreground/[0.02] border border-foreground/[0.05]">
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-sm bg-[#5B5891]/30" />
-            <span className="font-sans text-[12px] text-foreground/45">{t('Produtos e módulos', 'Products & modules')}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-sm bg-emerald-500/30" />
-            <span className="font-sans text-[12px] text-foreground/45">{t('Primitivas financeiras', 'Financial primitives')}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-sm bg-amber-500/30" />
-            <span className="font-sans text-[12px] text-foreground/45">{t('Serviços e fundos', 'Services & funds')}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-sm bg-blue-500/30" />
-            <span className="font-sans text-[12px] text-foreground/45">{t('Fluxos dentro do app', 'In-app flows')}</span>
-          </div>
+      {/* Fluxograma — imagem substitui o diagrama anterior */}
+      <motion.div {...fade} className="my-8">
+        <div className="rounded-2xl overflow-hidden bg-foreground/[0.02] border border-foreground/[0.06]">
+          <img
+            src="/agrow-fluxograma.png"
+            alt={t('Fluxograma com a visão geral do produto Agrow.pay', 'Flowchart with the Agrow.pay product overview')}
+            className="w-full h-auto block"
+          />
         </div>
       </motion.div>
 

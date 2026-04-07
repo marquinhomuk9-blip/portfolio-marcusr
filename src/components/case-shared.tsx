@@ -22,9 +22,9 @@ export const t_styles = {
 
 export function MetricCard({ value, label, sub }: { value: string; label: string; sub?: string }) {
   return (
-    <motion.div {...fade} className="text-center py-8 px-4 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
-      <div className="font-heading text-[36px] md:text-[44px] font-bold text-primary leading-none mb-2">{value}</div>
-      <div className="font-sans text-[14px] leading-[1.5] text-foreground/55">{label}</div>
+    <motion.div {...fade} className="text-center py-7 px-3 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06] min-w-0">
+      <div className="font-heading text-[28px] md:text-[34px] font-bold text-primary leading-[1.05] mb-2 break-words">{value}</div>
+      <div className="font-sans text-[13px] leading-[1.5] text-foreground/55">{label}</div>
       {sub && <div className="font-sans text-[12px] text-foreground/35 mt-1">{sub}</div>}
     </motion.div>
   );

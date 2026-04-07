@@ -2,13 +2,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  BarChart3, Zap, Users, Lightbulb,
-  CheckCircle2,
+  Lightbulb,
+  CheckCircle2, Smartphone, Building2, Plug,
+  Sparkles, ArrowRight,
 } from 'lucide-react';
 import { CaseLayout } from '@/components/case-layout';
 import { useLanguage } from '@/components/ui/language-context';
 import {
-  fade, t_styles, prose, MetricCard,
+  fade, t_styles, prose, BeforeAfterGrid,
 } from '@/components/case-shared';
 
 /* ── Logo ────────────────────────────────────────────── */
@@ -31,29 +32,246 @@ function Tag({ label }: { label: string }) {
   );
 }
 
-/* ── Domain card for "Estrutura do produto" ─────────── */
-function DomainCard({ icon: Icon, title, items, color }: {
-  icon: React.ElementType;
-  title: string;
-  items: string[];
-  color: string;
+/* ── Hero Metrics (versão clara, destaque no hero roxo) */
+function HeroMetric({
+  value,
+  label,
+  delay,
+}: {
+  value: string;
+  label: string;
+  delay: number;
 }) {
   return (
-    <div className="p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]">
-      <div className="flex items-center gap-3 mb-3">
-        <div className={`flex items-center justify-center h-9 w-9 rounded-xl ${color.split(' ')[1]} shrink-0`}>
-          <Icon className={`h-[18px] w-[18px] ${color.split(' ')[0]}`} />
-        </div>
-        <p className="font-sans text-[16px] font-semibold text-foreground">{title}</p>
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -3 }}
+      className="group relative text-center py-7 px-3 rounded-2xl bg-white/[0.10] border border-white/[0.18] backdrop-blur-sm overflow-hidden min-w-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.35)]"
+    >
+      {/* Top accent bar */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#E8734A] to-transparent opacity-80" />
+      {/* Soft glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
+
+      <div className="relative font-heading text-[30px] md:text-[38px] font-bold text-white leading-[1] mb-2 whitespace-nowrap tracking-tight tabular-nums drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
+        {value}
       </div>
-      <ul className="space-y-1.5 ml-12">
-        {items.map((item, i) => (
-          <li key={i} className="font-sans text-[14px] text-foreground/50 leading-[1.5]">
-            {item}
-          </li>
+      <div className="relative font-sans text-[12px] md:text-[13px] leading-[1.45] text-white/75 uppercase tracking-[0.06em] font-medium">
+        {label}
+      </div>
+    </motion.div>
+  );
+}
+
+function HeroMetrics() {
+  const { t } = useLanguage();
+  const items = [
+    { value: '+10.000', label: t('usuários impactados', 'users impacted') },
+    { value: '+6.000', label: t('cadastros realizados', 'sign-ups completed') },
+    { value: '60%', label: t('taxa de conversão da LP', 'LP conversion rate') },
+    {
+      value: '3',
+      label: t(
+        'produtos do zero — App, LP, Dashboard',
+        'products from scratch — App, LP, Dashboard'
+      ),
+    },
+  ];
+  return (
+    <div className="mt-10">
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.05 }}
+        className="font-sans text-[11px] md:text-[12px] font-semibold text-white/55 uppercase tracking-[0.16em] mb-4"
+      >
+        {t('Impacto em números', 'Impact in numbers')}
+      </motion.p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        {items.map((m, i) => (
+          <HeroMetric key={i} value={m.value} label={m.label} delay={0.15 + i * 0.08} />
         ))}
-      </ul>
+      </div>
     </div>
+  );
+}
+
+/* ── Showcase: App + Desktop LP ──────────────────────── */
+function AgrowShowcase({
+  desktopSrc,
+  desktopLabel,
+  desktopAlt,
+  mobileSrc,
+  mobileLabel,
+  mobileAlt,
+}: {
+  desktopSrc: string;
+  desktopLabel: string;
+  desktopAlt: string;
+  mobileSrc: string;
+  mobileLabel: string;
+  mobileAlt: string;
+}) {
+  return (
+    <motion.div {...fade} className="relative mt-2 mb-12">
+      <div className="relative rounded-3xl bg-gradient-to-br from-[#5B5891]/[0.07] via-[#5B5891]/[0.04] to-[#5B5891]/[0.02] p-6 md:p-10 overflow-hidden border border-foreground/[0.06]">
+        {/* Glow decorativo sutil */}
+        <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#E8734A]/[0.06] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-[#5B5891]/[0.08] blur-3xl" />
+
+        <div className="relative grid md:grid-cols-[1.45fr_1fr] gap-6 md:gap-8 items-center">
+          {/* Desktop LP */}
+          <div className="relative">
+            <div className="rounded-2xl overflow-hidden bg-foreground/[0.03] border border-foreground/10 shadow-[0_30px_60px_-25px_rgba(91,88,145,0.35)]">
+              {/* Barra de janela falsa */}
+              <div className="flex items-center gap-1.5 px-4 py-2.5 bg-foreground/[0.04] border-b border-foreground/[0.06]">
+                <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+              </div>
+              <img src={desktopSrc} alt={desktopAlt} className="block w-full h-auto" />
+            </div>
+            <p className="mt-3 font-sans text-[12px] uppercase tracking-[0.12em] text-foreground/45 text-center md:text-left">
+              {desktopLabel}
+            </p>
+          </div>
+
+          {/* App Mobile */}
+          <div className="relative flex flex-col items-center">
+            <div className="relative rounded-[2.2rem] p-[6px] bg-foreground/80 border border-foreground/15 shadow-[0_30px_60px_-25px_rgba(91,88,145,0.4)]">
+              {/* Notch */}
+              <div className="absolute top-[10px] left-1/2 -translate-x-1/2 h-[18px] w-[90px] rounded-full bg-foreground z-10" />
+              <div className="rounded-[1.8rem] overflow-hidden bg-foreground">
+                <img
+                  src={mobileSrc}
+                  alt={mobileAlt}
+                  className="block w-auto max-h-[360px] md:max-h-[420px] h-auto"
+                />
+              </div>
+            </div>
+            <p className="mt-3 font-sans text-[12px] uppercase tracking-[0.12em] text-foreground/45 text-center">
+              {mobileLabel}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Wow Highlights (scan em 3 segundos) ─────────────── */
+function WowHighlights() {
+  const { t } = useLanguage();
+  const items = [
+    {
+      icon: Smartphone,
+      title: t('Burocracia → Mobile', 'Bureaucracy → Mobile'),
+      desc: t(
+        'Transformei processos regulatórios (NF-e, CPR, Certificado Digital) em fluxos mobile guiados.',
+        'Turned regulatory processes (e-Invoice, CPR, Digital Certificate) into guided mobile flows.'
+      ),
+    },
+    {
+      icon: Building2,
+      title: t('Presencial → App', 'In-person → App'),
+      desc: t(
+        'Operações que exigiam visita à filial — como cotação de grãos — passaram a acontecer dentro do app.',
+        'Operations that used to require a branch visit — like grain pricing — now happen inside the app.'
+      ),
+    },
+    {
+      icon: Plug,
+      title: t('APIs complexas → UX simples', 'Complex APIs → Simple UX'),
+      desc: t(
+        'Traduzi APIs governamentais e do agro (clima, combustível, financeiro) em experiências claras para baixa familiaridade digital.',
+        'Translated government and agribusiness APIs (weather, fuel, financial) into clear experiences for low digital literacy.'
+      ),
+    },
+  ];
+
+  return (
+    <motion.div {...fade} className="grid md:grid-cols-3 gap-3 mb-12">
+      {items.map((it, i) => (
+        <div
+          key={i}
+          className="p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06] hover:border-primary/20 transition-colors"
+        >
+          <div className="flex items-center justify-center h-10 w-10 rounded-xl bg-primary/10 mb-4">
+            <it.icon className="h-[19px] w-[19px] text-primary/80" />
+          </div>
+          <p className="font-heading text-[17px] md:text-[18px] font-semibold text-foreground leading-[1.3] mb-2">
+            {it.title}
+          </p>
+          <p className="font-sans text-[14px] leading-[1.6] text-foreground/55">
+            {it.desc}
+          </p>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
+
+/* ── Trajetória (executor → estratégico → liderança) ── */
+function Trajetoria() {
+  const { t } = useLanguage();
+  const phases = [
+    {
+      tag: t('CAP. 1 — CONSULTORIA', 'CH. 1 — CONSULTANCY'),
+      title: t('Entrada como executor', 'Joined as executor'),
+      desc: t(
+        'Cheguei via consultoria para construir base do produto: design system, fluxos financeiros (PIX, TED, boletos) e identidade visual do app + landing page.',
+        'Joined via consultancy to build the product foundation: design system, financial flows (PIX, wire, slips) and visual identity for app + landing page.'
+      ),
+    },
+    {
+      tag: t('CAP. 2 — TRANSIÇÃO PARA CLT', 'CH. 2 — HIRED FULL-TIME'),
+      title: t('Convidado a continuar', 'Invited to stay'),
+      desc: t(
+        'Após sair da consultoria, fui contratado pela Agrow.pay como CLT — virada concreta de executor para alguém que ajudava a definir o produto.',
+        'After leaving the consultancy, I was hired full-time by Agrow.pay — a real shift from executor to someone helping define the product.'
+      ),
+    },
+    {
+      tag: t('CAP. 3 — PRODUCT DESIGNER', 'CH. 3 — PRODUCT DESIGNER'),
+      title: t('Referência de UX/UI e liderança', 'UX/UI reference and leadership'),
+      desc: t(
+        'Assumi fluxos críticos, prioridades e decisões com stakeholders e devs. Apoiei a contratação e o desenvolvimento de uma UX/UI Designer Junior.',
+        'Took on critical flows, prioritisation and decisions with stakeholders and devs. Supported the hiring and growth of a Junior UX/UI Designer.'
+      ),
+    },
+  ];
+
+  return (
+    <motion.div {...fade} className="mb-8">
+      <div className="grid md:grid-cols-3 gap-3">
+        {phases.map((p, i) => (
+          <div
+            key={i}
+            className="relative p-5 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="flex items-center justify-center h-7 w-7 rounded-full bg-primary/10 border border-primary/20 text-[12px] font-semibold text-primary">
+                {i + 1}
+              </span>
+              <p className="font-sans text-[11px] font-semibold text-primary/70 uppercase tracking-[0.1em]">
+                {p.tag}
+              </p>
+            </div>
+            <p className="font-heading text-[16px] font-semibold text-foreground leading-[1.3] mb-2">
+              {p.title}
+            </p>
+            <p className="font-sans text-[14px] leading-[1.6] text-foreground/55">
+              {p.desc}
+            </p>
+            {i < phases.length - 1 && (
+              <ArrowRight className="hidden md:block absolute -right-[14px] top-1/2 -translate-y-1/2 h-4 w-4 text-primary/30 z-10" />
+            )}
+          </div>
+        ))}
+      </div>
+    </motion.div>
   );
 }
 
@@ -84,6 +302,7 @@ function AgrowHero() {
         <Tag label="B2C" />
         <Tag label="BaaS" />
       </div>
+      <HeroMetrics />
     </motion.div>
   );
 }
@@ -113,6 +332,19 @@ function AgrowContent() {
           )}
         </p>
       </motion.div>
+
+      {/* ─── Showcase: App + LP Desktop ──────────────── */}
+      <AgrowShowcase
+        desktopSrc="/agrow-lp-desktop.jpg"
+        desktopAlt={t('Landing page Agrow.pay em desktop', 'Agrow.pay landing page on desktop')}
+        desktopLabel={t('Landing Page — Desktop', 'Landing Page — Desktop')}
+        mobileSrc="/agrow-app-mobile.jpg"
+        mobileAlt={t('Aplicativo Agrow.pay — tela de login', 'Agrow.pay app — login screen')}
+        mobileLabel={t('Aplicativo — Login', 'App — Login')}
+      />
+
+      {/* ─── Wow Highlights (3 cards de impacto qualitativo) ─ */}
+      <WowHighlights />
 
       {/* ─── Meu papel ────────────────────────────────── */}
       <motion.div {...fade}>
@@ -152,47 +384,21 @@ function AgrowContent() {
         </ul>
       </motion.div>
 
-      {/* ─── Estrutura do produto ─────────────────────── */}
+      {/* ─── Trajetória (3 capítulos) ─────────────────── */}
       <motion.div {...fade}>
         <h3 className={t_styles.h3}>
-          {t('Estrutura do produto', 'Product structure')}
+          {t('Trajetória', 'Journey')}
         </h3>
         <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-6 ${prose}`}>
           {t(
-            'A estrutura é um ecossistema completo, conectado em três domínios principais:',
-            'The structure is a complete ecosystem, connected across three main domains:'
+            'De executor a co-definidor do produto — em três capítulos.',
+            'From executor to product co-definer — in three chapters.'
           )}
         </p>
-        <div className="grid gap-3 mb-8">
-          <DomainCard
-            icon={BarChart3}
-            title={t('Gestão Financeira', 'Financial Management')}
-            items={t(
-              ['PIX, TED, Saldos, Depósitos'],
-              ['PIX, Wire transfers, Balances, Deposits']
-            )}
-            color="text-emerald-500 bg-emerald-500/10"
-          />
-          <DomainCard
-            icon={Zap}
-            title={t('Gestão de Grãos', 'Grain Management')}
-            items={t(
-              ['Cotas, Contratos, NF-e'],
-              ['Quotas, Contracts, e-Invoice']
-            )}
-            color="text-amber-500 bg-amber-500/10"
-          />
-          <DomainCard
-            icon={Users}
-            title={t('Portal de Parceiros (Dashboard)', 'Partner Portal (Dashboard)')}
-            items={t(
-              ['Relatórios e alertas do sistema'],
-              ['Reports and system alerts']
-            )}
-            color="text-blue-500 bg-blue-500/10"
-          />
-        </div>
       </motion.div>
+      <Trajetoria />
+
+      <div className={t_styles.divider} />
 
       {/* ─── Processo ─────────────────────────────────── */}
       <motion.div {...fade}>
@@ -221,8 +427,6 @@ function AgrowContent() {
           ))}
         </ul>
       </motion.div>
-
-      <div className={t_styles.divider} />
 
       {/* ─── Visão geral do produto ─────────────────────────── */}
       <motion.div {...fade}>
@@ -259,20 +463,57 @@ function AgrowContent() {
       {/* ─── PARTE 2 ─────────────────────────────────── */}
       {/* ═══════════════════════════════════════════════ */}
 
-      {/* ─── Impacto ──────────────────────────────────── */}
-      <motion.div {...fade} className="mt-16">
+      {/* ─── Mini-case Antes/Depois: Cotação de Grãos ── */}
+      <motion.div {...fade}>
         <h3 className={t_styles.h3}>
-          {t('Impacto', 'Impact')}
+          {t('Mini-case: Cotação de Grãos', 'Mini-case: Grain Pricing')}
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <MetricCard value="+10.000" label={t('usuários impactados', 'users impacted')} />
-          <MetricCard value="~5.000" label={t('cadastros realizados', 'sign-ups completed')} />
-          <MetricCard value="50%" label={t('taxa de conversão (LP)', 'conversion rate (LP)')} />
-          <MetricCard value="100%" label={t('fluxos criados do zero', 'flows created from scratch')} />
-        </div>
+        <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-2 ${prose}`}>
+          {t(
+            'Uma das transformações mais concretas: tirar uma operação presencial e dar autonomia ao produtor.',
+            'One of the most concrete transformations: removing an in-person operation and giving the producer autonomy.'
+          )}
+        </p>
       </motion.div>
+      <BeforeAfterGrid
+        t={t}
+        beforeItems={t(
+          [
+            'Dependência da filial para cotar preço',
+            'Visita presencial obrigatória',
+            'Sem visibilidade do saldo de grãos em tempo real',
+          ],
+          [
+            'Dependent on the branch to get prices',
+            'Mandatory in-person visits',
+            'No real-time visibility of grain balance',
+          ]
+        )}
+        afterItems={t(
+          [
+            'Consulta e decisão direto no app',
+            'Fixação de preço no momento desejado',
+            'Saldo de grãos visível remotamente',
+          ],
+          [
+            'Check and decide directly in the app',
+            'Lock the price whenever desired',
+            'Grain balance visible remotely',
+          ]
+        )}
+      />
 
       <div className={t_styles.divider} />
+
+      {/* ─── Showcase 2: Home do app + Portal Parceiro ─ */}
+      <AgrowShowcase
+        desktopSrc="/agrow-portal-parceiro.jpg"
+        desktopAlt={t('Portal do Parceiro Agrow.pay em desktop', 'Agrow.pay Partner Portal on desktop')}
+        desktopLabel={t('Portal Web — Parceiros', 'Web Portal — Partners')}
+        mobileSrc="/agrow-app-home.jpg"
+        mobileAlt={t('Aplicativo Agrow.pay — home do produtor', 'Agrow.pay app — producer home')}
+        mobileLabel={t('Aplicativo — Home do produtor', 'App — Producer home')}
+      />
 
       {/* ─── Deep Dive ────────────────────────────────── */}
       <motion.div {...fade}>
@@ -389,6 +630,52 @@ function AgrowContent() {
             </li>
           ))}
         </ul>
+      </motion.div>
+
+      {/* ─── Aprendizados ─────────────────────────────── */}
+      <motion.div {...fade}>
+        <h3 className={t_styles.h3}>
+          {t('Aprendizados', 'Learnings')}
+        </h3>
+        <div className="grid md:grid-cols-2 gap-3 mb-8">
+          {t(
+            [
+              'Projetar para baixa familiaridade digital exige simplificação extrema.',
+              'UX precisa adaptar-se a limitações técnicas reais — não só ao ideal.',
+              'Produto = negócio + tecnologia + contexto. Os três pesam.',
+              'Fluxos regulatórios pedem precisão e clareza absolutas.',
+            ],
+            [
+              'Designing for low digital literacy requires extreme simplification.',
+              'UX must adapt to real technical limitations — not just the ideal.',
+              'Product = business + technology + context. All three matter.',
+              'Regulatory flows demand absolute precision and clarity.',
+            ]
+          ).map((item, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-3 p-4 rounded-2xl bg-foreground/[0.025] border border-foreground/[0.06]"
+            >
+              <Sparkles className="h-4 w-4 mt-[3px] text-primary/60 shrink-0" />
+              <p className="font-sans text-[14px] md:text-[15px] leading-[1.6] text-foreground/65">
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ─── Fechamento ───────────────────────────────── */}
+      <motion.div {...fade} className="my-10 py-7 px-7 rounded-2xl bg-primary/[0.04] border border-primary/15">
+        <p className="font-heading text-[18px] md:text-[20px] font-semibold text-foreground leading-[1.4] mb-2">
+          {t('Fechamento', 'Closing')}
+        </p>
+        <p className="font-sans text-[15px] md:text-[16px] leading-[1.72] text-foreground/65">
+          {t(
+            'Minha jornada na Agrow.pay foi marcada por evolução constante — de construir interfaces a ajudar a definir o produto, equilibrando experiência do usuário, limitações técnicas e impacto no negócio.',
+            'My journey at Agrow.pay was marked by constant evolution — from building interfaces to helping define the product, balancing user experience, technical limitations, and business impact.'
+          )}
+        </p>
       </motion.div>
     </>
   );

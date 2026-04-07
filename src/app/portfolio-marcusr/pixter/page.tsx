@@ -52,6 +52,55 @@ function PixterHero() {
   );
 }
 
+function RiocardShowcase({ t }: { t: <T,>(pt: T, en: T) => T }) {
+  return (
+    <motion.div {...fade} className="my-12">
+      <div className="relative rounded-3xl bg-gradient-to-br from-[#0066B3]/[0.06] via-[#0066B3]/[0.03] to-transparent p-6 md:p-10 overflow-hidden border border-foreground/[0.06]">
+        <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#E81E7C]/[0.06] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-[#0066B3]/[0.08] blur-3xl" />
+
+        <div className="relative grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+          {/* Antes */}
+          <div className="flex flex-col items-center">
+            <div className="rounded-2xl overflow-hidden border border-foreground/10 shadow-[0_30px_60px_-25px_rgba(0,0,0,0.35)] bg-foreground/[0.04] w-full">
+              <img
+                src="/riocard-app-antigo.jpg"
+                alt={t('App Riocard antes do redesign', 'Riocard app before the redesign')}
+                className="block w-full h-auto"
+              />
+            </div>
+            <div className="mt-4 inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-red-400/70" />
+              <p className="font-sans text-[12px] uppercase tracking-[0.12em] text-foreground/50">{t('Antes', 'Before')}</p>
+            </div>
+            <p className="mt-1 font-sans text-[13px] text-foreground/45 text-center">
+              {t('Interface antiga, fluxos confusos', 'Old interface, confusing flows')}
+            </p>
+          </div>
+
+          {/* Depois */}
+          <div className="flex flex-col items-center">
+            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#0066B3]/[0.05] to-[#E81E7C]/[0.03] border border-foreground/10 shadow-[0_30px_60px_-25px_rgba(0,102,179,0.4)] w-full flex items-center justify-center">
+              <img
+                src="/riocard-app-novo.png"
+                alt={t('App Riocard depois do redesign', 'Riocard app after the redesign')}
+                className="block w-auto max-h-[420px] h-auto"
+              />
+            </div>
+            <div className="mt-4 inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/70" />
+              <p className="font-sans text-[12px] uppercase tracking-[0.12em] text-foreground/50">{t('Depois', 'After')}</p>
+            </div>
+            <p className="mt-1 font-sans text-[13px] text-foreground/45 text-center">
+              {t('Nova home, saldo em destaque, hierarquia clara', 'New home, prominent balance, clear hierarchy')}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function PixterContent() {
   const { t } = useLanguage();
 
@@ -67,6 +116,8 @@ function PixterContent() {
           )}
         </p>
       </motion.div>
+
+      <RiocardShowcase t={t} />
 
       <div className={t_styles.divider} />
 

@@ -31,6 +31,105 @@ function IADesignHero() {
   );
 }
 
+function FlowNode({ children, tone = 'default' }: { children: React.ReactNode; tone?: 'default' | 'start' | 'decision' | 'end' | 'success' | 'fail' }) {
+  const tones: Record<string, string> = {
+    default: 'bg-foreground/[0.03] border-foreground/15 text-foreground/80',
+    start: 'bg-violet-500/[0.10] border-violet-400/40 text-violet-600 dark:text-violet-300 font-semibold',
+    decision: 'bg-amber-500/[0.10] border-amber-400/40 text-amber-700 dark:text-amber-300 font-semibold',
+    end: 'bg-emerald-500/[0.10] border-emerald-400/40 text-emerald-700 dark:text-emerald-300 font-semibold',
+    success: 'bg-emerald-500/[0.08] border-emerald-400/35 text-emerald-700 dark:text-emerald-300',
+    fail: 'bg-red-500/[0.08] border-red-400/35 text-red-600 dark:text-red-300',
+  };
+  return (
+    <div className={`px-2.5 py-1.5 rounded-lg border text-[11px] md:text-[12px] font-sans text-center leading-[1.3] ${tones[tone]}`}>
+      {children}
+    </div>
+  );
+}
+
+function ColArrow() {
+  return (
+    <div className="flex flex-col items-center my-0.5">
+      <div className="h-3 w-px bg-foreground/20" />
+      <svg width="8" height="5" viewBox="0 0 10 6" className="text-foreground/35"><path d="M0 0 L5 6 L10 0" fill="currentColor" /></svg>
+    </div>
+  );
+}
+
+function MimicaUserFlow({ t }: { t: <T,>(pt: T, en: T) => T }) {
+  return (
+    <motion.div {...fade} className="my-10">
+      <p className="text-[11px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/35 mb-4">
+        {t('Imagem · Fluxograma do usuário', 'Image · User flow')}
+      </p>
+      <div className="relative rounded-2xl border border-foreground/[0.08] bg-gradient-to-br from-violet-500/[0.04] via-violet-500/[0.02] to-transparent p-5 md:p-6 overflow-hidden">
+        <div className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-violet-400/[0.07] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-56 w-56 rounded-full bg-violet-500/[0.07] blur-3xl" />
+
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-4 items-start">
+          {/* Coluna 1 — Setup */}
+          <div>
+            <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.12em] text-violet-500/70 mb-2 text-center">{t('1 · Setup', '1 · Setup')}</p>
+            <FlowNode tone="start">{t('Abrir app (desktop / mobile)', 'Open app (desktop / mobile)')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Começar jogo', 'Start game')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Configurar partida', 'Configure match')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Escolher categoria', 'Choose category')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Começar rodada', 'Start round')}</FlowNode>
+          </div>
+
+          {/* Coluna 2 — Loop por time */}
+          <div className="relative md:border-l md:border-r md:border-dashed md:border-violet-400/20 md:px-4">
+            <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.12em] text-violet-500/70 mb-2 text-center">
+              {t('2 · Rodada (×2 times)', '2 · Round (×2 teams)')}
+            </p>
+            <FlowNode>{t('Mostrar palavra (só pro mímico)', 'Show word (mime only)')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Timer inicia automaticamente', 'Timer starts automatically')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Grupo tenta adivinhar', 'Group tries to guess')}</FlowNode>
+            <ColArrow />
+            <FlowNode tone="decision">{t('Acertou?', 'Correct?')}</FlowNode>
+
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              <div className="flex flex-col items-center">
+                <span className="text-[9px] font-sans font-semibold uppercase tracking-[0.1em] text-emerald-600/70 dark:text-emerald-400/70">{t('Sim', 'Yes')}</span>
+                <svg width="8" height="5" viewBox="0 0 10 6" className="text-emerald-500/50 mb-0.5"><path d="M0 0 L5 6 L10 0" fill="currentColor" /></svg>
+                <FlowNode tone="success">{t('+1 ponto', '+1 point')}</FlowNode>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-[9px] font-sans font-semibold uppercase tracking-[0.1em] text-red-500/70 dark:text-red-400/70">{t('Não', 'No')}</span>
+                <svg width="8" height="5" viewBox="0 0 10 6" className="text-red-500/50 mb-0.5"><path d="M0 0 L5 6 L10 0" fill="currentColor" /></svg>
+                <FlowNode tone="fail">{t('Sem ponto', 'No point')}</FlowNode>
+              </div>
+            </div>
+
+            <div className="mt-3 flex items-center justify-center gap-1.5 text-[9px] font-sans uppercase tracking-[0.1em] text-violet-500/60">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+              {t('repete p/ próximo time', 'repeats for next team')}
+            </div>
+          </div>
+
+          {/* Coluna 3 — Fim */}
+          <div>
+            <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.12em] text-violet-500/70 mb-2 text-center">{t('3 · Final', '3 · End')}</p>
+            <FlowNode tone="decision">{t('Final do jogo', 'End of game')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Mostrar pontuação', 'Show score')}</FlowNode>
+            <ColArrow />
+            <FlowNode>{t('Empate → desempate', 'Tie → tiebreaker')}</FlowNode>
+            <ColArrow />
+            <FlowNode tone="end">{t('"Jogar novamente"', '"Play again"')}</FlowNode>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function IADesignContent() {
   const { t } = useLanguage();
 
@@ -458,18 +557,9 @@ function IADesignContent() {
         </div>
       </motion.div>
 
-      {/* Placeholder: fluxograma */}
-      <motion.div {...fade} className="my-8">
-        <p className="text-[11px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/35 mb-3">
-          {t('Imagem · Fluxograma do usuário', 'Image · User flow')}
-        </p>
-        <div className="aspect-[16/9] rounded-2xl border border-dashed border-foreground/15 bg-foreground/[0.02] flex flex-col items-center justify-center gap-2">
-          <ImageIcon className="h-7 w-7 text-foreground/20" strokeWidth={1.5} />
-          <p className="font-sans text-[13px] text-foreground/35">
-            {t('Fluxograma / jornada do usuário', 'Flowchart / user journey')}
-          </p>
-        </div>
-      </motion.div>
+      {/* Fluxograma do usuário */}
+      <MimicaUserFlow t={t} />
+
 
       {/* ──── 6. MVP & Execução ──── */}
       <motion.div {...fade} className="mt-14 mb-6">
@@ -487,28 +577,48 @@ function IADesignContent() {
         </p>
       </motion.div>
 
-      {/* Placeholders: mobile + desktop */}
-      <motion.div {...fade} className="my-8 grid md:grid-cols-2 gap-4">
-        <div>
-          <p className="text-[11px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/35 mb-3">
-            {t('Imagem · Versão mobile', 'Image · Mobile version')}
-          </p>
-          <div className="aspect-[9/16] rounded-2xl border border-dashed border-foreground/15 bg-foreground/[0.02] flex flex-col items-center justify-center gap-2">
-            <ImageIcon className="h-7 w-7 text-foreground/20" strokeWidth={1.5} />
-            <p className="font-sans text-[13px] text-foreground/35">
-              {t('Mockup mobile', 'Mobile mockup')}
-            </p>
-          </div>
-        </div>
-        <div>
-          <p className="text-[11px] font-sans font-medium uppercase tracking-[0.12em] text-foreground/35 mb-3">
-            {t('Imagem · Versão desktop', 'Image · Desktop version')}
-          </p>
-          <div className="aspect-[9/16] md:aspect-[16/10] rounded-2xl border border-dashed border-foreground/15 bg-foreground/[0.02] flex flex-col items-center justify-center gap-2">
-            <ImageIcon className="h-7 w-7 text-foreground/20" strokeWidth={1.5} />
-            <p className="font-sans text-[13px] text-foreground/35">
-              {t('Mockup desktop', 'Desktop mockup')}
-            </p>
+      {/* Mockups Mímica — desktop + mobile no estilo showcase */}
+      <motion.div {...fade} className="relative mt-2 mb-12">
+        <div className="relative rounded-3xl bg-gradient-to-br from-violet-500/[0.07] via-violet-500/[0.04] to-violet-500/[0.02] p-6 md:p-10 overflow-hidden border border-foreground/[0.06]">
+          <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-violet-400/[0.08] blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-violet-500/[0.08] blur-3xl" />
+
+          <div className="relative grid md:grid-cols-[1.45fr_1fr] gap-6 md:gap-8 items-center">
+            {/* Desktop com janela falsa */}
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden bg-foreground/[0.03] border border-foreground/10 shadow-[0_30px_60px_-25px_rgba(124,58,237,0.35)]">
+                <div className="flex items-center gap-1.5 px-4 py-2.5 bg-foreground/[0.04] border-b border-foreground/[0.06]">
+                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/20" />
+                </div>
+                <img
+                  src="/mimica-desktop.jpg"
+                  alt={t('Mockup desktop do jogo Mímica', 'Desktop mockup of the Mimica game')}
+                  className="block w-full h-auto"
+                />
+              </div>
+              <p className="mt-3 font-sans text-[12px] uppercase tracking-[0.12em] text-foreground/45 text-center md:text-left">
+                {t('Versão Desktop', 'Desktop version')}
+              </p>
+            </div>
+
+            {/* Mobile com frame de telefone */}
+            <div className="relative flex flex-col items-center">
+              <div className="relative rounded-[2.2rem] p-[6px] bg-foreground/80 border border-foreground/15 shadow-[0_30px_60px_-25px_rgba(124,58,237,0.4)]">
+                <div className="absolute top-[10px] left-1/2 -translate-x-1/2 h-[18px] w-[90px] rounded-full bg-foreground z-10" />
+                <div className="rounded-[1.8rem] overflow-hidden bg-foreground">
+                  <img
+                    src="/mimica-mobile.jpg"
+                    alt={t('Mockup mobile do jogo Mímica', 'Mobile mockup of the Mimica game')}
+                    className="block w-auto max-h-[360px] md:max-h-[420px] h-auto"
+                  />
+                </div>
+              </div>
+              <p className="mt-3 font-sans text-[12px] uppercase tracking-[0.12em] text-foreground/45 text-center">
+                {t('Versão Mobile', 'Mobile version')}
+              </p>
+            </div>
           </div>
         </div>
       </motion.div>

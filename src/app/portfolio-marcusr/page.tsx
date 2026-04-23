@@ -173,7 +173,7 @@ function useTimelineData() {
       content: (
         <TimelineContentCompact
           headline={t(
-            "Design potencializado por IA — discovery, interfaces e código em dias, não meses.",
+            "Design potencializado por IA: discovery, interfaces e código em dias, não meses.",
             "AI-powered design — discovery, interfaces and code in days, not months."
           )}
           description={t(
@@ -198,7 +198,7 @@ function useTimelineData() {
             "Joined as a consultant. Got hired full-time."
           )}
           description={t(
-            "Construí do zero uma conta digital completa para o agronegócio — app, landing page e portal do parceiro. Conduzi discovery, estruturei jornadas e entreguei um ecossistema financeiro em produção.",
+            "Construí do zero uma conta digital completa para o agronegócio (app, landing page e portal do parceiro). Conduzi discovery, estruturei jornadas e entreguei um ecossistema financeiro em produção.",
             "Built from scratch a complete digital banking platform for agribusiness — app, landing page, and partner portal. I led discovery, structured journeys, and delivered a financial ecosystem in production."
           )}
           highlights={t(
@@ -235,7 +235,7 @@ function useTimelineData() {
             "Consulting where I worked on two major products."
           )}
           description={t(
-            "Comecei como consultor no redesign do app Riocard — um dos maiores sistemas de bilhetagem do Rio. Foi aqui que nasceu o projeto Agrow.pay, onde criei do zero uma conta digital para o agronegócio.",
+            "Comecei como consultor no redesign do app Riocard, um dos maiores sistemas de bilhetagem do Rio. Foi aqui que nasceu o projeto Agrow.pay, onde criei do zero uma conta digital para o agronegócio.",
             "Started as a consultant on the Riocard app redesign — one of Rio's largest ticketing systems. This is where the Agrow.pay project was born, where I built a digital banking platform for agribusiness from scratch."
           )}
           highlights={t(

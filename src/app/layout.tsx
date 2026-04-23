@@ -19,8 +19,8 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Marcus Rolim — Product Designer | IA Aplicada ao Design",
-  description: "Product Designer que conecta UX, negócio e tecnologia. Construo produtos digitais reais com IA aplicada — do discovery à implementação.",
+  title: "Marcus Rolim: Product Designer | IA Aplicada ao Design",
+  description: "Product Designer que conecta UX, negócio e tecnologia. Construo produtos digitais reais com IA aplicada, do discovery à implementação.",
 };
 
 export default function RootLayout({

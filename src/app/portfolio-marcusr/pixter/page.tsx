@@ -38,7 +38,7 @@ function PixterHero() {
       <p className="text-[13px] font-sans font-medium uppercase tracking-[0.12em] text-white/40 mb-4">Case</p>
       <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-white leading-[1.2] mb-5 max-w-[680px]">
         {t(
-          'Riocard — Redesign do aplicativo',
+          'Riocard: Redesign do aplicativo',
           'Riocard — App redesign'
         )}
       </h2>
@@ -225,7 +225,7 @@ function PixterContent() {
             <BulletList items={t(
               [
                 'Recriação completa da tela inicial com nova hierarquia de informação',
-                'Destaque para o saldo do usuário — funcionalidade mais crítica do app',
+                'Destaque para o saldo do usuário, funcionalidade mais crítica do app',
                 'Maior visibilidade de funcionalidades estratégicas do produto',
               ],
               [
@@ -263,7 +263,7 @@ function PixterContent() {
           items={t(
             [
               'Melhoria na clareza das informações principais do app',
-              'Acesso mais rápido ao saldo — redução do esforço cognitivo na tarefa mais crítica',
+              'Acesso mais rápido ao saldo: redução do esforço cognitivo na tarefa mais crítica',
               'Interface mais intuitiva e escaneável para o usuário final',
               'Base de design organizada e escalável para o time',
             ],
@@ -289,7 +289,7 @@ function PixterContent() {
             </p>
             <p className="font-sans text-[15px] leading-[1.68] text-foreground/60">
               {t(
-                'A hierarquia visual impacta diretamente a eficiência do usuário. Ao priorizar a exibição do saldo na home, reduzi o tempo de acesso à informação mais crítica — melhorando a percepção de valor do produto.',
+                'A hierarquia visual impacta diretamente a eficiência do usuário. Ao priorizar a exibição do saldo na home, reduzi o tempo de acesso à informação mais crítica, melhorando a percepção de valor do produto.',
                 'Visual hierarchy directly impacts user efficiency. By prioritising the balance display on the home screen, I reduced the time to access the most critical information — improving the perceived value of the product.'
               )}
             </p>
@@ -303,11 +303,11 @@ function PixterContent() {
           {t('Próximo projeto na Pixter', 'Next project at Pixter')}
         </p>
         <h4 className="font-heading text-[20px] md:text-[24px] font-semibold text-foreground leading-[1.3] mb-2">
-          {t('Agrow.pay — Conta digital para o agronegócio', 'Agrow.pay — Digital banking for agribusiness')}
+          {t('Agrow.pay: Conta digital para o agronegócio', 'Agrow.pay — Digital banking for agribusiness')}
         </h4>
         <p className="font-sans text-[15px] leading-[1.68] text-foreground/55 mb-5 max-w-[560px]">
           {t(
-            'Ainda na Pixter, fui alocado no projeto Agrow.pay — onde construí do zero uma conta digital completa. O impacto foi tão grande que saí de consultor para contratado.',
+            'Ainda na Pixter, fui alocado no projeto Agrow.pay, onde construí do zero uma conta digital completa. O impacto foi tão grande que saí de consultor para contratado.',
             'Still at Pixter, I was assigned to the Agrow.pay project — where I built a complete digital banking platform from scratch. The impact was so significant that I went from consultant to full-time hire.'
           )}
         </p>

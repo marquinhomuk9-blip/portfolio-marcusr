@@ -23,7 +23,7 @@ function IADesignHero() {
       </h2>
       <p className="font-sans text-[18px] md:text-[20px] leading-[1.72] text-white/60 max-w-[680px]">
         {t(
-          'Não uso IA como buzzword de LinkedIn. Uso como ferramenta real de produção que muda fundamentalmente o que um designer consegue entregar — e em quanto tempo. Essa é a habilidade que separa o designer de hoje do designer de amanhã.',
+          'Não uso IA como buzzword de LinkedIn. Uso como ferramenta real de produção que muda fundamentalmente o que um designer consegue entregar, e em quanto tempo. Essa é a habilidade que separa o designer de hoje do designer de amanhã.',
           'I don\'t use AI as a LinkedIn buzzword. I use it as a real production tool that fundamentally changes what a designer can deliver — and how fast. This is the skill that separates today\'s designer from tomorrow\'s.'
         )}
       </p>
@@ -200,7 +200,7 @@ function IADesignContent() {
         <p className="font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65">
           <strong className="text-foreground font-semibold">{t('Minha visão:', 'My vision:')}</strong>{' '}
           {t(
-            'IA não substitui o designer — ela multiplica quem sabe usá-la. O mercado vai se dividir entre designers que usam IA como ferramenta real e designers que ficaram para trás. Eu escolhi o primeiro caminho, e os resultados falam por si: entregas que antes levavam meses agora acontecem em dias.',
+            'IA não substitui o designer: ela multiplica quem sabe usá-la. O mercado vai se dividir entre designers que usam IA como ferramenta real e designers que ficaram para trás. Eu escolhi o primeiro caminho, e os resultados falam por si: entregas que antes levavam meses agora acontecem em dias.',
             'AI doesn\'t replace the designer — it multiplies those who know how to use it. The market will split between designers who use AI as a real tool and those who fall behind. I chose the first path, and the results speak for themselves: deliveries that used to take months now happen in days.'
           )}
         </p>
@@ -230,7 +230,7 @@ function IADesignContent() {
         </h3>
         <p className="font-sans text-[18px] md:text-[20px] leading-[1.6] text-foreground/70 max-w-[720px]">
           {t(
-            'Criando uma experiência de mímica rápida, fluida e social com apoio de IA — do discovery ao MVP em produção.',
+            'Criando uma experiência de mímica rápida, fluida e social com apoio de IA, do discovery ao MVP em produção.',
             'Building a fast, fluid and social charades experience with AI support — from discovery to MVP in production.'
           )}
         </p>
@@ -275,7 +275,7 @@ function IADesignContent() {
         </p>
         <p className="mt-5 font-sans text-[15px] leading-[1.7] text-foreground/55 max-w-[720px]">
           {t(
-            'Esse foi o ponto de partida do Mimicando Simples — um produto digital pensado para apoiar a experiência social, não competir com ela.',
+            'Esse foi o ponto de partida do Mimicando Simples, um produto digital pensado para apoiar a experiência social, não competir com ela.',
             'That was the starting point of Mimicando Simples — a digital product designed to support the social experience, not compete with it.'
           )}
         </p>
@@ -362,7 +362,7 @@ function IADesignContent() {
               [
                 'Dificuldade para iniciar o jogo rapidamente',
                 'Excesso de etapas antes da primeira rodada',
-                'Interrupções — principalmente anúncios',
+                'Interrupções, principalmente anúncios',
                 'Falta de organização durante o jogo',
                 'Pouca variedade de palavras',
                 'Ausência de feedback claro durante a rodada',
@@ -395,7 +395,7 @@ function IADesignContent() {
         </h4>
         <p className="font-sans text-[15px] md:text-[16px] leading-[1.7] text-foreground/60 max-w-[720px]">
           {t(
-            'Transformei os insights do discovery em 5 princípios de design — o guia de decisão do produto, do fluxo à interface.',
+            'Transformei os insights do discovery em 5 princípios de design: o guia de decisão do produto, do fluxo à interface.',
             'I turned discovery insights into 5 design principles — the product\'s decision guide, from flow to interface.'
           )}
         </p>
@@ -415,7 +415,7 @@ function IADesignContent() {
               icon: Users,
               number: '02',
               title: 'Priorizar a interação entre jogadores',
-              explanation: 'O foco é a brincadeira, não a tela. O app apoia a dinâmica — não compete com ela.',
+              explanation: 'O foco é a brincadeira, não a tela. O app apoia a dinâmica, não compete com ela.',
               impact: ['Interface simples e discreta', 'Poucos elementos durante a rodada', 'Foco na dinâmica do jogo'],
             },
             {
@@ -635,13 +635,13 @@ function IADesignContent() {
           </div>
           <h4 className="font-heading text-[24px] md:text-[30px] font-semibold text-foreground leading-[1.25] mb-4 max-w-[680px]">
             {t(
-              'IA como alavanca — não como substituto',
+              'IA como alavanca, não como substituto',
               'AI as leverage — not replacement'
             )}
           </h4>
           <p className="font-sans text-[16px] md:text-[17px] leading-[1.7] text-foreground/70 max-w-[680px] mb-6">
             {t(
-              'Usei IA como apoio estratégico em todas as etapas. Ela não substituiu decisões de design — ela potencializou velocidade de exploração, síntese de dados e aceleração do MVP.',
+              'Usei IA como apoio estratégico em todas as etapas. Ela não substituiu decisões de design. Potencializou velocidade de exploração, síntese de dados e aceleração do MVP.',
               'I used AI as strategic support across every stage. It didn\'t replace design decisions — it amplified exploration speed, data synthesis and MVP acceleration.'
             )}
           </p>
@@ -685,7 +685,7 @@ function IADesignContent() {
         </h4>
         <p className="font-sans text-[15px] md:text-[16px] leading-[1.7] text-foreground/60 max-w-[720px]">
           {t(
-            'O produto foi colocado em uso real para coletar feedbacks diretos, observar partidas e conduzir testes de usabilidade. Os aprendizados alimentam melhorias contínuas — principalmente em tempo de interação, clareza das ações e fluidez entre rodadas.',
+            'O produto foi colocado em uso real para coletar feedbacks diretos, observar partidas e conduzir testes de usabilidade. Os aprendizados alimentam melhorias contínuas, principalmente em tempo de interação, clareza das ações e fluidez entre rodadas.',
             'The product was placed in real use to collect direct feedback, observe matches and run usability tests. The learnings feed continuous improvements — mainly in interaction time, action clarity and inter-round fluidity.'
           )}
         </p>
@@ -827,7 +827,7 @@ function IADesignContent() {
         <Quote className="h-6 w-6 text-violet-500/40 mb-4" strokeWidth={2} />
         <p className="font-heading text-[20px] md:text-[24px] leading-[1.4] text-foreground/85 mb-4 max-w-[720px]">
           {t(
-            'O Mimicando Simples não foi criado para ser “mais um app de mímica”. Foi pensado como um facilitador de momentos sociais — menos interface, mais interação humana.',
+            'O Mimicando Simples não foi criado para ser “mais um app de mímica”. Foi pensado como um facilitador de momentos sociais: menos interface, mais interação humana.',
             '"Mimicando Simples" wasn\'t created to be "just another charades app". It was designed as a facilitator of social moments — less interface, more human interaction.'
           )}
         </p>

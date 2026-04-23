@@ -70,7 +70,7 @@ export function HeroBlock() {
             <div className="h-24 w-24 md:h-28 md:w-28 rounded-full overflow-hidden border-2 border-foreground/[0.06] shadow-lg">
               <img
                 src="/marcus-photo.png"
-                alt="Marcus Rolim — Product Designer"
+                alt="Marcus Rolim, Product Designer"
                 className="h-full w-full object-cover object-top"
               />
             </div>
@@ -91,7 +91,7 @@ export function HeroBlock() {
             variants={fadeUp}
             className="mb-3 text-[12px] md:text-[13px] font-semibold tracking-[0.18em] text-foreground/50 uppercase"
           >
-            {t('UX/UI Designer — Product Designer', 'UX/UI Designer — Product Designer')}
+            {t('UX/UI Designer, Product Designer', 'UX/UI Designer — Product Designer')}
           </motion.p>
 
           {/* Nome */}
@@ -108,7 +108,7 @@ export function HeroBlock() {
             className="mb-7 max-w-2xl text-[17px] md:text-[19px] leading-[1.6] text-foreground/65"
           >
             {t(
-              'Construo produtos digitais do zero e evoluo sistemas existentes — do discovery à produção, equilibrando UX, regras de negócio e limitações técnicas.',
+              'Construo produtos digitais do zero e evoluo sistemas existentes, do discovery à produção, equilibrando UX, regras de negócio e limitações técnicas.',
               'I build digital products from scratch and evolve existing systems — from discovery to production, balancing UX, business rules and technical constraints.'
             )}
           </motion.p>

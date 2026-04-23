@@ -74,7 +74,7 @@ function HeroMetrics() {
     {
       value: '3',
       label: t(
-        'produtos do zero — App, LP, Dashboard',
+        'produtos do zero: App, LP, Dashboard',
         'products from scratch — App, LP, Dashboard'
       ),
     },
@@ -177,7 +177,7 @@ function WowHighlights() {
       icon: Building2,
       title: t('Presencial → App', 'In-person → App'),
       desc: t(
-        'Operações que exigiam visita à filial — como cotação de grãos — passaram a acontecer dentro do app.',
+        'Operações que exigiam visita à filial (como cotação de grãos) passaram a acontecer dentro do app.',
         'Operations that used to require a branch visit — like grain pricing — now happen inside the app.'
       ),
     },
@@ -218,7 +218,7 @@ function Trajetoria() {
   const { t } = useLanguage();
   const phases = [
     {
-      tag: t('CAP. 1 — CONSULTORIA', 'CH. 1 — CONSULTANCY'),
+      tag: t('CAP. 1: CONSULTORIA', 'CH. 1 — CONSULTANCY'),
       title: t('Entrada como executor', 'Joined as executor'),
       desc: t(
         'Cheguei via consultoria para construir base do produto: design system, fluxos financeiros (PIX, TED, boletos) e identidade visual do app + landing page.',
@@ -226,15 +226,15 @@ function Trajetoria() {
       ),
     },
     {
-      tag: t('CAP. 2 — TRANSIÇÃO PARA CLT', 'CH. 2 — HIRED FULL-TIME'),
+      tag: t('CAP. 2: TRANSIÇÃO PARA CLT', 'CH. 2 — HIRED FULL-TIME'),
       title: t('Convidado a continuar', 'Invited to stay'),
       desc: t(
-        'Após sair da consultoria, fui contratado pela Agrow.pay como CLT — virada concreta de executor para alguém que ajudava a definir o produto.',
+        'Após sair da consultoria, fui contratado pela Agrow.pay como CLT, virada concreta de executor para alguém que ajudava a definir o produto.',
         'After leaving the consultancy, I was hired full-time by Agrow.pay — a real shift from executor to someone helping define the product.'
       ),
     },
     {
-      tag: t('CAP. 3 — PRODUCT DESIGNER', 'CH. 3 — PRODUCT DESIGNER'),
+      tag: t('CAP. 3: PRODUCT DESIGNER', 'CH. 3 — PRODUCT DESIGNER'),
       title: t('Referência de UX/UI e liderança', 'UX/UI reference and leadership'),
       desc: t(
         'Assumi fluxos críticos, prioridades e decisões com stakeholders e devs. Apoiei a contratação e o desenvolvimento de uma UX/UI Designer Junior.',
@@ -285,13 +285,13 @@ function AgrowHero() {
       </div>
       <h2 className="font-heading text-[28px] md:text-[36px] font-bold text-white leading-[1.2] mb-5 max-w-[680px]">
         {t(
-          'Agrow.pay — Construção do produto',
+          'Agrow.pay: Construção do produto',
           'Agrow.pay — Building the product'
         )}
       </h2>
       <p className="font-sans text-[18px] md:text-[20px] leading-[1.72] text-white/60 mb-6 max-w-[680px]">
         {t(
-          'Conta digital para o agronegócio, criada do zero — do primeiro fluxo à validação com produtores rurais.',
+          'Conta digital para o agronegócio, criada do zero, do primeiro fluxo à validação com produtores rurais.',
           'Digital banking for agribusiness, built from scratch — from the first flow to validation with rural producers.'
         )}
       </p>
@@ -327,7 +327,7 @@ function AgrowContent() {
         </p>
         <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
           {t(
-            'Entrei no projeto para consolidar Product e, com a evolução do trabalho, fui contratado definitivamente pela Agrow.pay — prova concreta de confiança e relevância na construção do produto.',
+            'Entrei no projeto para consolidar Product e, com a evolução do trabalho, fui contratado definitivamente pela Agrow.pay, prova concreta de confiança e relevância na construção do produto.',
             'I joined the project to consolidate Product and, as the work evolved, I was permanently hired by Agrow.pay — concrete proof of trust and relevance in building the product.'
           )}
         </p>
@@ -337,10 +337,10 @@ function AgrowContent() {
       <AgrowShowcase
         desktopSrc="/agrow-lp-desktop.jpg"
         desktopAlt={t('Landing page Agrow.pay em desktop', 'Agrow.pay landing page on desktop')}
-        desktopLabel={t('Landing Page — Desktop', 'Landing Page — Desktop')}
+        desktopLabel={t('Landing Page: Desktop', 'Landing Page — Desktop')}
         mobileSrc="/agrow-app-mobile.jpg"
-        mobileAlt={t('Aplicativo Agrow.pay — tela de login', 'Agrow.pay app — login screen')}
-        mobileLabel={t('Aplicativo — Login', 'App — Login')}
+        mobileAlt={t('Aplicativo Agrow.pay, tela de login', 'Agrow.pay app — login screen')}
+        mobileLabel={t('Aplicativo: Login', 'App — Login')}
       />
 
       {/* ─── Wow Highlights (3 cards de impacto qualitativo) ─ */}
@@ -365,7 +365,7 @@ function AgrowContent() {
               'Tomada de decisão sobre prioridades e features junto ao time',
               'Design do aplicativo e da landing page',
               'Conduzi a participação em testes e entrevistas com usuários em diversas etapas',
-              'Aplicação de elementos WCAG na interface de contraste e paleta de cores ao nível, garantindo acessibilidade visual desde a concepção do produto — aplicando em estudo de caso detalhado',
+              'Aplicação de elementos WCAG na interface de contraste e paleta de cores ao nível, garantindo acessibilidade visual desde a concepção do produto, aplicando em estudo de caso detalhado',
             ],
             [
               'Created all product flows from scratch',
@@ -391,7 +391,7 @@ function AgrowContent() {
         </h3>
         <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-6 ${prose}`}>
           {t(
-            'De executor a co-definidor do produto — em três capítulos.',
+            'De executor a co-definidor do produto, em três capítulos.',
             'From executor to product co-definer — in three chapters.'
           )}
         </p>
@@ -452,7 +452,7 @@ function AgrowContent() {
           <Lightbulb className="h-5 w-5 text-primary/40 mt-[2px] shrink-0" />
           <p className="font-sans text-[15px] md:text-[16px] leading-[1.72] text-foreground/60">
             {t(
-              'Em todos os domínios, as decisões de design foram orientadas pelas restrições e possibilidades de cada integração de API — em alguns fluxos fazia mais sentido desacoplar etapas, em outros, fazia mais sentido agrupar e propor melhorias na experiência.',
+              'Em todos os domínios, as decisões de design foram orientadas pelas restrições e possibilidades de cada integração de API: em alguns fluxos fazia mais sentido desacoplar etapas, em outros, fazia mais sentido agrupar e propor melhorias na experiência.',
               'Across all domains, design decisions were guided by the constraints and possibilities of each API integration — in some flows it made more sense to decouple stages, in others, it made more sense to group them and propose experience improvements.'
             )}
           </p>
@@ -509,10 +509,10 @@ function AgrowContent() {
       <AgrowShowcase
         desktopSrc="/agrow-portal-parceiro.jpg"
         desktopAlt={t('Portal do Parceiro Agrow.pay em desktop', 'Agrow.pay Partner Portal on desktop')}
-        desktopLabel={t('Portal Web — Parceiros', 'Web Portal — Partners')}
+        desktopLabel={t('Portal Web: Parceiros', 'Web Portal — Partners')}
         mobileSrc="/agrow-app-home.jpg"
-        mobileAlt={t('Aplicativo Agrow.pay — home do produtor', 'Agrow.pay app — producer home')}
-        mobileLabel={t('Aplicativo — Home do produtor', 'App — Producer home')}
+        mobileAlt={t('Aplicativo Agrow.pay, home do produtor', 'Agrow.pay app — producer home')}
+        mobileLabel={t('Aplicativo: Home do produtor', 'App — Producer home')}
       />
 
       {/* ─── Deep Dive ────────────────────────────────── */}
@@ -528,7 +528,7 @@ function AgrowContent() {
         </h2>
         <p className={t_styles.body}>
           {t(
-            'Das jornadas que construí na Agrow, esse foi o fluxo de maior complexidade técnica e regulatória — e o que mais exigiu equilíbrio entre UX, conformidade legal e limitações de API.',
+            'Das jornadas que construí na Agrow, esse foi o fluxo de maior complexidade técnica e regulatória, e o que mais exigiu equilíbrio entre UX, conformidade legal e limitações de API.',
             'Of all the journeys I built at Agrow, this was the flow with the highest technical and regulatory complexity — and the one that most required balancing UX, legal compliance, and API limitations.'
           )}
         </p>
@@ -541,7 +541,7 @@ function AgrowContent() {
         </h3>
         <p className={`font-sans text-[17px] md:text-[18px] leading-[1.72] text-foreground/65 mb-8 ${prose}`}>
           {t(
-            'Transformar processos altamente burocráticos — emissão de Nota Fiscal, uso de Certificado Digital e criação de CPR (Cédula de Produto Rural) — em uma experiência clara, segura e executável dentro de um app mobile, para um usuário com baixa familiaridade digital.',
+            'Transformar processos altamente burocráticos, como emissão de Nota Fiscal, uso de Certificado Digital e criação de CPR (Cédula de Produto Rural), em uma experiência clara, segura e executável dentro de um app mobile, para um usuário com baixa familiaridade digital.',
             'Transform highly bureaucratic processes — issuing invoices, using Digital Certificates, and creating CPR (Rural Product Certificate) — into a clear, safe, and executable experience within a mobile app, for users with low digital literacy.'
           )}
         </p>
@@ -572,7 +572,7 @@ function AgrowContent() {
               { challenge: 'Restrições das APIs governamentais', decision: 'Fluxos mais guiados e estruturados, reduzindo margem de erro mesmo com menos liberdade de design' },
               { challenge: 'Alto risco de erro com impacto legal/financeiro', decision: 'Validações em tempo real, feedback claro de erros e estrutura passo a passo com progressão visível' },
               { challenge: 'Baixa familiaridade digital do público', decision: 'Simplificação da linguagem, redução de carga cognitiva e uso de padrões previsíveis' },
-              { challenge: 'Integração complexa com sistemas externos', decision: 'Abstração da complexidade técnica — o usuário vê o resultado, não a integração' },
+              { challenge: 'Integração complexa com sistemas externos', decision: 'Abstração da complexidade técnica: o usuário vê o resultado, não a integração' },
             ],
             [
               { challenge: 'Government API restrictions', decision: 'More guided and structured flows, reducing error margin even with less design freedom' },
@@ -641,7 +641,7 @@ function AgrowContent() {
           {t(
             [
               'Projetar para baixa familiaridade digital exige simplificação extrema.',
-              'UX precisa adaptar-se a limitações técnicas reais — não só ao ideal.',
+              'UX precisa adaptar-se a limitações técnicas reais, não só ao ideal.',
               'Produto = negócio + tecnologia + contexto. Os três pesam.',
               'Fluxos regulatórios pedem precisão e clareza absolutas.',
             ],
@@ -672,7 +672,7 @@ function AgrowContent() {
         </p>
         <p className="font-sans text-[15px] md:text-[16px] leading-[1.72] text-foreground/65">
           {t(
-            'Minha jornada na Agrow.pay foi marcada por evolução constante — de construir interfaces a ajudar a definir o produto, equilibrando experiência do usuário, limitações técnicas e impacto no negócio.',
+            'Minha jornada na Agrow.pay foi marcada por evolução constante: de construir interfaces a ajudar a definir o produto, equilibrando experiência do usuário, limitações técnicas e impacto no negócio.',
             'My journey at Agrow.pay was marked by constant evolution — from building interfaces to helping define the product, balancing user experience, technical limitations, and business impact.'
           )}
         </p>

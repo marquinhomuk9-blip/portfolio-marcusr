@@ -98,7 +98,7 @@ export function FloatingChat() {
                   <div className="bg-background/[0.08] rounded-2xl rounded-tl-md p-3.5">
                     <p className="text-[14px] leading-[1.55] text-background/75">
                       {t(
-                        'Oi! Gostou do que viu? Me conta o que você precisa — respondo rápido.',
+                        'Oi! Gostou do que viu? Me conta o que você precisa. Respondo rápido.',
                         "Hey! Liked what you saw? Tell me what you need — I reply fast."
                       )}
                     </p>

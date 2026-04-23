@@ -67,14 +67,14 @@ export function AboutSection() {
 
               <p className="font-sans text-[17px] md:text-[18px] leading-[1.75] text-foreground/70">
                 {t(
-                  'Minha abordagem vai além da interface: busco entender o problema em profundidade para entregar soluções que realmente geram impacto — equilibrando experiência do usuário, regras de negócio e limitações técnicas.',
+                  'Minha abordagem vai além da interface: busco entender o problema em profundidade para entregar soluções que realmente geram impacto, equilibrando experiência do usuário, regras de negócio e limitações técnicas.',
                   'My approach goes beyond the interface: I seek to deeply understand the problem to deliver solutions that truly generate impact — balancing user experience, business rules, and technical constraints.'
                 )}
               </p>
 
               <p className="font-sans text-[17px] md:text-[18px] leading-[1.75] text-foreground/70">
                 {t(
-                  'Atuei como ponte entre negócio, tecnologia e UX em projetos de escala real, com participação ativa em todas as etapas — da concepção à validação com usuários.',
+                  'Atuei como ponte entre negócio, tecnologia e UX em projetos de escala real, com participação ativa em todas as etapas, da concepção à validação com usuários.',
                   'I acted as a bridge between business, technology, and UX in real-scale projects, with active participation in every stage — from conception to user validation.'
                 )}
               </p>

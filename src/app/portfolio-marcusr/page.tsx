@@ -182,8 +182,8 @@ function useTimelineData() {
           )}
           href="/portfolio-marcusr/ia-design"
           ctaLabel={t('Saiba mais', 'Learn more')}
-          period={t('Jan 2026 → Presente', 'Jan 2026 → Present')}
-          duration={t('3 meses', '3 months')}
+          period={t('Jan 2026 → Até o momento', 'Jan 2026 → Present')}
+          duration={t('5 meses', '5 months')}
         />
       ),
     },
@@ -194,8 +194,8 @@ function useTimelineData() {
       content: (
         <TimelineContent
           headline={t(
-            "Entrei como consultor. Saí contratado.",
-            "Joined as a consultant. Got hired full-time."
+            "Criando e aprimorando a experiência do usuário do agronegócio.",
+            "Creating and enhancing the agribusiness user experience."
           )}
           description={t(
             "Construí do zero uma conta digital completa para o agronegócio (app, landing page e portal do parceiro). Conduzi discovery, estruturei jornadas e entreguei um ecossistema financeiro em produção.",

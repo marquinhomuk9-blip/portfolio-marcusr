@@ -203,16 +203,16 @@ function useTimelineData() {
           )}
           highlights={t(
             [
+              'Do zero ao produto: discovery → design → produção',
               '+10.000 usuários · ~5.000 cadastros · 50% de conversão',
               'PIX, TED, boletos e gestão de grãos em uma plataforma',
               'Certificado Digital + NF-e + CPR Digital no mobile',
-              'Do zero ao produto: discovery → design → produção',
             ],
             [
+              'From zero to product: discovery → design → production',
               '+10,000 users · ~5,000 sign-ups · 50% conversion rate',
               'PIX, wire transfers, invoices and grain management in one platform',
               'Digital Certificate + e-Invoice + Digital CPR on mobile',
-              'From zero to product: discovery → design → production',
             ]
           )}
           accentColor="text-emerald-500"
@@ -240,16 +240,16 @@ function useTimelineData() {
           )}
           highlights={t(
             [
+              'Research presencial com usuários reais no campo',
               'Saldo do cartão como 1º elemento da home (antes estava escondido)',
               'Redução significativa da fricção na navegação principal',
               'Hierarquia de informação reestruturada e escaneável',
-              'Research presencial com usuários reais no campo',
             ],
             [
+              'In-person research with real users in the field',
               'Card balance as the 1st element on home (previously hidden)',
               'Significant reduction of friction in main navigation',
               'Restructured and scannable information hierarchy',
-              'In-person research with real users in the field',
             ]
           )}
           accentColor="text-orange-500"
